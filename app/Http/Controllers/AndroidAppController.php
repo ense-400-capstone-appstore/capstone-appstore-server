@@ -69,7 +69,9 @@ class AndroidAppController extends Controller
      */
     public function update(Request $request, AndroidApp $androidApp)
     {
-        //
+        $androidApp->update($request->all());
+
+        return response()->json($androidApp, 200);
     }
 
     /**
