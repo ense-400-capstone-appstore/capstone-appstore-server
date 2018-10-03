@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ApiControllers\V1;
 
 use App\AndroidApp;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class AndroidAppController extends Controller
@@ -15,16 +16,6 @@ class AndroidAppController extends Controller
     public function index()
     {
         return AndroidApp::all();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -46,18 +37,7 @@ class AndroidAppController extends Controller
      */
     public function show(AndroidApp $androidApp)
     {
-        return AndroidApp::find($androidApp);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\AndroidApp  $androidApp
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AndroidApp $androidApp)
-    {
-        //
+        return AndroidApp::findOrFail($androidApp);
     }
 
     /**

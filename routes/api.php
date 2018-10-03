@@ -11,10 +11,22 @@ use Illuminate\Http\Request;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
+Route::namespace('ApiControllers')->name('api.')->group(function () {
+    Route::namespace('V1')->name('v1.')->prefix('v1')->group(function () {
+        Route::get('user', function (Request $request) {
+            return $request->user();
+        });
+
+        # API resource routes
+        Route::resource('android_apps', 'AndroidAppController');
+
+        # Error handling fallback routes
+        Route::name('errors.')->group(function () {
+            Route::get('404', function () {
+                return response()->json(['message' => 'Not Found.'], 404);
+            })->name('404');
+        });
+    });
 });
-
-Route::resource('android_app', 'AndroidAppController');
