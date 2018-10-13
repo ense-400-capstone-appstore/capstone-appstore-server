@@ -73,6 +73,7 @@
 
                 <div class="links">
                     <a href="https://github.com/ense-400-capstone-appstore">GitHub</a>
+                    <a href="/admin">Admin</a>
                 </div>
             </div>
         </div>
