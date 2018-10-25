@@ -55,7 +55,7 @@ See `app/Console/Commands/AppInstall.php` for detailed information on what the l
 
 We can maybe use [SemVer](http://semver.org/) for versioning.
 
-For the versions available, see the [link to tags on this repository](/tags).
+For the versions available, see [releases](/releases).
 
 ## Tests
 
