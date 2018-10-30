@@ -17,6 +17,9 @@ Follow the steps below to install the application for local development:
 git clone git@github.com:ense-400-capstone-appstore/capstone-appstore-server.git
 cd capstone-appstore-server
 
+# Install PHP dependencies
+composer install
+
 # Run the application's local installation script
 php artisan app:install
 
