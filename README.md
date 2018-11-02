@@ -17,6 +17,9 @@ Follow the steps below to install the application for local development:
 git clone git@github.com:ense-400-capstone-appstore/capstone-appstore-server.git
 cd capstone-appstore-server
 
+# switch to current branch
+git checkout MVP1
+
 # Install PHP dependencies
 composer install
 
@@ -38,6 +41,9 @@ cp .env.development .env
 #
 # The result should be similar to the following:
 #   DB_DATABASE=/home/USERNAME/capstone-appstore-server/database/database.sqlite
+
+# To install sqlite graphical client (gui) please
+sudo yum install sqliteman
 ```
 
 See `app/Console/Commands/AppInstall.php` for detailed information on what the local installation script does.
