@@ -38,15 +38,14 @@
                 </nav>
             </div>
 
-            <main class="mdl-layout__content" style="flex: 1 0 auto;">
-                <div class="page-content">
+            <main class="mdl-layout__content" style="display: flex; flex-direction: column;">
+                <div class="page-content" style="flex: 1 0 auto;">
                     <div class="mdl-grid">
                         @yield('content')
                     </div>
                 </div>
-            </main>
 
-            <footer class="mdl-mega-footer">
+                <footer class="mdl-mega-footer">
                 <div class="mdl-mega-footer__middle-section">
 
                     <div class="mdl-mega-footer__drop-down-section">
@@ -70,10 +69,11 @@
                     <li><a href="https://ense-400-capstone-appstore.github.io/capstone-appstore-docs/help">Help</a></li>
                     <li><span>&copy; {{date("Y")}}</span></li>
                     </ul>
-                    
-                    
                 </div>
             </footer>
+            </main>
+
+            
         </div>
 
         <!-- Material Design Lite https://getmdl.io/ -->
