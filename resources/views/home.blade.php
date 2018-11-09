@@ -7,7 +7,7 @@
         #jumbotron {
             width: 100%;
             height: 100vh;
-            justify-content: space-between;
+            justify-content: space-around;
         }
 
         #jumbotron #jumbotron-scroll-down {
@@ -93,7 +93,7 @@
     <script>
         (function() {
             $(document).on('click', '#jumbotron-scroll-down', function() {
-                $('.mdl-layout__content').animate({
+                $('html, body').animate({
                     scrollTop: window.innerHeight
                 }, 1500);
             });

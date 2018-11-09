@@ -28,17 +28,23 @@ h2 {
 }
 
 //MDL layout overrides
+.mdl-layout__container {
+  height: inherit;
+}
+
 .mdl-layout-title > a {
   color: #FFF;
   text-decoration: none;
 }
 
 .mdl-layout__content {
+  min-height: 100vh;
   display: flex; 
   flex-direction: column;
 }
 
-.mdl-layout__header {
+.mdl-layout__header,
+.mdl-layout__drawer {
   position: fixed;
 }
 
