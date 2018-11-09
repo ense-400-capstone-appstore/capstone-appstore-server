@@ -2,9 +2,57 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
+// Icons
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 // Variables
 @import 'variables';
 
+// Tippy
+@import '~tippy.js/dist/tippy.css';
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+// MDL font overrides
+h1 {
+    font-size: 64px;
+}
+
+h2 {
+    font-size: 48px;
+}
+
+//MDL layout overrides
+.mdl-layout-title > a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.mdl-layout__content {
+  display: flex; 
+  flex-direction: column;
+}
+
+.mdl-layout__header {
+  position: fixed;
+}
+
+.mdl-layout__content > .page-content {
+  flex: 1 0 auto;
+}
+
+.mdl-layout__drawer>.mdl-layout__title,
+.mdl-layout__drawer>.mdl-layout-title,
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+  padding-left: 20px;
+}
+
+// Center elements in flex containers
 .center-justified {
   justify-content: center;
 }

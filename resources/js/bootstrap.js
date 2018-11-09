@@ -1,5 +1,5 @@
 window._ = require("lodash");
-window.Popper = require("popper.js").default;
+window.tippy = require("tippy.js");
 
 try {
     window.$ = window.jQuery = require("jquery");
