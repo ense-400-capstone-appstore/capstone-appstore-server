@@ -35,6 +35,10 @@
         .feature-card {
             width: 100%;
         }
+
+        .feature-card > .mdl-card__actions {
+            margin-top: auto;
+        }
     </style>
 @endsection
 
