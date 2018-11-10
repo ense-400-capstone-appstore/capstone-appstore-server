@@ -24,9 +24,14 @@ class AuthenticationController extends Controller
         -H "Content-type: application/json"
         -d "{\"email\": \"admin@admin.com\", \"password\": \"password\" }"
      */
-    public function login()
+    public function login(Request $request)
     {
-        if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
+        if (Auth::attempt(
+            [
+                'email' => $request->input('email'),
+                'password' => $request->input('password')
+            ]
+        )) {
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')->accessToken;
             return response()->json(['success' => $success], $this->successStatus);
