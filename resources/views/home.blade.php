@@ -59,7 +59,6 @@
                     class="mdl-cell mdl-cell--4-col mdl-cell--12-col-mobile mdl-typography--text-center center-justified"
                     data-tippy="Chengyu Lou"
                     data-tippy-arrow="true"
-                    data-tippy-placement="bottom"
                 >
                     <a href="https://github.com/oscar666666">
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">
@@ -72,7 +71,6 @@
                     class="mdl-cell mdl-cell--4-col mdl-cell--12-col-mobile mdl-typography--text-center center-justified"
                     data-tippy="Uys Kriek"
                     data-tippy-arrow="true"
-                    data-tippy-placement="bottom"
                 >
                     <a href="https://github.com/Uyser">
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">
