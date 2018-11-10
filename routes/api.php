@@ -21,7 +21,8 @@ Route::namespace('ApiControllers')->name('api.')->group(function () {
 
         # API resource routes
         Route::resource('android_apps', 'AndroidAppController');
-
+        Route::post('login', 'AuthenticationController@login');
+        Route::post('register', 'AuthenticationController@register');
         # Error handling fallback routes
         Route::name('errors.')->group(function () {
             Route::get('404', function () {
