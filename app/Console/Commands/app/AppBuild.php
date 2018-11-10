@@ -50,6 +50,9 @@ class AppBuild extends Command
         // Create symbolic link to storage path
         Artisan::call('storage:link');
 
+        // Generate authentication keys
+        Artisan::call('passport:install');
+
         // Install NPM dependencies
         exec('npm install');
 
