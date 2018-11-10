@@ -3,43 +3,7 @@
 @section('title', 'Home')
 
 @section('local_styles')
-    <style>
-        #jumbotron {
-            width: 100%;
-            height: 100vh;
-            justify-content: space-around;
-        }
-
-        #jumbotron #jumbotron-scroll-down {
-            margin: 20px auto;
-        }
-
-        #what-is-this {
-            color: #fff;
-            background-color: rgb(63,81,181);
-            padding: 0 50px;
-        }
-
-        #what-is-this a {
-            color: #fff;
-        }
-
-        .section {
-            height: 50vh;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .feature-card {
-            width: 100%;
-        }
-
-        .feature-card > .mdl-card__actions {
-            margin-top: auto;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/views/home.css') }}">
 @endsection
 
 @section('content')
@@ -47,8 +11,8 @@
         <div></div>
 
         <div>
-            <h1 class="center-justified app-title">@lang('app.name')</h1>
-            <h3 class="center-justified">A private Android Appstore</h3>
+            <h1 class="app-title">@lang('app.name')</h1>
+            <h3>A Private Android Appstore</h3>
         </div>
 
         <button id="jumbotron-scroll-down" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
@@ -57,11 +21,11 @@
     </div>
 
     <div id="what-is-this" class="section mdl-typography--text-center">
-        <div class="center-justified">
+        <div>
             <h2>What is this?</h2>
         </div>
         <div>
-            This is an undergraduate Capstone Project by
+            This is an undergraduate Capstone project by
             <a href="https://github.com/shevtsod">@shevtsod</a>,
             <a href="https://github.com/oscar666666">@oscar666666</a>, and
             <a href="https://github.com/Uyser">@Uyser</a>
@@ -94,13 +58,5 @@
 @endsection
 
 @section('local_scripts')
-    <script>
-        (function() {
-            $(document).on('click', '#jumbotron-scroll-down', function() {
-                $('html, body').animate({
-                    scrollTop: window.innerHeight
-                }, 1500);
-            });
-        })();
-    </script>
+    <script src="{{ asset('js/views/home.js') }}"></script>
 @endsection
