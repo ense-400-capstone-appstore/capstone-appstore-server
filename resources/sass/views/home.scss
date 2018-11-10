@@ -11,15 +11,21 @@
 #what-is-this {
     color: #fff;
     background-color: rgb(63,81,181);
-    padding: 0 50px;
+    padding: 5% 50px;
+
+    justify-content: space-between;
 }
 
-#what-is-this a {
-    color: #fff;
+#what-is-this button {
+    text-transform: lowercase;
+}
+
+#made-by {
+    max-width: 500px;
 }
 
 .section {
-    height: 50vh;
+    min-height: 50vh;
 
     display: flex;
     flex-direction: column;
