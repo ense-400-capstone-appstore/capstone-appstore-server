@@ -12,12 +12,14 @@
  */
 
 Route::namespace('WebControllers')->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::view('/', 'home');
+    Route::view('/login', 'login');
 });
 
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+
+    // Override login route
+    Route::view('login', 'login')->name('voyager.login');
 });

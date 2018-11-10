@@ -9,7 +9,7 @@ This server application hosts both the API and the administrator panel for the C
 Follow the steps below to install the application for local development:
 
 ```shell
-# Install php7.2, php7.2-sqlite3, php7.2-gd using your OS package manager
+# Install php7.2, php7.2-sqlite3, php7.2-gd, nodejs using your OS package manager
 
 # Install composer from https://getcomposer.org/
 
@@ -23,15 +23,21 @@ git checkout MVP1
 # Install PHP dependencies
 composer install
 
-# Run the application's local installation script
+# Run the application's installation script for development
 php artisan app:install
 
-# Copy the `.env.development` file to a file called `.env`
+# OR
+
+# Run the application's installation script for production
+php artisan app:build
+
+# For development, copy the `.env.development` file to a file called `.env`
+# For production, copy the `.env.production` file to a file called `.env`
 cp .env.development .env
 
 # Edit `.env` to suit your environment.
-# You will mostly want to change the `DB_DATABASE` variable to point to the absolute
-# path of your local sqlite3 `database.sqlite` file.
+# For development, you will mostly want to change the `DB_DATABASE` variable
+# to point to the absolute path of your local sqlite3 `database.sqlite` file.
 #
 # The result should be similar to the following:
 #   DB_DATABASE=/home/USERNAME/capstone-appstore-server/database/database.sqlite

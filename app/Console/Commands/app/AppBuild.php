@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\App;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 
-class AppInstall extends Command
+class AppBuild extends Command
 {
     /**
      * The name and signature of the console command.
@@ -19,7 +19,7 @@ class AppInstall extends Command
      *
      * @var string
      */
-    protected $description = 'Install the application for local development';
+    protected $description = 'Install the application for production';
 
     /**
      * Create a new command instance.
@@ -38,10 +38,6 @@ class AppInstall extends Command
      */
     public function handle()
     {
-        // Create database.sqlite file
-        // This is the default local development database
-        fclose(fopen(database_path() . '/database.sqlite', 'w'));
-
         // Run all migrations
         Artisan::call('migrate');
 
@@ -54,9 +50,16 @@ class AppInstall extends Command
         // Create symbolic link to storage path
         Artisan::call('storage:link');
 
-        // TODO: Copy .env.development to .env, replace DB_DATABASE path
+        // Install NPM dependencies
+        exec('npm install');
 
-        echo "Application is ready for local development!\n";
+        // Compile Node assets for development
+        exec('npm run prod');
+
+        echo "Please check above if there were any errors.";
+        echo "Application is almost ready for production!\n";
+        echo "Make sure your .env file is set up correctly. See .env.production\n";
+        echo "for an example.\n";
         echo "\n";
         echo "Administrator credentials:";
         echo "Email:    admin@admin.com\n";

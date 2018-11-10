@@ -1,0 +1,8 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/views/home.css": "/css/views/home.css",
+    "/css/views/login.css": "/css/views/login.css",
+    "/js/views/login.js": "/js/views/login.js",
+    "/js/views/home.js": "/js/views/home.js"
+}

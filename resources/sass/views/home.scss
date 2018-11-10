@@ -1,0 +1,41 @@
+#jumbotron {
+    width: 100%;
+    height: 100vh;
+    justify-content: space-around;
+}
+
+#jumbotron #jumbotron-scroll-down {
+    margin: 20px auto;
+}
+
+#what-is-this {
+    color: #fff;
+    background-color: rgb(63,81,181);
+    padding: 5% 50px;
+
+    justify-content: space-between;
+}
+
+#what-is-this button {
+    text-transform: lowercase;
+}
+
+#made-by {
+    max-width: 500px;
+}
+
+.section {
+    min-height: 50vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.feature-card {
+    width: 100%;
+}
+
+.feature-card > .mdl-card__actions {
+    margin-top: auto;
+}

@@ -1,14 +1,66 @@
-
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
+// Global variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// Material Design Lite https://getmdl.io/
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://code.getmdl.io/1.3.0/material.indigo-blue.min.css');
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+// Font Awesome icons https://fontawesome.com/
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+// Tippy.js https://atomiks.github.io/tippyjs/
+@import '~tippy.js/dist/tippy.css';
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+// MDL font overrides
+h1 {
+    font-size: 64px;
+}
+
+h2 {
+    font-size: 48px;
+}
+
+//MDL layout overrides
+.mdl-layout__container {
+  height: inherit;
+}
+
+.mdl-layout-title > a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.mdl-layout__content {
+  min-height: 100vh;
+  display: flex; 
+  flex-direction: column;
+}
+
+.mdl-layout__header,
+.mdl-layout__drawer {
+  position: fixed;
+}
+
+.mdl-layout__content > .page-content {
+  flex: 1 0 auto;
+  // Minimum distance before footer scrolls (mobile height)
+  min-height: 667px;
+}
+
+.mdl-layout__drawer>.mdl-layout__title,
+.mdl-layout__drawer>.mdl-layout-title,
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+  padding-left: 20px;
+}
+
+// Center elements in flex containers
+.center-justified {
+  justify-content: center;
 }
