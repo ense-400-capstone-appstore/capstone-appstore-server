@@ -15,15 +15,17 @@ use Illuminate\Http\Request;
 
 Route::namespace('ApiControllers')->name('api.')->group(function () {
     Route::namespace('V1')->name('v1.')->prefix('v1')->group(function () {
+        // Authentication
+        Route::post('login', 'AuthenticationController@login');
+        Route::post('register', 'AuthenticationController@register');
+
+        // Resources
+        Route::resource('android_apps', 'AndroidAppController');
         Route::get('user', function (Request $request) {
             return $request->user();
         });
-
-        # API resource routes
-        Route::resource('android_apps', 'AndroidAppController');
-        Route::post('login', 'AuthenticationController@login');
-        Route::post('register', 'AuthenticationController@register');
-        # Error handling fallback routes
+        
+        // Error handling fallbacks
         Route::name('errors.')->group(function () {
             Route::get('404', function () {
                 return response()->json(['message' => 'Not Found.'], 404);
