@@ -9,7 +9,14 @@ This server application hosts both the API and the administrator panel for the C
 Follow the steps below to install the application for local development:
 
 ```shell
-# Install php7.2, php7.2-sqlite3, php7.2-gd, nodejs using your OS package manager
+# Install the following using your OS package manager:
+#   - php7.2
+#   - php7.2-sqlite3
+#   - php7.2-gd
+#   - php7.2-mbstring
+#   - php7.2-xml
+#   - php7.2-zip
+#   - nodejs
 
 # Install composer from https://getcomposer.org/
 
