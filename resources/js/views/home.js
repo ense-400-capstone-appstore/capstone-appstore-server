@@ -18,8 +18,6 @@ function scrollFullViewport() {
 function scrollTo(id) {
     let div = $(id);
 
-    console.log(div);
-
     if (!div) return;
 
     $("html, body").animate(
