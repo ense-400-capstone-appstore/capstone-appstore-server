@@ -93,7 +93,6 @@ class AuthenticationController extends Controller
         Auth::logout();
         return redirect()->route('home');
     }
-
     /**
      * Given a request object, verify the reCAPTCHA token if it was passed and
      * return null if successful or MessageBag of errors if failed

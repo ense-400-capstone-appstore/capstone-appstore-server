@@ -10,12 +10,12 @@ return [
         'docs' => [
             'name' => 'Docs',
             'icon' => 'fas fa-book',
-            'href' => 'https://ense-400-capstone-appstore.github.io/capstone-appstore-docs/',
+            'href' => 'https://docs.matryoshkadoll.me',
         ],
         'github' => [
             'name' => 'GitHub',
             'icon' => 'fab fa-github',
-            'href' => 'https://github.com/ense-400-capstone-appstore',
+            'href' => 'https://github.com/matryoshkadoll',
         ],
         'login' => [
             'name' => 'Login / Sign Up',

@@ -12,6 +12,6 @@ return [
     |
  */
 
-    'name' => 'Capstone Appstore',
+    'name' => 'Matryoshka',
 
 ];
