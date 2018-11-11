@@ -122,18 +122,25 @@
             function recaptchaV3Form(form, site_key) {
                 $("#" + form).submit((event) => {
                     if(grecaptcha) {
-                        event.preventDefault();
+                        // Prevent submission if recaptcha token has not been appended
+                        if(!$("#g-recaptcha-token").length) {
+                            event.preventDefault();
+                        }
+
+                        $("<input />")
+                            .attr("type", "hidden")
+                            .attr("name", "g-recaptcha-token")
+                            .attr("id", "g-recaptcha-token")
+                            .attr("value", "")
+                            .appendTo("#" + form);
 
                         grecaptcha
                             .execute(site_key, {
                                 action: form
                             })
                             .then(token => {
-                                $("<input />")
-                                    .attr("type", "hidden")
-                                    .attr("name", "g-recaptcha-token")
-                                    .attr("value", token)
-                                    .appendTo("#" + form);
+                                $("#g-recaptcha-token").val(token); 
+                                console.log(token);
                                 $("#" + form).submit();
                             })
                     };
