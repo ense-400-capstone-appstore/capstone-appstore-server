@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAndroidAppsTable extends Migration
+class CreateReviewTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateAndroidAppsTable extends Migration
      */
     public function up()
     {
-        Schema::create('android_apps', function (Blueprint $table) {
+        Schema::create('review', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('android_app_permission_id');
-            $table->foreign('android_app_permission_id')->references('id')->on('permissions');
+            $table->integer('user_id');
+            $table->integer('android_app_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('android_app_id')->references('id')->on('android_apps');
+            $table->string('message');
+            $table->double('rating');
             $table->string('version');
-            $table->string('title');
-
-            $table->double('price');
-            $table->string('avatar');
-
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ class CreateAndroidAppsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('android_apps');
+        Schema::dropIfExists('review');
     }
 }

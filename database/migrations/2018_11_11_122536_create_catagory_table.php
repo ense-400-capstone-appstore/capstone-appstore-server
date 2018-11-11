@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAndroidAppsTable extends Migration
+class CreateCatagoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,9 @@ class CreateAndroidAppsTable extends Migration
      */
     public function up()
     {
-        Schema::create('android_apps', function (Blueprint $table) {
+        Schema::create('catagory', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('android_app_permission_id');
-            $table->foreign('android_app_permission_id')->references('id')->on('permissions');
-            $table->string('version');
-            $table->string('title');
-
-            $table->double('price');
-            $table->string('avatar');
 
             $table->timestamps();
         });
@@ -35,6 +28,6 @@ class CreateAndroidAppsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('android_apps');
+        Schema::dropIfExists('catagory');
     }
 }
