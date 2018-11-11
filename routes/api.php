@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 Route::namespace('ApiControllers')->name('api.')->group(function () {
     Route::namespace('V1')->name('v1.')->prefix('v1')->group(function () {
         // Authentication
-        Route::post('login', 'AuthenticationController@login');
+        Route::post('login', 'AuthenticationController@authenticate');
         Route::post('register', 'AuthenticationController@register');
 
         // Resources
