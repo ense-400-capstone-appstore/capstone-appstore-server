@@ -40,7 +40,7 @@
         </div>
 
         <div>
-            <h4>The team</h4>
+            <h4>The Team</h4>
 
             <div id="made-by" class="mdl-grid">
                 <div

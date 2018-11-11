@@ -1,4 +1,8 @@
-@foreach (config('web.links') as $link)
+@foreach (config('web.links') as $key => $link)
+    @if ($key == "login" || $key == "logout")
+        @continue
+    @endif
+
     @if (isset($list_items))
     <li>
     @endif

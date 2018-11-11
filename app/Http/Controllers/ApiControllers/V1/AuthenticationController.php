@@ -11,30 +11,26 @@ use App\Http\Controllers\Controller;
 
 class AuthenticationController extends Controller
 {
-    public $successStatus = 200;
-
     /**
-     * login api
+     * Handle an authentication attempt
+     * 
+     * Testing script:
+     * 
+     * curl -X POST localhost:8000/api/v1/login
+     *  -H "Accept: application/json"
+     *  -H "Content-type: application/json"
+     *  -d '{ "email": "email", "password": "password" }'
+     * 
+     * @param  \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
-    //testing script
-    /*curl -X POST localhost:8000/api/v1/login
-        -H "Accept: application/json"
-        -H "Content-type: application/json"
-        -d "{\"email\": \"admin@admin.com\", \"password\": \"password\" }"
-     */
-    public function login(Request $request)
+    public function authenticate(Request $request)
     {
-        if (Auth::attempt(
-            [
-                'email' => $request->input('email'),
-                'password' => $request->input('password')
-            ]
-        )) {
+        if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')->accessToken;
-            return response()->json(['success' => $success], $this->successStatus);
+            return response()->json(['success' => $success], 200);
         }
 
         return response()->json(['error' => 'Unauthorised'], 401);
@@ -42,51 +38,48 @@ class AuthenticationController extends Controller
 
 
     /**
-     * Register api
+     * Handle a registration attempt
+     * 
+     * Testing script:
+     * 
+     * curl -X POST http://localhost:8000/api/v1/register
+     *  -H "Accept: application/json"
+     *  -H "Content-Type: application/json"
+     *  -d '{ "name": "First Last", "email": "email", "password": "password" }'
+     * 
+     * @param  \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
-    //testing register
-    /*
-    curl -X POST http://localhost:8000/api/v1/register
-        -H "Accept: application/json"
-        -H "Content-Type: application/json"
-        -d '{"name": "John", "email": "john.doe@toptal.com", "password": "toptal123", "c_password": "toptal123"}'
-     */
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'c_password' => 'required|same:password',
-        ]);
+        $credentials = $request->only('name', 'email', 'password');
 
+        $validator = Validator::make($credentials, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+        ]);
 
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 401);
         }
 
-
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
+        $credentials['password'] = bcrypt($credentials['password']);
+        $user = User::create($credentials);
         $success['token'] = $user->createToken('MyApp')->accessToken;
-        $success['name'] = $user->name;
 
-
-        return response()->json(['success' => $success], $this->successStatus);
+        return response()->json(['success' => $success], 200);
     }
 
-
     /**
-     * details api
+     * Return currently authenticated user's information
      *
      * @return \Illuminate\Http\Response
      */
     public function details()
     {
         $user = Auth::user();
-        return response()->json(['success' => $user], $this->successStatus);
+        return response()->json(['success' => $user], 200);
     }
 }

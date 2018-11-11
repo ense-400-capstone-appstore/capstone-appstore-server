@@ -12,8 +12,13 @@
  */
 
 Route::namespace('WebControllers')->group(function () {
-    Route::view('/', 'home');
-    Route::view('/login', 'login');
+    Route::view('/', 'home')->name('home');
+
+    // Authentication
+    Route::get('login', 'AuthenticationController@login');
+    Route::post('login', 'AuthenticationController@authenticate');
+    Route::post('register', 'AuthenticationController@register');
+    Route::get('logout', 'AuthenticationController@logout');
 });
 
 

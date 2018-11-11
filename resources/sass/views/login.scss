@@ -1,20 +1,39 @@
-.mdl-grid {
-    margin-top: 100px;
+@import '../variables';
+
+#login-grid {
+    margin-top: 70px;
 }
 
-#login-card-container {
+#login-card-container,
+#register-card-container {
     display: flex;
 }
 
-#login-card {
-    width: 600px;
-    height: 300px;
+#errors-card {
+    width: 100%;
+    min-height: inherit;
 }
 
-#login-card > .mdl-card__supporting-text {
+#errors-card .mdl-list__item {
+    color: $red;
+}
+
+#login-card,
+#register-card {
+    width: 600px;
+    min-height: 300px;
+}
+
+#login-card > .mdl-card__supporting-text,
+#register-card > .mdl-card__supporting-text {
     margin: auto;
 }
 
-#login-card > .mdl-card__actions {
+#login-card > .mdl-card__actions,
+#register-card > .mdl-card__actions {
     margin-top: auto;
+}
+
+.mdl-checkbox {
+    width: inherit;
 }
