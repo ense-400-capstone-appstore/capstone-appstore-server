@@ -140,7 +140,6 @@
                             })
                             .then(token => {
                                 $("#g-recaptcha-token").val(token); 
-                                console.log(token);
                                 $("#" + form).submit();
                             })
                     };
