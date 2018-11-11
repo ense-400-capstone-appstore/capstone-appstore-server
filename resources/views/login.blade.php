@@ -108,4 +108,37 @@
 
 @section('local_scripts')
     <script src="{{ asset('js/views/login.js') }}"></script>
+
+    {{-- reCAPTCHA script. Only load if key was set up --}}
+    @if(config('recaptcha.v3_site_key'))
+        <script src="https://www.google.com/recaptcha/api.js?render=6LeHB3oUAAAAAN8ITK9aubKL2NFdiKsWNO-0RfZf
+    "></script>
+        <script>
+            (function() {
+                recaptchaV3Form("login", "{{ config('recaptcha.v3_site_key') }}");
+                recaptchaV3Form("register", "{{ config('recaptcha.v3_site_key') }}");
+            }) ();
+
+            function recaptchaV3Form(form, site_key) {
+                $("#" + form).submit(() => {
+                    if(grecaptcha) {
+                        event.preventDefault();
+
+                        grecaptcha
+                            .execute(site_key, {
+                                action: form
+                            })
+                            .then(token => {
+                                $("<input />")
+                                    .attr("type", "hidden")
+                                    .attr("name", "g-recaptcha-token")
+                                    .attr("value", token)
+                                    .appendTo("#" + form);
+                                $("#" + form).submit();
+                            })
+                    };
+                });
+            }
+        </script>
+    @endif
 @endsection

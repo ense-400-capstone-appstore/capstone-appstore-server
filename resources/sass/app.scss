@@ -64,3 +64,8 @@ h2 {
 .center-justified {
   justify-content: center;
 }
+
+// Recaptcha badge
+.grecaptcha-badge {
+  z-index: 999;
+}
