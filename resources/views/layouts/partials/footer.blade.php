@@ -13,7 +13,7 @@
     <div class="mdl-mega-footer__bottom-section">
         <div class="mdl-logo">@lang('app.name')</div>
         <ul class="mdl-mega-footer__link-list">
-        <li><a href="https://ense-400-capstone-appstore.github.io/capstone-appstore-docs/help">Help</a></li>
+        <li><a href="https://docs.matryoshkadoll.me/help">Help</a></li>
         <li><span>&copy; {{date("Y")}}</span></li>
         </ul>
     </div>

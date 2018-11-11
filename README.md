@@ -1,8 +1,8 @@
-# Capstone Appstore Server
+# Matryoshka Server
 
-> Laravel backend for Capstone Appstore
+> Laravel backend powering the Matryoshka website and API
 
-This server application hosts both the API and the administrator panel for the Capstone Appstore Project.
+This server application hosts both the API and the administrator panel for the Matryoshka Project.
 
 ## Installing / Getting started
 
@@ -21,8 +21,8 @@ Follow the steps below to install the application for local development:
 # Install composer from https://getcomposer.org/
 
 # Clone this repository to your device
-git clone git@github.com:ense-400-capstone-appstore/capstone-appstore-server.git
-cd capstone-appstore-server
+git clone git@github.com:matryoshkadoll/matryoshka-server.git
+cd matryoshka-doll
 
 # Install PHP dependencies
 composer install
@@ -44,7 +44,7 @@ cp .env.development .env
 # to point to the absolute path of your local sqlite3 `database.sqlite` file.
 #
 # The result should be similar to the following:
-#   DB_DATABASE=/home/USERNAME/capstone-appstore-server/database/database.sqlite
+#   DB_DATABASE=/home/USERNAME/matryoshka-server/database/database.sqlite
 
 # For database visualization, it may be helpful to install one of several
 # graphical clients such as "sqliteman or "DBeaver"
