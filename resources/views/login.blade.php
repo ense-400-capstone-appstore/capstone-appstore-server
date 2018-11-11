@@ -120,7 +120,7 @@
             }) ();
 
             function recaptchaV3Form(form, site_key) {
-                $("#" + form).submit(() => {
+                $("#" + form).submit((event) => {
                     if(grecaptcha) {
                         event.preventDefault();
 
