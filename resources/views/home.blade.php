@@ -12,7 +12,7 @@
 
         <div>
             <h1 class="app-title">@lang('app.name')</h1>
-            <h3>An app that cointains countless other apps inside!</h3>
+            <h3>An app that contains countless other apps inside!</h3>
         </div>
 
         <button id="jumbotron-scroll-down" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
