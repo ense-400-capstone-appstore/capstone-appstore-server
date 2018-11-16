@@ -15,6 +15,7 @@ class CreateReplyTable extends Migration
     {
         Schema::create('reply', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('message');
             $table->integer('user_id');
             $table->integer('review_id');
             $table->foreign('user_id')->references('id')->on('users');
