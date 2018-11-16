@@ -19,6 +19,7 @@ class CreateAndroidAppsTable extends Migration
             $table->integer('android_app_permission_id');
             $table->foreign('android_app_permission_id')->references('id')->on('permissions');
             $table->string('version');
+            $table->string('description');
             $table->string('title');
 
             $table->double('price');
