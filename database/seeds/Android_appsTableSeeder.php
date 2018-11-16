@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 class Android_appsTableSeeder extends Seeder
 {
     /**
@@ -13,9 +14,27 @@ class Android_appsTableSeeder extends Seeder
     {
       DB::table('android_apps')->insert([
 
-        'title' => str_random(8),
-        'available' => true,
-        
+        [
+        'name' => "app1",
+        'android_app_permission_id' => 1,
+        'version' => "1.0",
+        'description' => "my app1",
+        //'title' => "title1",
+        'price' => 0.00,
+        'avatar' => "umpty",
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+      ],
+      [
+        'name' => "app2",
+        'android_app_permission_id' => 1,
+        'version' => "1.0",
+        'description' => "my app2",
+        //'title' => "title2",
+        'price' => 0.00,
+        'avatar' => "umpty",
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+
+      ]
 
         ]);
     }
