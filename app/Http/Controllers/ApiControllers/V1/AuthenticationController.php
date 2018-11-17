@@ -29,7 +29,14 @@ class AuthenticationController extends Controller
     {
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
-            $success['token'] = $user->createToken('MyApp')->accessToken;
+
+            // Revoke previous tokens
+            foreach ($user->tokens as $token) {
+                $token->revoke();
+                $token->delete();
+            }
+
+            $success['token'] = $user->createToken('Matryoshka')->accessToken;
             return response()->json(['success' => $success], 200);
         }
 
@@ -67,7 +74,7 @@ class AuthenticationController extends Controller
 
         $credentials['password'] = bcrypt($credentials['password']);
         $user = User::create($credentials);
-        $success['token'] = $user->createToken('MyApp')->accessToken;
+        $success['token'] = $user->createToken('Matryoshka')->accessToken;
 
         return response()->json(['success' => $success], 200);
     }
