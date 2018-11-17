@@ -15,11 +15,11 @@ class CreateAndroidAppPurchasesTable extends Migration
     {
         Schema::create('android_app_purchases', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('android_app_id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('android_app_id');
 
-            $table->foreign('user_id')->references('id')->on('users')->unsigned();
-            $table->foreign('android_app_id')->references('id')->on('android_apps')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('android_app_id')->references('id')->on('android_apps');
             $table->unique(['user_id', 'android_app_id']);
 
         });

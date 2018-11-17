@@ -15,10 +15,10 @@ class CreateReviewTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('android_app_id');
-            $table->foreign('user_id')->references('id')->on('users')->unsigned();
-            $table->foreign('android_app_id')->references('id')->on('android_apps')->unsigned();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('android_app_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('android_app_id')->references('id')->on('android_apps');
             $table->string('message');
             $table->double('rating');
             $table->string('version');

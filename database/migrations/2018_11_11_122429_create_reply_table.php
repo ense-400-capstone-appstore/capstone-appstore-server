@@ -16,10 +16,10 @@ class CreateReplyTable extends Migration
         Schema::create('replies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('message');
-            $table->integer('user_id');
-            $table->integer('review_id');
-            $table->foreign('user_id')->references('id')->on('users')->unsigned();
-            $table->foreign('review_id')->references('id')->on('review')->unsigned();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('review_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('review_id')->references('id')->on('review');
             $table->timestamps();
         });
     }
