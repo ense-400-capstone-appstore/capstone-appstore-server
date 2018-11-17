@@ -12,7 +12,7 @@ class AppBuild extends Command
      *
      * @var string
      */
-    protected $signature = 'app:install';
+    protected $signature = 'app:build';
 
     /**
      * The console command description.
@@ -38,6 +38,9 @@ class AppBuild extends Command
      */
     public function handle()
     {
+        // Generate application key
+        Artisan::call('key:generate');
+
         // Run all migrations
         Artisan::call('migrate');
 
@@ -64,7 +67,7 @@ class AppBuild extends Command
         echo "Make sure your .env file is set up correctly. See .env.production\n";
         echo "for an example.\n";
         echo "\n";
-        echo "Administrator credentials:";
+        echo "Administrator credentials:\n";
         echo "Email:    admin@admin.com\n";
         echo "Password: password\n";
     }
