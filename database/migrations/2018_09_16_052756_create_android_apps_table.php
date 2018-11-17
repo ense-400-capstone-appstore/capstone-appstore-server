@@ -21,7 +21,7 @@ class CreateAndroidAppsTable extends Migration
             $table->string('version');
             $table->string('description');
             $table->string('title');
-
+            $table->boolean('available');
             $table->double('price');
             $table->string('avatar');
 
