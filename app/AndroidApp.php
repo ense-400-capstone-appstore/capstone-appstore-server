@@ -13,6 +13,15 @@ class AndroidApp extends Model
      */
     protected $fillable = [
         'name',
-        'available'
+        'name',
+        'version',
+        'description',
+        'price',
+        'avatar',
     ];
+
+    public function androidAppPermission()
+    {
+        return $this->hasOne('App\AndroidAppPermission');
+    }
 }

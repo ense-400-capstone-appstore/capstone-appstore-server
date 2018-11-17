@@ -5,17 +5,15 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ExampleTest extends TestCase
+class BasicTest extends TestCase
 {
     /**
-     * A basic test example.
+     * A basic test to ensure the application boots correctly.
      *
      * @return void
      */
     public function testBasicTest()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $this->get('/')->assertStatus(200);;
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ApiControllers\V1;
 use App\AndroidApp;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator;
 
 class AndroidAppController extends Controller
 {
@@ -31,7 +32,25 @@ class AndroidAppController extends Controller
      */
     public function store(Request $request)
     {
-        return AndroidApp::create($request->all());
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'version' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'avatar' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 401);
+        }
+
+        $androidApp = AndroidApp::create($request->all());
+
+        $androidApp->androidAppPermission()->create([
+            'available' => true
+        ]);
+
+        return $androidApp;
     }
 
     /**
