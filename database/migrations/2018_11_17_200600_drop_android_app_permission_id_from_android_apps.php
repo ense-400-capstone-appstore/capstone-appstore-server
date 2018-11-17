@@ -14,6 +14,7 @@ class DropAndroidAppPermissionIdFromAndroidApps extends Migration
     public function up()
     {
         Schema::table('android_apps', function (Blueprint $table) {
+            $table->dropForeign('android_app_permission_id_foreign');
             $table->dropColumn('android_app_permission_id');
         });
     }
