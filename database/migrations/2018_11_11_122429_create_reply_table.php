@@ -19,7 +19,7 @@ class CreateReplyTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('review_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('review_id')->references('id')->on('review');
+            $table->foreign('review_id')->references('id')->on('reviews');
             $table->timestamps();
         });
     }
