@@ -24,14 +24,28 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: composer install -n --prefer-dist
+      - run:
+          name: Install composer dependencies
+          command: composer install -n --prefer-dist
 
       - save_cache:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
 
-      - run: cp .env.testing .env
+      - run:
+          name: Use testing environment
+          command: cp .env.testing .env
 
-      # run tests!
-      - run: ./vendor/bin/phpunit
+      - run:
+          name: Install application
+          command: php artisan app:install
+
+  test:
+    docker:
+      - image: circleci/php:7.2.10-apache-stretch
+    steps:
+      - checkout
+      - run:
+          name: Run PHPUnit tests
+          command: ./vendor/bin/phpunit
