@@ -2,6 +2,11 @@
 
 > Laravel backend powering the Matryoshka website and API
 
+![Matryoshka Logo](./public/images/brand/256h/Logo_x256.png)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/017b845d676b8e20e28f/maintainability)](https://codeclimate.com/github/matryoshkadoll/matryoshka-server/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/017b845d676b8e20e28f/test_coverage)](https://codeclimate.com/github/matryoshkadoll/matryoshka-server/test_coverage)
+
 This server application hosts both the API and the administrator panel for the Matryoshka Project.
 
 ## Installing / Getting started
