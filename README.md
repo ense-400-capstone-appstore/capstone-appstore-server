@@ -30,8 +30,9 @@ Follow the steps below to install the application for local development:
 git clone git@github.com:matryoshkadoll/matryoshka-server.git
 cd matryoshka-doll
 
-# Install PHP dependencies
+# Install dependencies
 composer install
+npm install
 
 # For development, copy the `.env.development` file to a file called `.env`
 # For production, copy the `.env.production` file to a file called `.env`
