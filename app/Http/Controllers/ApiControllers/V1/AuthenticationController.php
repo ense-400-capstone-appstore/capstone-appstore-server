@@ -76,7 +76,7 @@ class AuthenticationController extends Controller
         $user = User::create($credentials);
         $success['token'] = $user->createToken('Matryoshka')->accessToken;
 
-        return response()->json(['success' => $success], 200);
+        return response()->json(['success' => $success], 201);
     }
 
     /**

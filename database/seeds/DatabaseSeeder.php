@@ -12,7 +12,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UsersTableSeeder::class
+            AndroidAppsTableSeeder::class,
+            CategoriesTableSeeder::class,
+            ReviewsTableSeeder::class,
+            RepliesTableSeeder::class,
         ]);
     }
 }
