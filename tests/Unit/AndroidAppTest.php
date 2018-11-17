@@ -11,12 +11,12 @@ class AndroidAppTest extends TestCase
     public function testAndroidAppsAreCreatedCorrectly()
     {
         $payload = [
-            'title' => 'Lorem',
-            'available' => 1
+            'name' => 'Lorem',
+            'available' => true
         ];
 
-        $this->json('POST', '/api/android_app', $payload)
-            ->assertStatus(200)
-            ->assertJson(['id' => 1, 'title' => 'Lorem', 'available' => 1]);
+        $this->json('POST', '/api/v1/android_apps', $payload)
+            ->assertStatus(201)
+            ->assertJson(['name' => 'Lorem', 'available' => true]);
     }
 }
