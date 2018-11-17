@@ -1,12 +1,8 @@
-# Matryoshka Server
-
-> Laravel backend powering the Matryoshka website and API
-
 ![Matryoshka Logo](./public/images/brand/256h/Logo_x256.png)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/017b845d676b8e20e28f/maintainability)](https://codeclimate.com/github/matryoshkadoll/matryoshka-server/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/017b845d676b8e20e28f/test_coverage)](https://codeclimate.com/github/matryoshkadoll/matryoshka-server/test_coverage)
-[![CircleCI](https://circleci.com/gh/matryoshkadoll/matryoshka-server.svg?style=svg)](https://circleci.com/gh/matryoshkadoll/matryoshka-server)
+# Matryoshka Server &middot; [![CircleCI](https://circleci.com/gh/matryoshkadoll/matryoshka-server.svg?style=svg)](https://circleci.com/gh/matryoshkadoll/matryoshka-server) [![Maintainability](https://api.codeclimate.com/v1/badges/017b845d676b8e20e28f/maintainability)](https://codeclimate.com/github/matryoshkadoll/matryoshka-server/maintainability)
+
+> Laravel backend powering the Matryoshka website and API
 
 This server application hosts both the API and the administrator panel for the Matryoshka Project.
 
@@ -40,7 +36,7 @@ cp .env.development .env
 
 # Edit `.env` to suit your environment.
 # For development, you will mostly want to change the `DB_DATABASE` variable
-# to point to the absolute path of your local sqlite3 `database.sqlite` file.
+# to point to the absolute path of your local sqlite3 `d$$atabase.sqlite` file.
 #
 # The result should be similar to the following:
 #   DB_DATABASE=/home/USERNAME/matryoshka-server/database/database.sqlite
