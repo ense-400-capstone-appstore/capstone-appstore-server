@@ -42,6 +42,9 @@ class AppInstall extends Command
         // This is the default local development database
         fclose(fopen(database_path() . '/database.sqlite', 'w'));
 
+        // Generate application key
+        Artisan::call('key:generate');
+
         // Run all migrations
         Artisan::call('migrate');
 
@@ -68,7 +71,7 @@ class AppInstall extends Command
         echo "Please check above if there were any errors.";
         echo "If there were not errors, the application is ready for local development!\n";
         echo "\n";
-        echo "Administrator credentials:";
+        echo "Administrator credentials:\n";
         echo "Email:    admin@admin.com\n";
         echo "Password: password\n";
     }

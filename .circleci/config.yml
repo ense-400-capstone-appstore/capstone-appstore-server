@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.2.10-apache-stretch
+      - image: circleci/php:7.2.10-apache-stretch-node-browsers
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -43,7 +43,7 @@ jobs:
 
   test:
     docker:
-      - image: circleci/php:7.2.10-apache-stretch
+      - image: circleci/php:7.2.10-apache-stretch-node-browsers
     steps:
       - checkout
       - run:
