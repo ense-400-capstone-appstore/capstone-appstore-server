@@ -56,9 +56,6 @@ class AppBuild extends Command
         // Generate authentication keys
         Artisan::call('passport:install');
 
-        // Install NPM dependencies
-        exec('npm install');
-
         // Compile Node assets for development
         exec('npm run prod');
 
