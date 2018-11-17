@@ -15,7 +15,6 @@ class CreateAndroidAppPermissionsTable extends Migration
     {
         Schema::create('android_app_permissions', function (Blueprint $table) {
             $table->increments('id');
-            
             $table->integer('android_app_id');
             $table->foreign('android_app_id')->references('id')->on('android_apps');
             $table->boolean('available');

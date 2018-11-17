@@ -13,13 +13,13 @@ class CreateReplyTable extends Migration
      */
     public function up()
     {
-        Schema::create('reply', function (Blueprint $table) {
+        Schema::create('replies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('message');
             $table->integer('user_id');
             $table->integer('review_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('review_id')->references('id')->on('review');
+            $table->foreign('user_id')->references('id')->on('users')->unsigned();
+            $table->foreign('review_id')->references('id')->on('review')->unsigned();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateReplyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reply');
+        Schema::dropIfExists('replies');
     }
 }

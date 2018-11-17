@@ -13,13 +13,11 @@ class CreateGroupTable extends Migration
      */
     public function up()
     {
-        Schema::create('group', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->integer('owner_id');
-
-            $table->foreign('owner_id')->references('id')->on('users');
-
+            $table->foreign('owner_id')->references('id')->on('users')->unsigned();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateGroupTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group');
+        Schema::dropIfExists('groups');
     }
 }
