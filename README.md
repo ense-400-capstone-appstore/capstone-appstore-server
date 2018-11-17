@@ -33,14 +33,6 @@ cd matryoshka-doll
 # Install PHP dependencies
 composer install
 
-# Run the application's installation script for development
-php artisan app:install
-
-# OR
-
-# Run the application's installation script for production
-php artisan app:build
-
 # For development, copy the `.env.development` file to a file called `.env`
 # For production, copy the `.env.production` file to a file called `.env`
 cp .env.development .env
@@ -51,6 +43,18 @@ cp .env.development .env
 #
 # The result should be similar to the following:
 #   DB_DATABASE=/home/USERNAME/matryoshka-server/database/database.sqlite
+
+# Run the application's installation script for development
+php artisan app:install
+
+# OR
+
+# Run the application's installation script for production
+php artisan app:build
+
+# Done, you're ready to go!
+# Start your local server and go to 127.0.0.1:8000
+php artisan serve
 
 # For database visualization, it may be helpful to install one of several
 # graphical clients such as "sqliteman or "DBeaver"
