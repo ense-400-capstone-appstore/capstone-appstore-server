@@ -15,12 +15,9 @@ class CreateAndroidAppsTable extends Migration
     {
         Schema::create('android_apps', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->unsignedInteger('android_app_permission_id');
-            $table->foreign('android_app_permission_id')->references('id')->on('permissions');
+            $table->string('name');
             $table->string('version');
             $table->string('description');
-            $table->boolean('available');
             $table->double('price');
             $table->string('avatar');
 
