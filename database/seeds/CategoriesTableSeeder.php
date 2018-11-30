@@ -12,8 +12,7 @@ class CategoriesTableSeeder extends Seeder
    */
   public function run()
   {
-
-     DB::table('categories')->updateOrInsert(
+    DB::table('categories')->insert([
 
       ['name' => "Education"],
       ['name' => "Business"],
@@ -25,6 +24,6 @@ class CategoriesTableSeeder extends Seeder
       ['name' => "Shopping"],
       ['name' => "Social"],
       ['name' => "Weather"]
-    );
+    ]);
   }
 }
