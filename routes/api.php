@@ -17,7 +17,6 @@ Route::namespace('ApiControllers')->name('api.')->group(function () {
     Route::namespace('V1')->name('v1.')->prefix('v1')->group(function () {
         // Authentication
         Route::post('login', 'AuthenticationController@authenticate')->name('login');
-        Route::post('register', 'AuthenticationController@register')->name('register');
 
         // Resources
         Route::resource('android_apps', 'AndroidAppController');

@@ -30,12 +30,6 @@ class AuthenticationController extends Controller
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
 
-            // Revoke previous tokens
-            foreach ($user->tokens as $token) {
-                $token->revoke();
-                $token->delete();
-            }
-
             $success['token'] = $user->createToken('Matryoshka')->accessToken;
             return response()->json(['success' => $success], 200);
         }
