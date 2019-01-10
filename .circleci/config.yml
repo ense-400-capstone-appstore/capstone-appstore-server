@@ -7,7 +7,16 @@ jobs:
   build:
     # Use docker images
     docker:
+      # Application image
       - image: circleci/php:7.2.10-apache-stretch-node-browsers
+
+      # Database image
+      - image: circleci/mysql:8.0.4
+        environment:
+          MYSQL_DATABASE: appstore
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes"
+          MYSQL_ROOT_PASSWORD: ""
+
     # Root directory of the application
     working_directory: ~/matryoshka-server
 
