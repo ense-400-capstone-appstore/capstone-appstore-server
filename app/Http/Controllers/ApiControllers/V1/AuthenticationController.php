@@ -14,13 +14,6 @@ class AuthenticationController extends Controller
     /**
      * Handle an authentication attempt
      * 
-     * Testing script:
-     * 
-     * curl -X POST localhost:8000/api/v1/login
-     *  -H "Accept: application/json"
-     *  -H "Content-type: application/json"
-     *  -d '{ "email": "email", "password": "password" }'
-     * 
      * @param  \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
@@ -40,13 +33,6 @@ class AuthenticationController extends Controller
 
     /**
      * Handle a registration attempt
-     * 
-     * Testing script:
-     * 
-     * curl -X POST http://localhost:8000/api/v1/register
-     *  -H "Accept: application/json"
-     *  -H "Content-Type: application/json"
-     *  -d '{ "name": "First Last", "email": "email", "password": "password" }'
      * 
      * @param  \Illuminate\Http\Request $request
      *

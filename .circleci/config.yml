@@ -1,62 +1,87 @@
+# CircleCI Version
 version: 2
+
+# Jobs to be executes
 jobs:
+  # Build the application
   build:
+    # Use docker images
     docker:
       - image: circleci/php:7.2.10-apache-stretch-node-browsers
+    # Root directory of the application
     working_directory: ~/matryoshka-server
 
+    # Steps in build job
     steps:
+      # Checkout the repository at the current commit
       - checkout
 
-      # Download and cache dependencies
+      # Try to restore dependencies if identical cache exists
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "composer.json" }}-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+      # Install composer dependencies
       - run:
           name: Install composer dependencies
           command: composer install -n --prefer-dist
 
+      # Install Node.js dependencies
       - run:
           name: Install Node.js dependencies
           command: npm install
 
+      # Cache dependencies for future builds if they do not change
       - save_cache:
           paths:
             - ./vendor
             - ./node_modules
           key: v1-dependencies-{{ checksum "composer.json" }}-{{ checksum "package.json" }}
 
+      # Use the CircleCI environment configuration file
       - run:
           name: Use testing environment
-          command: cp .env.testing .env
+          command: cp .env.circleci .env
 
+      # Complete the installation using the install script
       - run:
           name: Install application
           command: php artisan app:install
 
+      # Run PHPUnit tests
       - run:
           name: Run PHPUnit tests
           command: ./vendor/bin/phpunit
 
+  # Deploy the application
   deploy:
+    # Use a virtual machine (not docker)
     machine:
       enabled: true
+
+    # Steps in deploy job
     steps:
+      # Add SSH keys for deployment machine to the VM based on fingerprint
       - add_ssh_keys:
           fingerprints:
             - "1d:fe:e6:ec:53:51:ca:98:38:85:1e:d7:6a:98:6f:dc"
 
+      # Deploy to the deloyment server via SSH
       - run:
           name: Deploy via SSH
           command: |
             ssh $SSH_USER@$SSH_HOST "./deploy.sh"
 
+# Definition of job orders (workflows)
 workflows:
+  # CircleCI version
   version: 2
+
+  # Primary job order
   primary:
+    # Build for any commit, deploy only for commits in master
     jobs:
       - build
       - deploy:
