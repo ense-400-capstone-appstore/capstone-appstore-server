@@ -57,7 +57,7 @@ jobs:
 
       # Use the CircleCI environment configuration file
       - run:
-          name: Use testing environment
+          name: Use CircleCI environment
           command: cp .env.circleci .env
 
       # Complete the installation using the install script
@@ -86,8 +86,7 @@ jobs:
       # Deploy to the deloyment server via SSH
       - run:
           name: Deploy via SSH
-          command: |
-            ssh $SSH_USER@$SSH_HOST "./deploy.sh"
+          command: ssh $SSH_USER@$SSH_HOST "./deploy.sh"
 
 # Definition of job orders (workflows)
 workflows:
