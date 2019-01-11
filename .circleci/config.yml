@@ -14,8 +14,7 @@ jobs:
       - image: circleci/mysql:8.0.13
         environment:
           MYSQL_DATABASE: "appstore"
-          MYSQL_ROOT_PASSWORD: ""
-          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+          MYSQL_ROOT_PASSWORD: "CircleCI"
 
     # Root directory of the application
     working_directory: ~/matryoshka-server
