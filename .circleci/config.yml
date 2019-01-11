@@ -13,9 +13,7 @@ jobs:
       # Database image
       - image: circleci/mysql:8.0.13
         environment:
-          MYSQL_ROOT_HOST: "%"
           MYSQL_DATABASE: "appstore"
-          MYSQL_USER: "root"
           MYSQL_ROOT_PASSWORD: ""
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
@@ -24,6 +22,10 @@ jobs:
 
     # Steps in build job
     steps:
+      - run:
+          name: Install PHP extensions
+          command: sudo docker-php-ext-install pdo_mysql
+
       # Checkout the repository at the current commit
       - checkout
 
@@ -33,10 +35,6 @@ jobs:
             - v1-dependencies-{{ checksum "composer.json" }}-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-
-      - run:
-          name: Install PHP extensions
-          command: sudo docker-php-ext-install pdo_mysql
 
       # Install composer dependencies
       - run:
