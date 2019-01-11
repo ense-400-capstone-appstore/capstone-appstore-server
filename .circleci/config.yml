@@ -4,7 +4,7 @@ version: 2
 # Jobs to be executes
 jobs:
   # Build the application and run tests
-  build_and_test:
+  Build and Test:
     # Use docker images
     docker:
       # Application image
@@ -68,7 +68,7 @@ jobs:
           command: ./vendor/bin/phpunit
 
   # Deploy the application
-  deploy:
+  Deploy:
     # Use a virtual machine (not docker)
     machine:
       enabled: true
@@ -91,16 +91,16 @@ workflows:
   version: 2
 
   # If commit is untagged, only build and test
-  untagged:
+  Untagged:
     jobs:
-      - build_and_test
+      - Build and Test
   # If commit is tagged, build, test, and deploy to production
-  tagged:
+  Tagged:
     jobs:
-      - build_and_test:
+      - Build and Test:
           filters:
             tags:
-              only: /.+/
-      - deploy:
+              only: /^\S+/
+      - Deploy:
           requires:
-            - build_and_test
+            - Build and Test
