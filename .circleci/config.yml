@@ -63,7 +63,7 @@ jobs:
       # Complete the installation using the install script
       - run:
           name: Install application
-          command: php artisan app:install
+          command: php artisan app:build
 
       # Run PHPUnit tests
       - run:
