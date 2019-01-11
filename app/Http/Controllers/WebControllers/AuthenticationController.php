@@ -75,7 +75,7 @@ class AuthenticationController extends Controller
         }
 
         $credentials['password'] = bcrypt($credentials['password']);
-        $credentials['name'] = $credentials['first_name'] . $credentials['last_name'];
+        $credentials['name'] = $credentials['first_name'] . ' ' . $credentials['last_name'];
         $user = User::create($credentials);
 
         Auth::login($user);
@@ -85,7 +85,7 @@ class AuthenticationController extends Controller
 
     /**
      * Terminate a user's session
-     * 
+     *
      * @return Response
      */
     public function logout()
@@ -96,9 +96,9 @@ class AuthenticationController extends Controller
     /**
      * Given a request object, verify the reCAPTCHA token if it was passed and
      * return null if successful or MessageBag of errors if failed
-     * 
+     *
      * @param  \Illuminate\Http\Request $request
-     * 
+     *
      * @return Response
      */
     function verifyRecaptcha(Request $request)
