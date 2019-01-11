@@ -3,8 +3,8 @@ version: 2
 
 # Jobs to be executes
 jobs:
-  # Build the application
-  build:
+  # Build the application and run tests
+  build_and_test:
     # Use docker images
     docker:
       # Application image
@@ -94,10 +94,10 @@ workflows:
   primary:
     # Build for any commit, deploy only for commits in master
     jobs:
-      - build
+      - build_and_test
       - deploy:
           requires:
-            - build
+            - build_and_test
           filters:
             branches:
               only: master
