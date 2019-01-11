@@ -38,29 +38,28 @@ class AppInstall extends Command
      */
     public function handle()
     {
-        // Create database.sqlite file
-        // This is the default local development database
+        echo "Creating database ...";
         fclose(fopen(database_path() . '/database.sqlite', 'w'));
 
-        // Generate application key
+        echo "Generating application key ...";
         Artisan::call('key:generate');
 
-        // Run all migrations
+        echo "Running migrations ...";
         Artisan::call('migrate');
 
-        // Seed database with Voyager seed files
+        echo "Seeding database 1/2 ...";
         Artisan::call('db:seed', ['--class' => 'VoyagerDatabaseSeeder']);
 
-        // Seed database with this application's seed files
+        echo "Seeding database 2/2 ...";
         Artisan::call('db:seed');
 
-        // Create symbolic link to storage path
+        echo "Linking storage ...";
         Artisan::call('storage:link');
 
-        // Generate authentication keys
+        echo "Generating Passport keys ...";
         Artisan::call('passport:install');
 
-        // Compile Node assets for development
+        echo "Compiling front-end code ...";
         exec('npm run dev');
 
         // TODO: Copy .env.development to .env, replace DB_DATABASE path
