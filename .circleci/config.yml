@@ -13,8 +13,8 @@ jobs:
       # Database image
       - image: circleci/mysql:8.0.13
         environment:
-          MYSQL_DATABASE: "appstore"
-          MYSQL_ROOT_PASSWORD: "CircleCI"
+          MYSQL_DATABASE: appstore
+          MYSQL_ROOT_PASSWORD: CircleCI
 
     # Root directory of the application
     working_directory: ~/matryoshka-server
@@ -90,14 +90,17 @@ workflows:
   # CircleCI version
   version: 2
 
-  # Primary job order
-  primary:
-    # Build for any commit, deploy only for commits in master
+  # If commit is untagged, only build and test
+  untagged:
     jobs:
       - build_and_test
+  # If commit is tagged, build, test, and deploy to production
+  tagged:
+    jobs:
+      - build_and_test:
+          filters:
+            tags:
+              only: /.*/
       - deploy:
           requires:
             - build_and_test
-          filters:
-            branches:
-              only: master
