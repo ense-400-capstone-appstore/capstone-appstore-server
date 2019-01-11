@@ -8,14 +8,15 @@ jobs:
     # Use docker images
     docker:
       # Application image
-      - image: circleci/php:7.2.10-apache-stretch-node-browsers
+      - image: circleci/php:7.2.10-apache-node
 
       # Database image
       - image: circleci/mysql:8.0.4
         environment:
           MYSQL_DATABASE: appstore
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes"
+          MYSQL_USER: root
           MYSQL_ROOT_PASSWORD: ""
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
 
     # Root directory of the application
     working_directory: ~/matryoshka-server
@@ -34,9 +35,7 @@ jobs:
 
       - run:
           name: Install PHP extensions
-          command: |
-            sudo docker-php-ext-install pdo_mysql
-            sudo docker-php-ext-enable pdo_mysql
+          command: sudo docker-php-ext-install pdo_mysql
 
       # Install composer dependencies
       - run:
