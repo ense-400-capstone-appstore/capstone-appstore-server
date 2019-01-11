@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\User;
+use App\AndroidApp;
+use App\Observers\UserObserver;
+use App\Observers\AndroidAppObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +17,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        User::observe(UserObserver::class);
+        AndroidApp::observe(AndroidAPpObserver::class);
     }
 
     /**
