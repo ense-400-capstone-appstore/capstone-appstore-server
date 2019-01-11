@@ -9,50 +9,36 @@ use App\User;
 
 class AuthenticationTest extends TestCase
 {
-    private $user = null;
+    private $user;
 
-    public function testUsersCanRegister()
+    /**
+     * Create a test user before every test
+     */
+    public function setUp()
     {
-        $this->user = factory(User::class)->make();
-
-        $payload = [
-            'name' => $this->user->name,
-            'email' => $this->user->email,
-            'password' => $this->user->password
-        ];
-
-        $this->json('POST', '/api/v1/register', $payload)
-            ->assertStatus(201);
+        parent::setUp();
+        $this->user = factory(User::class)->create();
     }
 
+    /**
+     * Delete test user after every test
+     */
+    public function tearDown()
+    {
+        isset($this->user) && $this->user->delete();
+        parent::tearDown();
+    }
+
+    /**
+     * Assert that the test user can successfully login via the API
+     */
     public function testUsersCanAuthenticate()
     {
-        $this->testUsersCanRegister();
-
         $payload = [
             'email' => $this->user->email,
-            'password' => $this->user->password
+            'password' => 'testing_password'
         ];
 
-        $this->json('POST', '/api/v1/login', $payload)
-            ->assertStatus(200);
-    }
-
-    public function testUsersOldTokensAreDeleted()
-    {
-        $this->testUsersCanRegister();
-
-        $payload = [
-            'email' => $this->user->email,
-            'password' => $this->user->password
-        ];
-
-        $token1 = $this->json('POST', '/api/v1/login', $payload)
-            ->assertStatus(200);
-
-        $token2 = $this->json('POST', '/api/v1/login', $payload)
-            ->assertStatus(200);
-
-        assert($token1 != $token2);
+        $this->json('POST', '/api/v1/login', $payload)->assertStatus(200);
     }
 }
