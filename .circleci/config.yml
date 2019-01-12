@@ -100,10 +100,10 @@ workflows:
       - Build and Test:
           filters:
             tags:
-              only: /^\S+/
+              only: /^\d+\.\d+\.\d+.*/
       - Deploy:
           requires:
             - Build and Test
           filters:
             tags:
-              only: /^\S+/
+              only: /^\d+\.\d+\.\d+.*/
