@@ -104,3 +104,6 @@ workflows:
       - Deploy:
           requires:
             - Build and Test
+          filters:
+            tags:
+              only: /^\S+/
