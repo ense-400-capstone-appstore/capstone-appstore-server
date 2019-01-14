@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>@yield('title') - @lang('app.name')</title>
+        <title>@yield('title') · @lang('app.name')</title>
         {{-- Compiled application styles --}}
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         {{-- Custom styles --}}

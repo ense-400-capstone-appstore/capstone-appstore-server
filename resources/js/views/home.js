@@ -5,7 +5,8 @@ export default () => {
 
     // When jumbotron scroll-down button is clicked, scroll to next section
     scrollDownButton &&
-        scrollDownButton.addEventListener("click", () => {
+        scrollDownButton.addEventListener("click", e => {
+            e.preventDefault();
             const destinationEl = document.querySelector("#home-what-is-this");
 
             destinationEl &&

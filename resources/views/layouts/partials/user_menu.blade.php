@@ -5,7 +5,8 @@
         @button([
             'id' => 'user-menu-button',
             'classes' => 'mdc-icon-button',
-            'tooltip' => Auth::user()->name
+            'tooltip' => Auth::user()->name,
+            'href' => '#'
         ])
             <img
                 class="mdc-button__icon user-icon"
@@ -60,7 +61,7 @@
     {{-- If user is unauthenticated, show a login button --}}
     @button([
         'classes' => 'mdc-button mdc-button--unelevated',
-        'onClick' => "window.location.href='/login'"
+        'href' => '/login'
     ])
         <i class="mdc-button__icon fas fa-sign-in-alt" aria-hidden="true"></i>
         Login

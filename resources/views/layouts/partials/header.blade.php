@@ -12,7 +12,7 @@
             {{-- Icon, phone --}}
             @button([
                 'classes' => 'mdc-icon-button mq-phone',
-                'onClick' => "window.location.href='/'"
+                'href' => '/'
             ])
                 <img aria-hidden="true" src="{{asset('/images/brand/32h/Icon_x32.png')}}"/>
             @endbutton
@@ -20,7 +20,7 @@
             {{-- Icon, tablet and desktop --}}
             @button([
                 'classes' => 'mdc-button mdc-button--unelevated mq-not-phone',
-                'onClick' => "window.location.href='/'"
+                'href' => '/'
             ])
                 <img class="mdc-button__icon" aria-hidden="true" src="{{asset('/images/brand/32h/Icon_x32.png')}}"/>
                 @lang('app.name')
@@ -33,14 +33,14 @@
                 @button([
                     'tooltip' => $link['name'],
                     'classes' => 'mdc-icon-button mdc-button--unelevated mq-tablet-only',
-                    'onClick' => "window.location.href='" . $link['href'] . "'"
+                    'href' => $link['href']
                 ])
                     <i class="{{ $link['icon'] }} fa-sm" aria-hidden="true"></i>
                 @endbutton
 
                 @button([
                     'classes' => 'mdc-button mdc-button--unelevated mq-not-tablet',
-                    'onClick' => "window.location.href='" . $link['href'] . "'"
+                    'href' => $link['href']
                 ])
                     <i class="mdc-button__icon {{ $link['icon'] }}" aria-hidden="true"></i>
                     <span>{{ $link['name'] }}</span>
