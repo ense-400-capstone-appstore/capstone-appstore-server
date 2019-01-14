@@ -1,0 +1,30 @@
+//
+// Media queries
+//
+
+// Classes:
+//  .mq-phone - Hide on tablet and desktop
+//  .mq-tablet - Hide on desktop
+//  .mq-not-phone - Hide on phone
+//  .mq-not-tablet - Hide on phone and tablet
+//  .mq-tablet-only - Hide on phone and desktop
+
+// Phone
+@media all and (max-width: mdc-layout-grid-breakpoint-max(phone)) {
+    .mq-not-phone { display: none !important; }
+    .mq-not-tablet { display: none !important; }
+    .mq-tablet-only { display: none !important; }
+}
+
+// Tablet
+@media all and (min-width: mdc-layout-grid-breakpoint-min(tablet)) and (max-width: mdc-layout-grid-breakpoint-max(tablet)) {
+    .mq-phone { display: none !important; }
+    .mq-not-tablet { display: none !important; }
+}
+
+// Desktop
+@media all and (min-width: mdc-layout-grid-breakpoint-min(desktop)) {
+    .mq-phone { display: none !important; }
+    .mq-tablet { display: none !important; }
+    .mq-tablet-only { display: none !important; }
+}

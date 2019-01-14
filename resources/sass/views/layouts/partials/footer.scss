@@ -1,0 +1,52 @@
+@import '../../../_variables';
+
+#app-footer {
+    width: 100%;
+
+    margin-top: 50px;
+    padding: 0;
+
+    background-color: $secondary-text;
+    color: $primary-text;
+
+    .app-footer-title {
+        font-weight: bolder;
+        text-transform: uppercase;
+    }
+
+    .app-footer-version {
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+
+    hr.app-footer-divider {
+        border-color: lighten($secondary-text, 10%);
+        border-style: solid;
+    }
+
+    .app-footer-links {
+        padding: 0 25px 25px 25px;
+
+        ul {
+            padding-left: 20px;
+            margin: 0;
+
+            li {
+                margin-bottom: 2px;
+
+                a {
+                    color: $primary-text;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: lighten($primary-text, 20%);
+                    }
+                }
+            }
+        }
+    }
+
+    .app-footer-copyright {
+        text-align: center;
+    }
+}

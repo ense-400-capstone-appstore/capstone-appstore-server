@@ -2,109 +2,119 @@
 
 @section('title', 'Home')
 
-@section('local_styles')
-    <link rel="stylesheet" href="{{ asset('css/views/home.css') }}">
-@endsection
+@section('html')
+    <div id="page-home">
+        <div id="home-jumbotron" class="home-section">
+            <div></div>
 
-@section('content')
-    <div id="jumbotron" class="section mdl-typography--text-center">
-        <div></div>
+            <div>
+                <h1 class="home-title">@lang('app.name')</h1>
+                <h3>@lang('app.slogan')</h3>
 
-        <div>
-            <h1 class="app-title">@lang('app.name')</h1>
-            <h3>An app that contains countless other apps inside!</h3>
+                @button([
+                    'id' => 'home-jumbotron-button--get-app',
+                    'classes' => 'home-jumbotron-button mdc-button mdc-button--raised',
+                    'onClick' => "window.location.href='https://github.com/matryoshkadoll/matryoshka-app/releases'"
+                ])
+                    <i class="mdc-button__icon fas fa-arrow-down"></i>
+                    <span clas="mdc-button__label">Get the app</span>
+                @endbutton
+
+                @button([
+                    'classes' => 'home-jumbotron-button mdc-button mdc-button--unelevated',
+                    'onClick' => "window.location.href='" . config('web.links.docs.href') . "'"
+                ])
+                    <i class="mdc-button__icon {{ config('web.links.docs.icon') }}"></i>
+                    <span class="mdc-button__label">Read the Docs</span>
+                @endbutton
+            </div>
+
+            @button([
+                'id' => 'home-jumbotron-scroll-down',
+                'classes' => 'mdc-fab',
+                'tooltip' => 'Scroll down to learn more!'
+            ])
+                <i class="fas fa-chevron-down"></i>
+            @endbutton
         </div>
 
-        <button id="jumbotron-scroll-down" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-            <i class="fas fa-chevron-down"></i>
-        </button>
-    </div>
+        <div id="home-what-is-this" class="home-section mdl-typography--text-center">
+            <div>
+                <h2>What is this?</h2>
 
-    <div id="what-is-this" class="section mdl-typography--text-center">
-        <div>
-            <h2>What is this?</h2>
+                This is an undergraduate Capstone project for the University of Regina.
+                It is a basic private appstore for the Android operating system.
+            </div>
 
-            This is an undergraduate Capstone project for the University of Regina. 
-            It is a basic private appstore for the Android operating system.
-        </div>
+            <div>
+                <h4>Source Code</h4>
+                <p>This project is open-source and all of the source code is available on GitHub!</p>
 
-        <div>
-            <h4>Source Code</h4>
-            <p>This project is open-source and all of the source code is available on GitHub!</p>
+                @button([
+                    'classes' => 'mdc-button mdc-button--raised',
+                    'tooltip' => 'See the source code on GitHub!',
+                    'onClick' => "window.location.href='" . config('web.links.github.href') . "'"
+                ])
+                    <i class="mdc-button__icon fab fa-github"></i>
+                    <span class="mdc-button__label">Source Code</span>
+                @endbutton
+            </div>
 
-            <a href="{{config('web.links.github.href')}}">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">
-                    <i class="fab fa-github"></i> Source Code
-                </button>
-            </a>
-        </div>
+            <div>
+                <h4>The Team</h4>
 
-        <div>
-            <h4>The Team</h4>
+                <div id="home-made-by">
+                    @button([
+                        'classes' => 'mdc-button mdc-button--raised',
+                        'tooltip' => 'Daniel Shevtsov',
+                        'onClick' => "window.location.href='https://github.com/shevtsod'"
+                    ])
+                        <i class="mdc-button__icon fab fa-github"></i>
+                        <span class="mdc-button__label">@shevtsod</span>
+                    @endbutton
 
-            <div id="made-by" class="mdl-grid">
-                <div
-                    class="mdl-cell mdl-cell--4-col mdl-cell--12-col-mobile mdl-typography--text-center center-justified"
-                    data-tippy="Daniel Shevtsov"
-                    data-tippy-arrow="true"
-                >
-                    <a href="https://github.com/shevtsod">
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">
-                            <i class="fab fa-github"></i> @shevtsod
-                        </button>
-                    </a>
+                    @button([
+                        'classes' => 'mdc-button mdc-button--raised',
+                        'tooltip' => 'Chengyu Lou',
+                        'onClick' => "window.location.href='https://github.com/oscar666666'"
+                    ])
+                        <i class="mdc-button__icon fab fa-github"></i>
+                        <span class="mdc-button__label">@oscar666666</span>
+                    @endbutton
+
+                    @button([
+                        'classes' => 'mdc-button mdc-button--raised',
+                        'tooltip' => 'Uys Kriek',
+                        'onClick' => "window.location.href='https://github.com/Uyser'"
+                    ])
+                        <i class="mdc-button__icon fab fa-github"></i>
+                        <span class="mdc-button__label">@uyser</span>
+                    @endbutton
                 </div>
+            </div>
+        </div>
 
-                <div
-                    class="mdl-cell mdl-cell--4-col mdl-cell--12-col-mobile mdl-typography--text-center center-justified"
-                    data-tippy="Chengyu Lou"
-                    data-tippy-arrow="true"
-                >
-                    <a href="https://github.com/oscar666666">
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">
-                            <i class="fab fa-github"></i> @oscar666666
-                        </button>
-                    </a>
-                </div>
-
-                <div
-                    class="mdl-cell mdl-cell--4-col mdl-cell--12-col-mobile mdl-typography--text-center center-justified"
-                    data-tippy="Uys Kriek"
-                    data-tippy-arrow="true"
-                >
-                    <a href="https://github.com/Uyser">
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">
-                            <i class="fab fa-github"></i> @Uyser
-                        </button>
-                    </a>
+        <div id="home-features">
+            <div class="mdc-layout-grid">
+                <div class="mdc-layout-grid__inner">
+                    @for ($i = 1; $i <= 3; $i++)
+                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-phone">
+                            @card([
+                                'isTextCard' => 'true'
+                            ])
+                                <div class="mdc-card__media mdc-card__media--16-9">
+                                    <div class="mdc-card__media-content">
+                                        Feature {{ $i }}
+                                    </div>
+                                </div>
+                                <button class="mdc-button mdc-card__action mdc-card__action--button">
+                                    <span class="mdc-button__label">Link {{ $i }}</span>
+                                </button>
+                            @endcard
+                        </div>
+                    @endfor
                 </div>
             </div>
         </div>
     </div>
-
-    <div id="features">
-        <div class="mdl-grid">
-            @for ($i = 1; $i <= 3; $i++)
-                <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet">
-                    <div class="feature-card mdl-card mdl-shadow--4dp">
-                        <div class="mdl-card__title center-justified">
-                            <h2 class="mdl-card__title-text">Feature {{ $i }}</h2>
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                            Placeholder text for feature, this is under construction.
-                        </div>
-                        <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect" href="#">
-                            Link {{ $i }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            @endfor
-        </div>
-    </div>
-@endsection
-
-@section('local_scripts')
-    <script src="{{ asset('js/views/home.js') }}"></script>
 @endsection

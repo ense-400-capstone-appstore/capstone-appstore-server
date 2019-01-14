@@ -59,7 +59,7 @@ class AppBuild extends Command
         echo "Compiling front-end code ...\n";
         exec('npm run prod');
 
-        echo "Please check above if there were any errors.";
+        echo "Please check above if there were any errors.\n";
         echo "Application is almost ready for production!\n";
         echo "Make sure your .env file is set up correctly. See .env.production\n";
         echo "for an example.\n";

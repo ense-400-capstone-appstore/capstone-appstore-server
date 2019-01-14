@@ -1,20 +1,28 @@
-<footer class="mdl-mega-footer">
-    <div class="mdl-mega-footer__middle-section">
-        <div class="mdl-mega-footer__drop-down-section">
-        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">Quick Links</h1>
-        <ul class="mdl-mega-footer__link-list">
-            @component('partials.links', ['classes' => 'mdl-navigation__link', 'icons' => true, 'list_items' => true])
-            @endcomponent
-        </ul>
+<footer id="app-footer" class="mdc-layout-grid">
+    <div class="app-footer-links mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3 mdc-layout-grid__cell--span-12-phone">
+            <h4 class="app-footer-title">Quick Links</h4>
+            <ul>
+                @foreach (config('web.links') as $key => $link)
+                    <li>
+                        <a href={{ $link['href'] }}>
+                            {{ $link['name'] }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
         </div>
     </div>
 
-    <div class="mdl-mega-footer__bottom-section">
-        <div class="mdl-logo">@lang('app.name')</div>
-        <ul class="mdl-mega-footer__link-list">
-        <li><a href="https://docs.matryoshkadoll.me/help">Help</a></li>
-        <li><span>&copy; {{date("Y")}}</span></li>
-        </ul>
+    <hr class="app-footer-divider"/>
+
+    <div class="app-footer-copyright mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+            <p>
+                <div class="app-footer-title">@lang('app.name')</div>
+                <div class="app-footer-version">{{ config('version.currentTag') }}</div>
+                <div>&copy; {{date("Y")}}</div>
+            </p>
+        </div>
     </div>
 </footer>

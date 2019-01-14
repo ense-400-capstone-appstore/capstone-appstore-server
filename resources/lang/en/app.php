@@ -13,5 +13,5 @@ return [
  */
 
     'name' => 'Matryoshka',
-
+    'slogan' => 'The app with countless other apps inside!'
 ];

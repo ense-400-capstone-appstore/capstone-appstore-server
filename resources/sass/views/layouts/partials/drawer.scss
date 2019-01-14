@@ -1,0 +1,15 @@
+#app-drawer {
+    .mdc-drawer__header {
+        display: flex;
+
+        .mdc-drawer__title {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+
+            flex: 1;
+
+            text-transform: uppercase;
+        }
+    }
+}

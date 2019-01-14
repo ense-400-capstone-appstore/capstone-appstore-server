@@ -16,16 +16,6 @@ return [
             'name' => 'GitHub',
             'icon' => 'fab fa-github',
             'href' => 'https://github.com/matryoshkadoll',
-        ],
-        'login' => [
-            'name' => 'Login / Sign Up',
-            'icon' => 'fas fa-sign-in-alt',
-            'href' => '/login'
-        ],
-        'logout' => [
-            'name' => 'Logout',
-            'icon' => 'fas fa-sign-out-alt',
-            'href' => '/logout'
-        ],
+        ]
     ],
 ];
