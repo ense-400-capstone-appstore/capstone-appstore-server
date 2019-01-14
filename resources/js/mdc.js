@@ -8,6 +8,9 @@ const topAppBarEl = document.querySelector(".mdc-top-app-bar");
 const topAppBarNavButtonEl = document.querySelector(
     ".mdc-top-app-bar .mdc-top-app-bar__navigation-icon"
 );
+const ripplesEl = document.querySelectorAll(
+    ".mdc-button, .mdc-icon-button, .mdc-card__primary-action"
+);
 const buttonsEl = document.querySelectorAll(".mdc-button");
 const fabsEl = document.querySelectorAll(".mdc-fab");
 const iconButtonsEl = document.querySelectorAll(".mdc-icon-button");
@@ -24,8 +27,7 @@ export default () => {
     //
 
     const topAppBar = topAppBarEl && new MDCTopAppBar(topAppBarEl);
-    buttonsEl.forEach(button => new MDCRipple(button));
-    fabsEl.forEach(fab => new MDCRipple(fab));
+    ripplesEl.forEach(el => new MDCRipple(el));
     iconButtonsEl.forEach(iconButton => {
         const iconButtonRipple = new MDCRipple(iconButton);
         iconButtonRipple.unbounded = true;
@@ -55,5 +57,8 @@ export default () => {
 
     // Open user menu when profile image clicked in header
     userMenuButtonEl &&
-        userMenuButtonEl.addEventListener("click", e => (userMenu.open = true));
+        userMenuButtonEl.addEventListener("click", e => {
+            e.preventDefault();
+            userMenu.open = true;
+        });
 };
