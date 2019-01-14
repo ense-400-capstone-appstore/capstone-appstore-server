@@ -2,11 +2,10 @@
 
 @section('title', 'Login')
 
-@section('local_styles')
-    <link rel="stylesheet" href="{{ asset('css/views/login.css') }}">
+@section('css')
 @endsection
 
-@section('content')
+@section('html')
     <div id="login-grid" class="mdl-grid">
         @if ($errors->any())
             <div class="mdl-cell mdl-cell--12-col mdl-typography--text-center center-justified">
@@ -48,7 +47,7 @@
                     </form>
                 </div>
                 <div class="mdl-card__actions mdl-card--border center-justified">
-                    <button 
+                    <button
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
                         type="submit"
                         form="login"
@@ -93,7 +92,7 @@
                     </form>
                 </div>
                 <div class="mdl-card__actions mdl-card--border center-justified">
-                    <button 
+                    <button
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
                         type="submit"
                         form="register"
@@ -106,9 +105,7 @@
     </div>
 @endsection
 
-@section('local_scripts')
-    <script src="{{ asset('js/views/login.js') }}"></script>
-
+@section('js')
     {{-- reCAPTCHA script. Only load if key was set up --}}
     @if(config('recaptcha.v3_site_key'))
         <script src="https://www.google.com/recaptcha/api.js?render=6LeHB3oUAAAAAN8ITK9aubKL2NFdiKsWNO-0RfZf
@@ -139,7 +136,7 @@
                                 action: form
                             })
                             .then(token => {
-                                $("#g-recaptcha-token").val(token); 
+                                $("#g-recaptcha-token").val(token);
                                 $("#" + form).submit();
                             })
                     };

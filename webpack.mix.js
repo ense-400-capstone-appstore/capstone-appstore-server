@@ -1,5 +1,5 @@
-let mix = require("laravel-mix");
-let fs = require("fs");
+const mix = require("laravel-mix");
+const path = require("path");
 
 /*
  |--------------------------------------------------------------------------
@@ -14,15 +14,6 @@ let fs = require("fs");
 
 mix.react("resources/js/app.js", "public/js").sass(
     "resources/sass/app.scss",
-    "public/css"
-);
-
-// Scripts for specific views
-fs.readdirSync("resources/js/views").map(script =>
-    mix.react(`resources/js/views/${script}`, "public/js/views")
-);
-
-// Stylesheets for specific views
-fs.readdirSync("resources/sass/views").map(style =>
-    mix.sass(`resources/sass/views/${style}`, "public/css/views")
+    "public/css",
+    { includePaths: ["node_modules"] }
 );

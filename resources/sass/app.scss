@@ -1,71 +1,103 @@
+//
 // Global variables
+//
 @import 'variables';
 
-// Material Design Lite https://getmdl.io/
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import url('https://code.getmdl.io/1.3.0/material.indigo-blue.min.css');
+//
+// Fonts
+//
 
-// Font Awesome icons https://fontawesome.com/
+// Raleway
+// https://fonts.google.com/specimen/Raleway?selection.family=Raleway
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+//
+// Libraries
+//
+
+// Normalize.css
+// https://github.com/necolas/normalize.css/
+@import '~normalize.css/normalize.css';
+// Material Components Web
+// https://github.com/material-components/material-components-web
+@import '~material-components-web/material-components-web';
+// Material Design Icons
+// https://github.com/google/material-design-icons
+@import '~material-design-icons/iconfont/material-icons.css';
+// Font Awesome
+// https://fontawesome.com/
 @import '~@fortawesome/fontawesome-free/css/all.css';
-
-// Tippy.js https://atomiks.github.io/tippyjs/
+// Tippy.js
+// https://atomiks.github.io/tippyjs/
 @import '~tippy.js/dist/tippy.css';
 
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
+//
+// Application styles
+//
+
+@import 'media_queries';
+@import './mdc';
+
+//
+// Layout styles
+//
+
+@import './views/layouts/app.scss';
+
+//
+// View styles
+//
+@import './views/home.scss';
+@import './views/login.scss';
+
+//
+// Global styles
+//
+
+* {
+    font-family: 'Raleway', sans-serif;
+    box-sizing: border-box;
 }
 
-// MDL font overrides
-h1 {
-    font-size: 64px;
+// Center elements in flex containers
+.center-justified {
+    justify-content: center;
 }
 
-h2 {
-    font-size: 48px;
+// Recaptcha badge
+.grecaptcha-badge {
+    z-index: 999;
 }
 
 //MDL layout overrides
 .mdl-layout__container {
-  height: inherit;
+    height: inherit;
 }
 
 .mdl-layout-title > a {
-  color: #FFF;
-  text-decoration: none;
+    color: #FFF;
+    text-decoration: none;
 }
 
 .mdl-layout__content {
-  min-height: 100vh;
-  display: flex; 
-  flex-direction: column;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .mdl-layout__header,
 .mdl-layout__drawer {
-  position: fixed;
+    position: fixed;
 }
 
 .mdl-layout__content > .page-content {
-  flex: 1 0 auto;
-  // Minimum distance before footer scrolls (mobile height)
-  min-height: 667px;
+    flex: 1 0 auto;
+    // Minimum distance before footer scrolls (mobile height)
+    min-height: 667px;
 }
 
 .mdl-layout__drawer>.mdl-layout__title,
 .mdl-layout__drawer>.mdl-layout-title,
 .mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
-  padding-left: 20px;
-}
-
-// Center elements in flex containers
-.center-justified {
-  justify-content: center;
-}
-
-// Recaptcha badge
-.grecaptcha-badge {
-  z-index: 999;
+    padding-left: 20px;
 }

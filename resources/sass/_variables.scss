@@ -1,13 +1,17 @@
 
-// Body
-$body-bg: #f8fafc;
-
 // Typography
 $font-family-sans-serif: "Nunito", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
-// Colors
+// Brand Colors
+$primary: #6075E0;
+$secondary: #89AAE6;
+$tertiary: #576490;
+$primary-text: #DADFF7;
+$secondary-text: #232C33;
+
+// Generic colors
 $blue: #3490dc;
 $indigo: #6574cd;
 $purple: #9561e2;
@@ -18,3 +22,9 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+// MDC theme
+$mdc-theme-primary: $primary;
+$mdc-theme-secondary: $secondary;
+$mdc-theme-on-primary: $primary-text;
+$mdc-theme-on-secondary: $primary-text;

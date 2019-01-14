@@ -1,56 +1,54 @@
-<header class="mdl-layout__header mdl-layout--no-desktop-drawer-button">
-    <div class="mdl-layout__header-row">
-    <span class="mdl-layout-title mdl-layout--small-screen-only"><a href="/">@lang('app.name')</a></span>
-    
-    <div class="mdl-layout-spacer"></div>
-        {{-- Navigation for large screens --}}
-        <nav class="mdl-navigation mdl-layout--large-screen-only">
-            @component('partials.links', ['classes' => 'mdl-navigation__link'])
-            @endcomponent
+<header id="app-header" class="mdc-top-app-bar mdc-top-app-bar--fixed">
+    <div class="mdc-top-app-bar__row">
+        {{-- Left-hand section --}}
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <a
+                href="#"
+                class="material-icons mdc-top-app-bar__navigation-icon mq-tablet"
+            >
+                menu
+            </a>
 
-            @if (Auth::check())
-                <a class="mdl-navigation__link" href="{{ config('web.links.logout.href') }}">
-                    @if (isset($icons))
-                        <i class="{{ config('web.links.logout.icon') }}"></i>
-                    @endif
-                    {{ config('web.links.logout.name') }}
-                </a>
-            @else
-                <a class="mdl-navigation__link" href="{{ config('web.links.login.href') }}">
-                    @if (isset($icons))
-                        <i class="{{ config('web.links.login.icon') }}"></i>
-                    @endif
-                    {{ config('web.links.login.name') }}
-                </a>
-            @endif
-        </nav>
-        {{-- Navigation for small screens --}}
-        <nav class="mdl-navigation mdl-layout--small-screen-only">
-            @if (Auth::check())
-                <a 
-                    id="login-link--small-screen-only" 
-                    class="mdl-navigation__link" 
-                    href="{{ config('web.links.logout.href') }}" 
-                    data-tippy="{{ config('web.links.logout.name') }}"
-                    data-tippy-arrow="true"
-                >
-                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect">
-                        <i class="{{ config('web.links.logout.icon') }}"></i>
-                    </button>
-                </a>
-            @else
-                <a 
-                    id="login-link--small-screen-only" 
-                    class="mdl-navigation__link" 
-                    href="{{ config('web.links.login.href') }}" 
-                    data-tippy="{{ config('web.links.login.name') }}"
-                    data-tippy-arrow="true"
-                >
-                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect">
-                        <i class="{{ config('web.links.login.icon') }}"></i>
-                    </button>
-                </a>
-            @endif
-        </nav>
+            {{-- Icon, phone --}}
+            @button([
+                'classes' => 'mdc-icon-button mq-phone',
+                'onClick' => "window.location.href='/'"
+            ])
+                <img aria-hidden="true" src="{{asset('/images/brand/32h/Icon_x32.png')}}"/>
+            @endbutton
+
+            {{-- Icon, tablet and desktop --}}
+            @button([
+                'classes' => 'mdc-button mdc-button--unelevated mq-not-phone',
+                'onClick' => "window.location.href='/'"
+            ])
+                <img class="mdc-button__icon" aria-hidden="true" src="{{asset('/images/brand/32h/Icon_x32.png')}}"/>
+                @lang('app.name')
+            @endbutton
+        </section>
+
+        {{-- Right-hand section --}}
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            @foreach (config('web.links') as $key => $link)
+                @button([
+                    'tooltip' => $link['name'],
+                    'classes' => 'mdc-icon-button mdc-button--unelevated mq-tablet-only',
+                    'onClick' => "window.location.href='" . $link['href'] . "'"
+                ])
+                    <i class="{{ $link['icon'] }} fa-sm" aria-hidden="true"></i>
+                @endbutton
+
+                @button([
+                    'classes' => 'mdc-button mdc-button--unelevated mq-not-tablet',
+                    'onClick' => "window.location.href='" . $link['href'] . "'"
+                ])
+                    <i class="mdc-button__icon {{ $link['icon'] }}" aria-hidden="true"></i>
+                    <span>{{ $link['name'] }}</span>
+                @endbutton
+            @endforeach
+
+            @component('layouts.partials.user_menu')
+            @endcomponent
+        </section>
     </div>
 </header>

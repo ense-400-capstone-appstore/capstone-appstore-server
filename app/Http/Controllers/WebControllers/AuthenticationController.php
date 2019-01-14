@@ -110,7 +110,8 @@ class AuthenticationController extends Controller
         }
 
         $recaptcha = new \ReCaptcha\ReCaptcha(config('recaptcha.v3_secret_key'));
-        $resp = $recaptcha->verify($recaptcha_token, $request->ip());
+        $resp = $recaptcha->setScoreThreshold(0.1)
+            ->verify($recaptcha_token, $request->ip());
 
         if (!$resp->isSuccess()) {
             $errors = $resp->getErrorCodes();

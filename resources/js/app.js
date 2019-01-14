@@ -3,4 +3,16 @@
  * includes React and other helpers. It's a great starting point while
  * building robust, powerful web applications using React + Laravel.
  */
-require("./bootstrap");
+import bootstrap from "./bootstrap";
+import mdc from "./mdc";
+import views from "./views";
+
+// Bootstrapping code (NOT the bootstrap library)
+bootstrap();
+
+// MDC specific JS
+// https://material.io/develop/web/
+mdc();
+
+// View specific JS
+views();

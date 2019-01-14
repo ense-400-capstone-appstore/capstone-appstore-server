@@ -26,6 +26,9 @@
         "tippy.js": "^3.4.0"
     },
     "dependencies": {
-        "laravel-mix": "^4.0.13"
+        "laravel-mix": "^4.0.13",
+        "material-components-web": "^0.43.0",
+        "material-design-icons": "^3.0.1",
+        "normalize.css": "^8.0.1"
     }
 }

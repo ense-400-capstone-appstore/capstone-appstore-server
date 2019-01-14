@@ -64,8 +64,8 @@ class AppInstall extends Command
 
         // TODO: Copy .env.development to .env, replace DB_DATABASE path
 
-        echo "Please check above if there were any errors.";
-        echo "If there were not errors, the application is ready for local development!\n";
+        echo "Please check above if there were any errors.\n";
+        echo "If there were no errors, the application is ready for local development!\n";
         echo "\n";
         echo "Administrator credentials:\n";
         echo "Email:    admin@admin.com\n";
