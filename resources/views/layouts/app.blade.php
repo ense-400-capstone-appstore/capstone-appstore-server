@@ -31,6 +31,10 @@
 
         {{-- Compiled application scripts --}}
         <script src="{{ asset('js/app.js') }}"></script>
+        {{-- reCAPTCHA script. Only load if key was set up --}}
+        @if(config('recaptcha.v3_site_key'))
+            <script src="https://www.google.com/recaptcha/api.js?render={{ config('recaptcha.v3_site_key') }}"></script>
+        @endif
         {{-- Custom scripts --}}
         @yield('js')
     </body>
