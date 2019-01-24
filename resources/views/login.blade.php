@@ -4,19 +4,24 @@
 
 @section('html')
     <div id="page-login" class="mdc-layout-grid">
-        <div class="mdc-layout-grid__inner">
-            {{-- Spacer --}}
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 mq-not-tablet"></div>
+        @if ($errors->any())
+            <div class="mdc-layout-grid__inner">
+                {{-- Spacer --}}
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 mq-not-tablet"></div>
 
-            @if ($errors->any())
                 <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
-                    <ul>
+                    <ul class="error-list">
                         @foreach ($errors->all() as $error)
-                            <li class="mdl-list__item">{{ $error }}</li>
+                            <li class="error">{{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
-            @endif
+            </div>
+        @endif
+
+        <div class="mdc-layout-grid__inner">
+            {{-- Spacer --}}
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 mq-not-tablet"></div>
 
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
                 <div class="mdc-tab-bar" role="tablist">

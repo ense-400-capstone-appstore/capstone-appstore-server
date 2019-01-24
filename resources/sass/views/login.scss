@@ -11,6 +11,18 @@
         width: 100%;
     }
 
+    .error-list {
+        margin: 10px 0;
+        padding: 10px;
+
+        border: 2px solid red;
+        border-radius: 5px;
+
+        color: $red;
+        font-weight: bold;
+        list-style-type: none;
+    }
+
     #login-grid {
         margin-top: 70px;
     }
