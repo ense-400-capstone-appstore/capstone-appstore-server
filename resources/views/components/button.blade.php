@@ -3,8 +3,8 @@
     class="{{ $classes ?? '' }}"
     onclick="{{ $onClick ?? '' }}"
     href="{{ $href ?? '' }}"
+    target={{ $target ?? '_self' }}
     data-tippy="{{ $tooltip ?? '' }}"
-    data-tippy-arrow="true"
 >
     @if (isset($isIconButton))
         {{ $slot ?? '' }}

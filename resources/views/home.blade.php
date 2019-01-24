@@ -14,7 +14,8 @@
                 @button([
                     'id' => 'home-jumbotron-button--get-app',
                     'classes' => 'home-jumbotron-button mdc-button mdc-button--raised',
-                    'href' => 'https://github.com/matryoshkadoll/matryoshka-app/releases'
+                    'href' => 'https://github.com/matryoshkadoll/matryoshka-app/releases',
+                    'target' => '_blank'
                 ])
                     <i class="mdc-button__icon fas fa-arrow-down"></i>
                     <span clas="mdc-button__label">Get the app</span>
@@ -22,7 +23,8 @@
 
                 @button([
                     'classes' => 'home-jumbotron-button mdc-button mdc-button--unelevated',
-                    'href' => config('web.links.docs.href')
+                    'href' => config('web.links.docs.href'),
+                    'target' => '_blank'
                 ])
                     <i class="mdc-button__icon {{ config('web.links.docs.icon') }}"></i>
                     <span class="mdc-button__label">Read the Docs</span>
@@ -54,7 +56,8 @@
                 @button([
                     'classes' => 'mdc-button mdc-button--raised',
                     'tooltip' => 'See the source code on GitHub!',
-                    'href' => config('web.links.github.href')
+                    'href' => config('web.links.github.href'),
+                    'target' => '_blank'
                 ])
                     <i class="mdc-button__icon fab fa-github"></i>
                     <span class="mdc-button__label">Source Code</span>
@@ -68,7 +71,8 @@
                     @button([
                         'classes' => 'mdc-button mdc-button--raised',
                         'tooltip' => 'Daniel Shevtsov',
-                        'href' => 'https://github.com/shevtsod'
+                        'href' => 'https://github.com/shevtsod',
+                        'target' => '_blank'
                     ])
                         <i class="mdc-button__icon fab fa-github"></i>
                         <span class="mdc-button__label">@shevtsod</span>
@@ -77,7 +81,8 @@
                     @button([
                         'classes' => 'mdc-button mdc-button--raised',
                         'tooltip' => 'Chengyu Lou',
-                        'href' => 'https://github.com/oscar666666'
+                        'href' => 'https://github.com/oscar666666',
+                        'target' => '_blank'
                     ])
                         <i class="mdc-button__icon fab fa-github"></i>
                         <span class="mdc-button__label">@oscar666666</span>
@@ -86,7 +91,8 @@
                     @button([
                         'classes' => 'mdc-button mdc-button--raised',
                         'tooltip' => 'Uys Kriek',
-                        'href' => 'https://github.com/Uyser'
+                        'href' => 'https://github.com/Uyser',
+                        'target' => '_blank'
                     ])
                         <i class="mdc-button__icon fab fa-github"></i>
                         <span class="mdc-button__label">@uyser</span>
@@ -95,7 +101,7 @@
             </div>
         </div>
 
-        <div id="home-features">
+        {{-- <div id="home-features">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
                     @for ($i = 1; $i <= 3; $i++)
@@ -116,6 +122,6 @@
                     @endfor
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection

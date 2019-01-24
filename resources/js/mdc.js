@@ -3,30 +3,32 @@ import { MDCDrawer } from "@material/drawer";
 import { MDCRipple } from "@material/ripple";
 import { MDCMenu } from "@material/menu";
 import { MDCList } from "@material/list";
+import { MDCTabBar } from "@material/tab-bar";
+import { MDCTextField } from "@material/textfield";
 
 const topAppBarEl = document.querySelector(".mdc-top-app-bar");
 const topAppBarNavButtonEl = document.querySelector(
     ".mdc-top-app-bar .mdc-top-app-bar__navigation-icon"
 );
 const ripplesEl = document.querySelectorAll(
-    ".mdc-button, .mdc-icon-button, .mdc-card__primary-action"
+    ".mdc-button, .mdc-card__primary-action"
 );
-const buttonsEl = document.querySelectorAll(".mdc-button");
-const fabsEl = document.querySelectorAll(".mdc-fab");
 const iconButtonsEl = document.querySelectorAll(".mdc-icon-button");
 const drawerEl = document.querySelector(".mdc-drawer");
 const drawerListEl = document.querySelector(".mdc-drawer .mdc-list");
 const listsEl = document.querySelectorAll(".mdc-list");
+const tabBarEls = document.querySelectorAll(".mdc-tab-bar");
 
 const userMenuEl = document.querySelector("#user-menu");
 const userMenuButtonEl = document.querySelector("#user-menu-button");
+const textFieldsEl = document.querySelectorAll(".mdc-text-field");
 
 export default () => {
     //
     // Instantiation
     //
 
-    const topAppBar = topAppBarEl && new MDCTopAppBar(topAppBarEl);
+    topAppBarEl && new MDCTopAppBar(topAppBarEl);
     ripplesEl.forEach(el => new MDCRipple(el));
     iconButtonsEl.forEach(iconButton => {
         const iconButtonRipple = new MDCRipple(iconButton);
@@ -38,6 +40,10 @@ export default () => {
         const list = new MDCList(listEl);
         list.listElements.map(listItemEl => new MDCRipple(listItemEl));
     });
+    tabBarEls.forEach(
+        el => new MDCTabBar(document.querySelector(".mdc-tab-bar"))
+    );
+    textFieldsEl.forEach(el => new MDCTextField(el));
 
     //
     // Events

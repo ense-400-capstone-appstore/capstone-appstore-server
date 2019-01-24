@@ -1,39 +1,55 @@
 @import '../variables';
 
-#login-grid {
-    margin-top: 70px;
-}
-
-#login-card-container,
-#register-card-container {
-    display: flex;
-}
-
-#errors-card {
+#page-login {
     width: 100%;
-    min-height: inherit;
-}
+    padding-top: 150px;
 
-#errors-card .mdl-list__item {
-    color: $red;
-}
+    flex: 1;
 
-#login-card,
-#register-card {
-    width: 600px;
-    min-height: 300px;
-}
+    form > * {
+        margin: 10px 0;
+        width: 100%;
+    }
 
-#login-card > .mdl-card__supporting-text,
-#register-card > .mdl-card__supporting-text {
-    margin: auto;
-}
+    #login-grid {
+        margin-top: 70px;
+    }
 
-#login-card > .mdl-card__actions,
-#register-card > .mdl-card__actions {
-    margin-top: auto;
-}
+    #login-card-container,
+    #register-card-container {
+        display: flex;
+    }
 
-.mdl-checkbox {
-    width: inherit;
+    #errors-card {
+        width: 100%;
+        min-height: inherit;
+    }
+
+    #errors-card .mdl-list__item {
+        color: $red;
+    }
+
+    #login-card,
+    #register-card {
+        width: 600px;
+        min-height: 300px;
+    }
+
+    #login-card > .mdl-card__supporting-text,
+    #register-card > .mdl-card__supporting-text {
+        margin: auto;
+    }
+
+    #login-card > .mdl-card__actions,
+    #register-card > .mdl-card__actions {
+        margin-top: auto;
+    }
+
+    .tab {
+        text-align: center;
+    }
+
+    .tab--invisible {
+        display: none;
+    }
 }
