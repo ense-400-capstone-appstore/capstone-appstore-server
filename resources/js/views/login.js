@@ -1,22 +1,19 @@
 export default () => {
-    // Tab buttons
-    const buttonTabLogin = document.querySelector("#button-tab-login");
-    const buttonTabRegister = document.querySelector("#button-tab-register");
+    const buttons = [
+        document.querySelector("#button-tab-login"),
+        document.querySelector("#button-tab-register")
+    ];
 
-    // Tabs
-    const tabLogin = document.querySelector("#tab-login");
-    const tabRegister = document.querySelector("#tab-register");
+    const tabs = [
+        document.querySelector("#tab-login"),
+        document.querySelector("#tab-register")
+    ];
 
     // Events
-    buttonTabLogin &&
-        buttonTabLogin.addEventListener("click", () => {
-            tabLogin.classList.remove("tab--invisible");
-            tabRegister.classList.add("tab--invisible");
+    buttons.forEach((button, i) => {
+        button.addEventListener("click", () => {
+            tabs.forEach(tab => tab.classList.add("tab--invisible"));
+            tabs[i].classList.remove("tab--invisible");
         });
-
-    buttonTabRegister &&
-        buttonTabRegister.addEventListener("click", () => {
-            tabRegister.classList.remove("tab--invisible");
-            tabLogin.classList.add("tab--invisible");
-        });
+    });
 };
