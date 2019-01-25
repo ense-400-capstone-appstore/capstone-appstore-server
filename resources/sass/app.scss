@@ -68,36 +68,3 @@
 .grecaptcha-badge {
     z-index: 999;
 }
-
-//MDL layout overrides
-.mdl-layout__container {
-    height: inherit;
-}
-
-.mdl-layout-title > a {
-    color: #FFF;
-    text-decoration: none;
-}
-
-.mdl-layout__content {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.mdl-layout__header,
-.mdl-layout__drawer {
-    position: fixed;
-}
-
-.mdl-layout__content > .page-content {
-    flex: 1 0 auto;
-    // Minimum distance before footer scrolls (mobile height)
-    min-height: 667px;
-}
-
-.mdl-layout__drawer>.mdl-layout__title,
-.mdl-layout__drawer>.mdl-layout-title,
-.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
-    padding-left: 20px;
-}

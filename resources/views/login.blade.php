@@ -3,13 +3,10 @@
 @section('title', 'Login')
 
 @section('html')
-    <div id="page-login" class="mdc-layout-grid">
+    <div id="page-login" class="page-content mdc-layout-grid">
         @if ($errors->any())
-            <div class="mdc-layout-grid__inner">
-                {{-- Spacer --}}
-                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 mq-not-tablet"></div>
-
-                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
+            <div class="mdc-layout-grid__inner page-content-item">
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                     <ul class="error-list">
                         @foreach ($errors->all() as $error)
                             <li class="error">{{ $error }}</li>
@@ -19,11 +16,8 @@
             </div>
         @endif
 
-        <div class="mdc-layout-grid__inner">
-            {{-- Spacer --}}
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 mq-not-tablet"></div>
-
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
+        <div class="mdc-layout-grid__inner page-content-item">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <div class="mdc-tab-bar" role="tablist">
                     <div class="mdc-tab-scroller">
                         <div class="mdc-tab-scroller__scroll-area">
@@ -56,14 +50,13 @@
             </div>
         </div>
 
-        <div class="mdc-layout-grid__inner">
-            {{-- Spacer --}}
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 mq-not-tablet"></div>
-
-            <div id="tab-login" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8 tab">
+        <div class="mdc-layout-grid__inner page-content-item">
+            <div id="tab-login" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 tab">
                 <form method="POST" action="login" id="login">
                     @csrf
-                    {{-- Username field --}}
+                    <input type="hidden" name="g-recaptcha-token" class="g-recaptcha-token">
+
+                    {{-- Email field --}}
                     <div class="mdc-text-field mdc-text-field--outlined">
                         <input type="text" name="email" class="mdc-text-field__input">
                         <div class="mdc-notched-outline">
@@ -87,7 +80,25 @@
                         </div>
                     </div>
 
-                    <input type="hidden" name="g-recaptcha-token" class="g-recaptcha-token">
+                    {{-- Remember checkbox --}}
+                    <div class="mdc-form-field">
+                        <div class="mdc-checkbox">
+                            <input type="checkbox"
+                                class="mdc-checkbox__native-control"
+                                name="remember"
+                                id="remember"/>
+                            <div class="mdc-checkbox__background">
+                            <svg class="mdc-checkbox__checkmark"
+                                viewBox="0 0 24 24">
+                                <path class="mdc-checkbox__checkmark-path"
+                                    fill="none"
+                                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                            </svg>
+                            <div class="mdc-checkbox__mixedmark"></div>
+                            </div>
+                        </div>
+                        <label for="remember">Remember Me</label>
+                    </div>
 
                     {{-- Submit button --}}
                     <button class="mdc-button mdc-button--raised submit" type="submit" disabled>
@@ -96,16 +107,42 @@
                 </form>
             </div>
 
-            <div id="tab-register" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8 tab tab--invisible">
-                <form method="POST" action="login" id="register">
+            <div id="tab-register" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 tab tab--invisible">
+                <form method="POST" action="register" id="register">
                     @csrf
-                    {{-- Username field --}}
+                    <input type="hidden" name="g-recaptcha-token" class="g-recaptcha-token">
+
+                    {{-- First name field --}}
                     <div class="mdc-text-field mdc-text-field--outlined">
-                        <input type="text" name="username" class="mdc-text-field__input">
+                        <input type="text" name="first_name" class="mdc-text-field__input">
                         <div class="mdc-notched-outline">
                             <div class="mdc-notched-outline__leading"></div>
                             <div class="mdc-notched-outline__notch">
-                                <label for="username" class="mdc-floating-label">Username</label>
+                                <label for="first_name" class="mdc-floating-label">First Name</label>
+                            </div>
+                            <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                    </div>
+
+                    {{-- Last name field --}}
+                    <div class="mdc-text-field mdc-text-field--outlined">
+                        <input type="text" name="last_name" class="mdc-text-field__input">
+                        <div class="mdc-notched-outline">
+                            <div class="mdc-notched-outline__leading"></div>
+                            <div class="mdc-notched-outline__notch">
+                                <label for="last_name" class="mdc-floating-label">Last Name</label>
+                            </div>
+                            <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                    </div>
+
+                    {{-- Email field --}}
+                    <div class="mdc-text-field mdc-text-field--outlined">
+                        <input type="text" name="email" class="mdc-text-field__input">
+                        <div class="mdc-notched-outline">
+                            <div class="mdc-notched-outline__leading"></div>
+                            <div class="mdc-notched-outline__notch">
+                                <label for="email" class="mdc-floating-label">Email</label>
                             </div>
                             <div class="mdc-notched-outline__trailing"></div>
                         </div>
@@ -123,7 +160,17 @@
                         </div>
                     </div>
 
-                    <input type="hidden" name="g-recaptcha-token" class="g-recaptcha-token">
+                    {{-- Password confirmation field --}}
+                    <div class="mdc-text-field mdc-text-field--outlined">
+                        <input type="password" name="password_confirmation" class="mdc-text-field__input">
+                        <div class="mdc-notched-outline">
+                            <div class="mdc-notched-outline__leading"></div>
+                            <div class="mdc-notched-outline__notch">
+                                <label for="password_confirmation" class="mdc-floating-label">Confirm Password</label>
+                            </div>
+                            <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                    </div>
 
                     {{-- Submit button --}}
                     <button class="mdc-button mdc-button--raised submit" type="submit" disabled>
@@ -184,21 +231,6 @@
 
 @section('js')
     <script>
-        const submitButtons = document.querySelectorAll('.submit');
-
-        if (typeof grecaptcha !== 'undefined') {
-            const gRecaptchaTokens = document.querySelectorAll('.g-recaptcha-token');
-
-            grecaptcha && grecaptcha.ready(() =>
-                grecaptcha
-                    .execute("{{ config('recaptcha.v3_site_key') }}")
-                    .then(token => {
-                        gRecaptchaTokens.forEach(el => el.value = token);
-                        submitButtons.forEach(button => button.disabled = false);
-                    })
-            );
-        } else {
-            submitButtons.forEach(button => button.disabled = false);
-        }
+        initRecaptcha("{{ config('recaptcha.v3_site_key') }}");
     </script>
 @endsection

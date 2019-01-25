@@ -1,5 +1,6 @@
 import tippy from "tippy.js";
 import axios from "axios";
+import { initRecaptcha } from "./grecaptcha";
 
 export default () => {
     window.tippy = tippy;
@@ -17,6 +18,8 @@ export default () => {
             "CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token"
         );
     }
+
+    window.initRecaptcha = initRecaptcha;
 
     /**
      * Echo exposes an expressive API for subscribing to channels and listening
