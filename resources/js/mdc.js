@@ -5,6 +5,8 @@ import { MDCMenu } from "@material/menu";
 import { MDCList } from "@material/list";
 import { MDCTabBar } from "@material/tab-bar";
 import { MDCTextField } from "@material/textfield";
+import { MDCFormField } from "@material/form-field";
+import { MDCCheckbox } from "@material/checkbox";
 
 const topAppBarEl = document.querySelector(".mdc-top-app-bar");
 const topAppBarNavButtonEl = document.querySelector(
@@ -22,6 +24,8 @@ const tabBarEls = document.querySelectorAll(".mdc-tab-bar");
 const userMenuEl = document.querySelector("#user-menu");
 const userMenuButtonEl = document.querySelector("#user-menu-button");
 const textFieldsEl = document.querySelectorAll(".mdc-text-field");
+const formFieldsEl = document.querySelectorAll(".mdc-form-field");
+const checkboxesEl = document.querySelectorAll(".mdc-checkbox");
 
 export default () => {
     //
@@ -44,6 +48,11 @@ export default () => {
         el => new MDCTabBar(document.querySelector(".mdc-tab-bar"))
     );
     textFieldsEl.forEach(el => new MDCTextField(el));
+    checkboxesEl.forEach((el, i) => {
+        const checkbox = new MDCCheckbox(el);
+        const formField = new MDCFormField(formFieldsEl[i]);
+        formField.input = checkbox;
+    });
 
     //
     // Events

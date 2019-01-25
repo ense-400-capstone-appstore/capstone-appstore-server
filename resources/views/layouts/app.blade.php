@@ -22,7 +22,7 @@
         @show
 
         {{-- Content of the view extending this layout --}}
-        <div id="app-content">
+        <div id="app-content-wrapper">
             @yield('html')
         </div>
 
