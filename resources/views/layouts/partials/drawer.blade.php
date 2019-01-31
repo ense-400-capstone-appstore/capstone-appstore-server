@@ -44,7 +44,7 @@
             @else
                 <a
                     class="mdc-list-item"
-                    href="#"
+                    href="/login"
                 >
                     <i
                         class="mdc-list-item__graphic fas fa-sign-out-alt"
