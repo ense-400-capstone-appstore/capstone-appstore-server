@@ -10,7 +10,7 @@ export default () => {
     ];
 
     // Events
-    buttons.forEach((button, i) => {
+    buttons.filter(b => b).forEach((button, i) => {
         button.addEventListener("click", () => {
             tabs.forEach(tab => tab.classList.add("tab--invisible"));
             tabs[i].classList.remove("tab--invisible");
