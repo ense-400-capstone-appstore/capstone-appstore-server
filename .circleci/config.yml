@@ -106,3 +106,8 @@ workflows:
       - Deploy:
           requires:
             - Build and Test
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
