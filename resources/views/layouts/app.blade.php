@@ -14,7 +14,7 @@
         <meta name="msapplication-TileColor" content="#dadff7">
         <meta name="theme-color" content="#6075E0">
         {{-- Compiled application styles --}}
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ config('version.currentTag') }}">
         {{-- Custom styles --}}
         @yield('css')
     </head>
@@ -38,7 +38,7 @@
         @endcomponent
 
         {{-- Compiled application scripts --}}
-        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}?v={{ config('version.currentTag') }}"></script>
         {{-- reCAPTCHA script. Only load if key was set up --}}
         @if(config('recaptcha.v3_site_key'))
             <script src="https://www.google.com/recaptcha/api.js?render={{ config('recaptcha.v3_site_key') }}"></script>
