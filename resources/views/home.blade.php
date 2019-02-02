@@ -12,7 +12,7 @@
                     <h1 class="home-title">@lang('app.name')</h1>
                     <h3>@lang('app.slogan')</h3>
 
-                    @button([
+                    @linkbutton([
                         'id' => 'home-jumbotron-button--get-app',
                         'classes' => 'home-jumbotron-button mdc-button mdc-button--raised',
                         'href' => 'https://github.com/matryoshkadoll/matryoshka-app/releases',
@@ -20,26 +20,26 @@
                     ])
                         <i class="mdc-button__icon fas fa-arrow-down"></i>
                         <span clas="mdc-button__label">Get the app</span>
-                    @endbutton
+                    @endlinkbutton
 
-                    @button([
+                    @linkbutton([
                         'classes' => 'home-jumbotron-button mdc-button mdc-button--unelevated',
                         'href' => config('web.links.docs.href'),
                         'target' => '_blank'
                     ])
                         <i class="mdc-button__icon {{ config('web.links.docs.icon') }}"></i>
                         <span class="mdc-button__label">Read the Docs</span>
-                    @endbutton
+                    @endlinkbutton
                 </div>
 
-                @button([
+                @linkbutton([
                     'id' => 'home-jumbotron-scroll-down',
                     'classes' => 'mdc-fab',
                     'tooltip' => 'Scroll down to learn more!',
                     'href' => '#'
                 ])
                     <i class="fas fa-chevron-down"></i>
-                @endbutton
+                @endlinkbutton
             </div>
         </div>
 
@@ -56,7 +56,7 @@
                     <h4>Source Code</h4>
                     <p>This project is open-source and all of the source code is available on GitHub!</p>
 
-                    @button([
+                    @linkbutton([
                         'classes' => 'mdc-button mdc-button--raised',
                         'tooltip' => 'See the source code on GitHub!',
                         'href' => config('web.links.github.href'),
@@ -64,14 +64,14 @@
                     ])
                         <i class="mdc-button__icon fab fa-github"></i>
                         <span class="mdc-button__label">Source Code</span>
-                    @endbutton
+                    @endlinkbutton
                 </div>
 
                 <div>
                     <h4>The Team</h4>
 
                     <div id="home-made-by">
-                        @button([
+                        @linkbutton([
                             'classes' => 'mdc-button mdc-button--raised',
                             'tooltip' => 'Daniel Shevtsov',
                             'href' => 'https://github.com/shevtsod',
@@ -79,9 +79,9 @@
                         ])
                             <i class="mdc-button__icon fab fa-github"></i>
                             <span class="mdc-button__label">@shevtsod</span>
-                        @endbutton
+                        @endlinkbutton
 
-                        @button([
+                        @linkbutton([
                             'classes' => 'mdc-button mdc-button--raised',
                             'tooltip' => 'Chengyu Lou',
                             'href' => 'https://github.com/oscar666666',
@@ -89,9 +89,9 @@
                         ])
                             <i class="mdc-button__icon fab fa-github"></i>
                             <span class="mdc-button__label">@oscar666666</span>
-                        @endbutton
+                        @endlinkbutton
 
-                        @button([
+                        @linkbutton([
                             'classes' => 'mdc-button mdc-button--raised',
                             'tooltip' => 'Uys Kriek',
                             'href' => 'https://github.com/Uyser',
@@ -99,7 +99,7 @@
                         ])
                             <i class="mdc-button__icon fab fa-github"></i>
                             <span class="mdc-button__label">@uyser</span>
-                        @endbutton
+                        @endlinkbutton
                     </div>
                 </div>
             </div>

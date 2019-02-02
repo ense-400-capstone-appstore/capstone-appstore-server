@@ -52,33 +52,28 @@
 
         <div class="mdc-layout-grid__inner page-content-item">
             <div id="tab-login" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 tab">
+                <p class="login-required-warning">Fields marked * are required.</p>
+
                 <form method="POST" action="login" id="login">
                     @csrf
                     <input type="hidden" name="g-recaptcha-token" class="g-recaptcha-token">
 
                     {{-- Email field --}}
-                    <div class="mdc-text-field mdc-text-field--outlined">
-                        <input type="text" name="email" class="mdc-text-field__input">
-                        <div class="mdc-notched-outline">
-                            <div class="mdc-notched-outline__leading"></div>
-                            <div class="mdc-notched-outline__notch">
-                                <label for="email" class="mdc-floating-label">Email</label>
-                            </div>
-                            <div class="mdc-notched-outline__trailing"></div>
-                        </div>
-                    </div>
+                    @textfield([
+                        "name" => "email",
+                        "required" => "true"
+                    ])
+                        Email
+                    @endtextfield
 
                     {{-- Password field --}}
-                    <div class="mdc-text-field mdc-text-field--outlined">
-                        <input type="password" name="password" class="mdc-text-field__input">
-                        <div class="mdc-notched-outline">
-                            <div class="mdc-notched-outline__leading"></div>
-                            <div class="mdc-notched-outline__notch">
-                                <label for="password" class="mdc-floating-label">Password</label>
-                            </div>
-                            <div class="mdc-notched-outline__trailing"></div>
-                        </div>
-                    </div>
+                    @textfield([
+                        "name" => "password",
+                        "type" => "password",
+                        "required" => "true"
+                    ])
+                        Password
+                    @endtextfield
 
                     {{-- Remember checkbox --}}
                     <div class="mdc-form-field">
@@ -108,69 +103,53 @@
             </div>
 
             <div id="tab-register" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 tab tab--invisible">
+                <p class="login-required-warning">Fields marked * are required.</p>
+
                 <form method="POST" action="register" id="register">
                     @csrf
                     <input type="hidden" name="g-recaptcha-token" class="g-recaptcha-token">
 
                     {{-- First name field --}}
-                    <div class="mdc-text-field mdc-text-field--outlined">
-                        <input type="text" name="first_name" class="mdc-text-field__input">
-                        <div class="mdc-notched-outline">
-                            <div class="mdc-notched-outline__leading"></div>
-                            <div class="mdc-notched-outline__notch">
-                                <label for="first_name" class="mdc-floating-label">First Name</label>
-                            </div>
-                            <div class="mdc-notched-outline__trailing"></div>
-                        </div>
-                    </div>
+                    @textfield([
+                        "name" => "first_name",
+                        "required" => "true"
+                    ])
+                        First Name
+                    @endtextfield
 
                     {{-- Last name field --}}
-                    <div class="mdc-text-field mdc-text-field--outlined">
-                        <input type="text" name="last_name" class="mdc-text-field__input">
-                        <div class="mdc-notched-outline">
-                            <div class="mdc-notched-outline__leading"></div>
-                            <div class="mdc-notched-outline__notch">
-                                <label for="last_name" class="mdc-floating-label">Last Name</label>
-                            </div>
-                            <div class="mdc-notched-outline__trailing"></div>
-                        </div>
-                    </div>
+                    @textfield([
+                        "name" => "last_name",
+                        "required" => "true"
+                    ])
+                        Last Name
+                    @endtextfield
 
                     {{-- Email field --}}
-                    <div class="mdc-text-field mdc-text-field--outlined">
-                        <input type="text" name="email" class="mdc-text-field__input">
-                        <div class="mdc-notched-outline">
-                            <div class="mdc-notched-outline__leading"></div>
-                            <div class="mdc-notched-outline__notch">
-                                <label for="email" class="mdc-floating-label">Email</label>
-                            </div>
-                            <div class="mdc-notched-outline__trailing"></div>
-                        </div>
-                    </div>
+                    @textfield([
+                        "name" => "email",
+                        "required" => "true"
+                    ])
+                        Email
+                    @endtextfield
 
                     {{-- Password field --}}
-                    <div class="mdc-text-field mdc-text-field--outlined">
-                        <input type="password" name="password" class="mdc-text-field__input">
-                        <div class="mdc-notched-outline">
-                            <div class="mdc-notched-outline__leading"></div>
-                            <div class="mdc-notched-outline__notch">
-                                <label for="password" class="mdc-floating-label">Password</label>
-                            </div>
-                            <div class="mdc-notched-outline__trailing"></div>
-                        </div>
-                    </div>
+                     @textfield([
+                        "name" => "password",
+                        "type" => "password",
+                        "required" => "true"
+                    ])
+                        Password
+                    @endtextfield
 
                     {{-- Password confirmation field --}}
-                    <div class="mdc-text-field mdc-text-field--outlined">
-                        <input type="password" name="password_confirmation" class="mdc-text-field__input">
-                        <div class="mdc-notched-outline">
-                            <div class="mdc-notched-outline__leading"></div>
-                            <div class="mdc-notched-outline__notch">
-                                <label for="password_confirmation" class="mdc-floating-label">Confirm Password</label>
-                            </div>
-                            <div class="mdc-notched-outline__trailing"></div>
-                        </div>
-                    </div>
+                     @textfield([
+                        "name" => "password_confirmation",
+                        "type" => "password",
+                        "required" => "true"
+                    ])
+                        Confirm Password
+                    @endtextfield
 
                     {{-- Submit button --}}
                     <button class="mdc-button mdc-button--raised submit" type="submit" disabled>

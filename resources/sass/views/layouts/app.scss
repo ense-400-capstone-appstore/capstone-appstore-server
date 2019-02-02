@@ -38,3 +38,12 @@ body {
 img.user-icon {
     border-radius: 50%;
 }
+
+.user-name {
+    white-space: nowrap;
+}
+
+// Text colors
+.color-success { color: $green }
+.color-warning { color: $yellow }
+.color-error { color: $red }

@@ -22,11 +22,12 @@ class AppServiceProvider extends ServiceProvider
     {
         // Observers
         User::observe(UserObserver::class);
-        AndroidApp::observe(AndroidAPpObserver::class);
+        AndroidApp::observe(AndroidAppObserver::class);
 
         // Component aliases
-        Blade::component('components.button', 'button');
+        Blade::component('components.linkbutton', 'linkbutton');
         Blade::component('components.card', 'card');
+        Blade::component('components.textfield', 'textfield');
     }
 
     /**
