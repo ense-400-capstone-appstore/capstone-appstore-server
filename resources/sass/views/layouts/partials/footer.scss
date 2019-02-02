@@ -15,6 +15,15 @@
     .app-footer-version {
         font-size: 0.8rem;
         margin-bottom: 10px;
+
+        a {
+            color: $primary-text;
+            text-decoration: none;
+
+            &:hover {
+                color: darken($primary-text, 10%);
+            }
+        }
     }
 
     hr.app-footer-divider {
