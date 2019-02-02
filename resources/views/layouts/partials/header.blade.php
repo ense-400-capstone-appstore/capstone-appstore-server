@@ -10,41 +10,41 @@
             </a>
 
             {{-- Icon, phone --}}
-            @button([
+            @linkbutton([
                 'classes' => 'mdc-icon-button mq-phone',
                 'href' => '/'
             ])
                 <img aria-hidden="true" src="{{asset('/images/brand/32h/Icon_x32.png')}}"/>
-            @endbutton
+            @endlinkbutton
 
             {{-- Icon, tablet and desktop --}}
-            @button([
+            @linkbutton([
                 'classes' => 'mdc-button mdc-button--unelevated mq-not-phone',
                 'href' => '/'
             ])
                 <img class="mdc-button__icon" aria-hidden="true" src="{{asset('/images/brand/32h/Icon_x32.png')}}"/>
                 @lang('app.name')
-            @endbutton
+            @endlinkbutton
         </section>
 
         {{-- Right-hand section --}}
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
             @foreach (config('web.links') as $key => $link)
-                @button([
+                @linkbutton([
                     'tooltip' => $link['name'],
                     'classes' => 'mdc-icon-button mdc-button--unelevated mq-tablet-only',
                     'href' => $link['href']
                 ])
                     <i class="{{ $link['icon'] }} fa-sm" aria-hidden="true"></i>
-                @endbutton
+                @endlinkbutton
 
-                @button([
+                @linkbutton([
                     'classes' => 'mdc-button mdc-button--unelevated mq-not-tablet',
                     'href' => $link['href']
                 ])
                     <i class="mdc-button__icon {{ $link['icon'] }}" aria-hidden="true"></i>
                     <span>{{ $link['name'] }}</span>
-                @endbutton
+                @endlinkbutton
             @endforeach
 
             @component('layouts.partials.user_menu')

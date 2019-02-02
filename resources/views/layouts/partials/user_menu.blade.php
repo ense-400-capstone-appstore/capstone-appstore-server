@@ -2,7 +2,7 @@
     {{-- If user is authenticated, show the user menu --}}
     <div class="mdc-menu-surface--anchor">
         {{-- User icon, anchor for menu --}}
-        @button([
+        @linkbutton([
             'id' => 'user-menu-button',
             'classes' => 'mdc-icon-button',
             'tooltip' => Auth::user()->name,
@@ -12,7 +12,7 @@
                 class="mdc-button__icon user-icon"
                 src="/storage/{{ Auth::user()->avatar }}"
             />
-        @endbutton
+        @endlinkbutton
 
         {{-- User Menu --}}
         <div id="user-menu" class="mdc-menu mdc-menu-surface" tabindex="-1">
@@ -24,7 +24,7 @@
                             height="35px"
                             width="auto"
                         />
-                        <span>{{ Auth::user()->name }}</span>
+                        <span class="user-name">{{ Auth::user()->name }}</span>
                     </span>
                 </li>
 
@@ -59,11 +59,11 @@
     </div>
 @else
     {{-- If user is unauthenticated, show a login button --}}
-    @button([
+    @linkbutton([
         'classes' => 'mdc-button mdc-button--unelevated',
         'href' => '/login'
     ])
         <i class="mdc-button__icon fas fa-sign-in-alt" aria-hidden="true"></i>
         Login
-    @endbutton
+    @endlinkbutton
 @endif
