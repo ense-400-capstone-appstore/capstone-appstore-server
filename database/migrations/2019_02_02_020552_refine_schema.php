@@ -13,7 +13,9 @@ class RefineSchema extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('android_apps', function (Blueprint $table) {
+
+        });
     }
 
     /**

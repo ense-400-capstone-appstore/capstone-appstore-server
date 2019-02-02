@@ -21,7 +21,11 @@
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <p>
                     <div class="app-footer-title">@lang('app.name')</div>
-                    <div class="app-footer-version">{{ config('version.currentTag') }}</div>
+                    <div class="app-footer-version">
+                        <a href="https://github.com/matryoshkadoll/matryoshka-server/releases/tag/{{ config('version.currentTag') }}">
+                            {{ config('version.currentTag') }}
+                        </a>
+                    </div>
                     <div>&copy; {{date("Y")}}</div>
                 </p>
             </div>
