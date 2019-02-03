@@ -21,4 +21,7 @@
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="MAIL_DRIVER" value="array"/>
     </php>
+    <logging>
+        <log type="coverage-html" target="./phpunit" lowUpperBound="50" highLowerBound="80" />
+    </logging>
 </phpunit>

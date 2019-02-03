@@ -7,41 +7,23 @@ use App\AndroidApp;
 
 class AndroidAppsTableSeeder extends Seeder
 {
-  /**
-   * Run the database seeds.
-   *
-   * @return void
-   */
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
 
-
-  public function run()
-  {
-    function CheckAppExist($name)
+    public function run()
     {
-      $androidApp = AndroidApp::firstOrNew(['name' => $name]);
-      return $androidApp;
-    }
-    $obj = CheckAppExist("App 1");
-    $obj2 = CheckAppExist("App 2");
-    if (!$obj->exists) {
-      $androidApp = new AndroidApp;
-      $androidApp->name = 'App 1';
-      $androidApp->version = '1.0';
-      $androidApp->description = 'Placeholder application 1';
-      $androidApp->price = 0.00;
-      $androidApp->avatar = 'empty';
-      $androidApp->save();
+        // Only seed in development
+        if (!App::environment('local')) return;
 
+        // Only seed unless AndroidApps already exist
+        if (AndroidApp::count() > 0) return;
+
+        // Create some free and premium AndroidApps
+        factory(AndroidApp::class, 2)->create();
+        factory(AndroidApp::class, 2)->states('premium')->create();
     }
-    if (!$obj2->exists) {
-      $androidApp = new AndroidApp;
-      $androidApp->name = 'App 2';
-      $androidApp->version = '1.0';
-      $androidApp->description = 'Placeholder application 2';
-      $androidApp->price = 0.00;
-      $androidApp->avatar = 'empty';
-      $androidApp->save();
-    }
-  }
 
 }

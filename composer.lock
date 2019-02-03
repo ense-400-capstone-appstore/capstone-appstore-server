@@ -4371,21 +4371,21 @@
         },
         {
             "name": "tcg/voyager",
-            "version": "v1.1.7",
+            "version": "v1.1.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/the-control-group/voyager.git",
-                "reference": "0e66c48cd5c199eb9cdbe59c317f5a38a549346d"
+                "reference": "fec85ad099b0d6e96d18891342824c7b9e5db59b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/0e66c48cd5c199eb9cdbe59c317f5a38a549346d",
-                "reference": "0e66c48cd5c199eb9cdbe59c317f5a38a549346d",
+                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/fec85ad099b0d6e96d18891342824c7b9e5db59b",
+                "reference": "fec85ad099b0d6e96d18891342824c7b9e5db59b",
                 "shasum": ""
             },
             "require": {
                 "arrilot/laravel-widgets": "^3.7",
-                "doctrine/dbal": "~2.5.0|~2.6.0|~2.7.0",
+                "doctrine/dbal": "^2.5",
                 "illuminate/support": "~5.4.0|~5.5.0|~5.6.0|~5.7.0",
                 "intervention/image": "^2.4",
                 "larapack/doctrine-support": "~0.1.4",
@@ -4393,7 +4393,6 @@
                 "league/flysystem": "~1.0.41"
             },
             "require-dev": {
-                "codeclimate/php-test-reporter": "dev-master",
                 "laravel/browser-kit-testing": "~1.0.0|~2.0.0",
                 "laravel/framework": "~5.4.36|~5.5.0|~5.6.0",
                 "orchestra/database": "~3.4.0|~3.5.0|~3.6.0",
@@ -4434,7 +4433,7 @@
                 "laravel",
                 "panel"
             ],
-            "time": "2018-10-02T16:44:07+00:00"
+            "time": "2018-12-27T15:57:24+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

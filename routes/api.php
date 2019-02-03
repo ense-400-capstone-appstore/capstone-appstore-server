@@ -18,12 +18,15 @@ Route::namespace('ApiControllers')->name('api.')->group(function () {
         // Authentication
         Route::post('login', 'AuthenticationController@authenticate')->name('login');
 
+        // Current user route
+        Route::get('users/current', 'UserController@current');
+
         // Resources
-        Route::resource('android_apps', 'AndroidAppController');
-        Route::get('user', function (Request $request) {
-            return $request->user();
-        });
-        
+        Route::apiResources([
+            'android_apps' => 'AndroidAppController',
+            'users' => 'UserController'
+        ]);
+
         // Error handling fallbacks
         Route::name('errors.')->group(function () {
             Route::get('404', function () {
