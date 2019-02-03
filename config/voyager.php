@@ -8,18 +8,18 @@ return [
     |
     | Here you can specify voyager user configs
     |
-    */
+ */
 
     'user' => [
         'add_default_role_on_register' => true,
-        'default_role'                 => 'user',
+        'default_role' => 'user',
         // Set `namespace` to `null` to use `config('auth.providers.users.model')` value
         // Set `namespace` to a class to override auth user model.
         // However make sure the appointed class must ready to use before installing voyager.
         // Otherwise `php artisan voyager:install` will fail with class not found error.
-        'namespace'                    => null,
-        'default_avatar'               => 'users/default.png',
-        'redirect'                     => '/admin',
+        'namespace' => null,
+        'default_avatar' => 'users/default.png',
+        'redirect' => '/admin',
     ],
 
     /*
@@ -29,7 +29,7 @@ return [
     |
     | Here you can specify voyager controller settings
     |
-    */
+     */
 
     'controllers' => [
         'namespace' => 'TCG\\Voyager\\Http\\Controllers',
@@ -44,7 +44,7 @@ return [
     | Must include trailing backslashes. If not defined the default application
     | namespace will be used.
     |
-    */
+     */
 
     'models' => [
         //'namespace' => 'App\\',
@@ -57,7 +57,7 @@ return [
     |
     | Here you can specify the location of the voyager assets path
     |
-    */
+     */
 
     'assets_path' => '/vendor/tcg/voyager/assets',
 
@@ -68,7 +68,7 @@ return [
     |
     | Here you can specify attributes related to your application file system
     |
-    */
+     */
 
     'storage' => [
         'disk' => 'public',
@@ -81,7 +81,7 @@ return [
     |
     | Here you can specify if media manager can show hidden files like(.gitignore)
     |
-    */
+     */
 
     'hidden_files' => false,
 
@@ -92,7 +92,7 @@ return [
     |
     | Here you can specify voyager database settings
     |
-    */
+     */
 
     'database' => [
         'tables' => [
@@ -108,12 +108,12 @@ return [
     | Here you can specify if you want Voyager to ship with support for
     | multilingual and what locales are enabled.
     |
-    */
+     */
 
     'multilingual' => [
         /*
-         * Set whether or not the multilingual is supported by the BREAD input.
-         */
+     * Set whether or not the multilingual is supported by the BREAD input.
+     */
         'enabled' => false,
 
         /*
@@ -142,29 +142,24 @@ return [
     |
     | Here you can modify some aspects of your dashboard
     |
-    */
+     */
 
     'dashboard' => [
         // Add custom list items to navbar's dropdown
         'navbar_items' => [
-            'Profile' => [
-                'route'      => 'voyager.profile',
-                'classes'    => 'class-full-of-rum',
-                'icon_class' => 'voyager-person',
-            ],
             'Home' => [
-                'route'        => '/',
-                'icon_class'   => 'voyager-home',
-                'target_blank' => true,
+                'route' => '/',
+                'icon_class' => 'voyager-home',
             ],
             'Logout' => [
-                'route'      => 'voyager.logout',
+                'route' => 'voyager.logout',
                 'icon_class' => 'voyager-power',
             ],
         ],
 
         'widgets' => [
-
+            'TCG\\Voyager\\Widgets\\UserDimmer',
+            'App\\Widgets\\AndroidAppDimmer'
         ],
 
     ],
@@ -176,7 +171,7 @@ return [
     |
     | When a change happens on Voyager, we can automate some routines.
     |
-    */
+     */
 
     'bread' => [
         // When a BREAD is added, create the Menu item using the BREAD properties.
@@ -199,11 +194,11 @@ return [
     |
     | Here you change some of the Voyager UI settings.
     |
-    */
+     */
 
-    'primary_color' => '#22A7F0',
+    'primary_color' => '#6075E0',
 
-    'show_dev_tips' => true, // Show development tip "How To Use:" in Menu and Settings
+    'show_dev_tips' => false, // Show development tip "How To Use:" in Menu and Settings
 
     // Here you can specify additional assets you would like to be included in the master.blade
     'additional_css' => [
@@ -215,12 +210,12 @@ return [
     ],
 
     'googlemaps' => [
-         'key'    => env('GOOGLE_MAPS_KEY', ''),
-         'center' => [
-             'lat' => env('GOOGLE_MAPS_DEFAULT_CENTER_LAT', '32.715738'),
-             'lng' => env('GOOGLE_MAPS_DEFAULT_CENTER_LNG', '-117.161084'),
-         ],
-         'zoom' => env('GOOGLE_MAPS_DEFAULT_ZOOM', 11),
-     ],
+        'key' => env('GOOGLE_MAPS_KEY', ''),
+        'center' => [
+            'lat' => env('GOOGLE_MAPS_DEFAULT_CENTER_LAT', '32.715738'),
+            'lng' => env('GOOGLE_MAPS_DEFAULT_CENTER_LNG', '-117.161084'),
+        ],
+        'zoom' => env('GOOGLE_MAPS_DEFAULT_ZOOM', 11),
+    ],
 
 ];

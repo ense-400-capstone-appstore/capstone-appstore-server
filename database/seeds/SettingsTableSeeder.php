@@ -13,7 +13,7 @@ class SettingsTableSeeder extends Seeder
         $setting = $this->findSetting('site.title');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => __('app.name'),
+                'display_name' => __('voyager::seeders.settings.site.title'),
                 'value' => __('app.name'),
                 'details' => '',
                 'type' => 'text',
@@ -25,7 +25,7 @@ class SettingsTableSeeder extends Seeder
         $setting = $this->findSetting('site.description');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => __('app.slogan'),
+                'display_name' => __('voyager::seeders.settings.site.description'),
                 'value' => __('app.slogan'),
                 'details' => '',
                 'type' => 'text',
@@ -37,7 +37,7 @@ class SettingsTableSeeder extends Seeder
         $setting = $this->findSetting('site.logo');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => __('app.logo'),
+                'display_name' => __('voyager::seeders.settings.site.logo'),
                 'value' => __('app.logo'),
                 'details' => '',
                 'type' => 'image',
@@ -61,7 +61,7 @@ class SettingsTableSeeder extends Seeder
         $setting = $this->findSetting('admin.bg_image');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => __('app.admin.background'),
+                'display_name' => __('voyager::seeders.settings.admin.background_image'),
                 'value' => __('app.admin.background'),
                 'details' => '',
                 'type' => 'image',
@@ -73,7 +73,7 @@ class SettingsTableSeeder extends Seeder
         $setting = $this->findSetting('admin.title');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => __('app.admin.name'),
+                'display_name' => __('voyager::seeders.settings.admin.title'),
                 'value' => __('app.admin.name'),
                 'details' => '',
                 'type' => 'text',
@@ -85,7 +85,7 @@ class SettingsTableSeeder extends Seeder
         $setting = $this->findSetting('admin.description');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => __('app.admin.slogan'),
+                'display_name' => __('voyager::seeders.settings.admin.description'),
                 'value' => __('app.admin.slogan'),
                 'details' => '',
                 'type' => 'text',
@@ -97,7 +97,7 @@ class SettingsTableSeeder extends Seeder
         $setting = $this->findSetting('admin.loader');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => __('app.admin.logo'),
+                'display_name' => __('voyager::seeders.settings.admin.loader'),
                 'value' => __('app.admin.logo'),
                 'details' => '',
                 'type' => 'image',
@@ -109,7 +109,7 @@ class SettingsTableSeeder extends Seeder
         $setting = $this->findSetting('admin.icon_image');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => __('app.admin.logo'),
+                'display_name' => __('voyager::seeders.settings.admin.icon_image'),
                 'value' => __('app.admin.logo'),
                 'details' => '',
                 'type' => 'image',

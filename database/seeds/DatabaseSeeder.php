@@ -12,6 +12,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            // Voyager seeders
+            DataTypesTableSeeder::class,
+            DataRowsTableSeeder::class,
+            MenusTableSeeder::class,
+            MenuItemsTableSeeder::class,
+            RolesTableSeeder::class,
+            PermissionsTableSeeder::class,
+            PermissionRoleTableSeeder::class,
+            SettingsTableSeeder::class,
+
+            // Application seeders
             UsersTableSeeder::class,
             AndroidAppsTableSeeder::class,
             CategoriesTableSeeder::class,

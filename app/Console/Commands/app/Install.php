@@ -21,8 +21,7 @@ class Install extends Command
      *
      * @var string
      */
-    protected $description = 'Install or update the application for
-                              development or production.';
+    protected $description = 'Install or update the application for development or production.';
 
     /**
      * Create a new command instance.
@@ -73,10 +72,7 @@ class Install extends Command
             $this->call('migrate');
         }
 
-        echo "Seeding database 1/2 ...\n";
-        $this->call('db:seed', ['--class' => 'VoyagerDatabaseSeeder']);
-
-        echo "Seeding database 2/2 ...\n";
+        echo "Seeding database ...\n";
         $this->call('db:seed');
 
         if ($flagCleanInstall) {
