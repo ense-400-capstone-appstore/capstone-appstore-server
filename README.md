@@ -8,61 +8,50 @@ This server application hosts both the API and the administrator panel for the M
 
 ## Installing / Getting started
 
+> **NOTE:** Some dependencies have Operating System-specific installation instructions that are difficult to collate in this document. Please refer to the official documentation when possible for the latest official instructions for your OS.
+
 Follow the steps below to install the application for local development:
 
 ```shell
-# Install the following using your OS package manager:
-#   - php7.2
-#   - php7.2-sqlite3
-#   - php7.2-gd
-#   - php7.2-mbstring
-#   - php7.2-xml
-#   - php7.2-zip
-#   - nodejs
+# Please see the Laravel documentation for the latest requirements
+# https://laravel.com/docs/installation
+
+# Install PHP 7 from http://www.php.net/
+
+# Enable or install the following PHP extensions:
+# GD2, OpenSSL, PDO, Mbstring, Tokenizer, XML, Ctype, JSON, BCMath, ZIP
 
 # Install composer from https://getcomposer.org/
 
+# Install Node.js from https://nodejs.org/en/
+
+# Install MySQL from https://www.mysql.com/
+
 # Clone this repository to your device
 git clone git@github.com:matryoshkadoll/matryoshka-server.git
-cd matryoshka-doll
+cd matryoshka-server
 
 # Install dependencies
-composer install
-npm install
+composer install # for development
+composer install --optimize-autoloader --no-dev # for production
 
-# For development, copy the `.env.development` file to a file called `.env`
-# For production, copy the `.env.production` file to a file called `.env`
+# Copy one of our environment files to a new file called `.env`
+# For development, copy the `.env.development` file
+# For production, copy the `.env.production` file
 cp .env.development .env
 
-# Edit `.env` to suit your environment.
-# For development, you will mostly want to change the `DB_DATABASE` variable
-# to point to the absolute path of your local sqlite3 `d$$atabase.sqlite` file.
-#
-# The result should be similar to the following:
-#   DB_DATABASE=/home/USERNAME/matryoshka-server/database/database.sqlite
+# Edit `.env` to suit your environment. For example, set the database credentials.
 
-# Run the application's installation script for development
-php artisan app:install
+# Run the application's installation script
+php artisan app:install --clean-install # Run with '-h' option for other options
 
-# OR
+# And done! You're good to go!
 
-# Run the application's installation script for production
-php artisan app:build
-
-# Done, you're ready to go!
-# Start your local server and go to 127.0.0.1:8000
+# Start your local server at 127.0.0.1:8000
 php artisan serve
-
-# For database visualization, it may be helpful to install one of several
-# graphical clients such as "sqliteman or "DBeaver"
-
-# Install sqliteman on RHEL-based linux
-sudo yum install sqliteman
-
-# or download DBeaver: https://dbeaver.io/download/
 ```
 
-See `app/Console/Commands/AppInstall.php` for detailed information on what the local installation script does.
+See `app/Console/Commands/Install.php` for detailed information on what the local installation script does.
 
 ## Developing
 
@@ -70,32 +59,35 @@ See `app/Console/Commands/AppInstall.php` for detailed information on what the l
 
 -   [Laravel](https://laravel.com/) - PHP Web Framework
 
-### Prerequisites
-
-**TODO:** Add information on dependencies.
-
-### Building
-
-**TODO:** Add instructions for building the application for production.
-
 ### Deploying / Publishing
 
-**TODO:** Add instructions for deploying the application.
+See the deployment section in our docs:
+
+https://docs.matryoshkadoll.me/docs/en/server/getting_started
 
 ## Versioning
 
-We can maybe use [SemVer](http://semver.org/) for versioning.
+This application uses [SemVer](http://semver.org/) for versioning.
 
-For the versions available, see [releases](./releases).
+For the versions available, see [releases](/releases).
 
 ## Tests
 
-**TODO:** Describe how to run tests.
+This application uses [PHPUnit](https://phpunit.de/) to run tests.
+
+```shell
+# To run all application tests, simply run:
+phpunit
+```
+
+A test coverage report in HTML format is generated in the `phpunit` directory after running tests.
 
 ## Style guide
 
-**TODO:** Add style guide.
+This application's code style strives to follow the [PSR-2](https://www.php-fig.org/psr/psr-2/) style guide and is enforced with an `.editorconfig` file.
 
 ## API Reference
 
-**TODO:** Add link to API Reference.
+See the API section in our docs:
+
+https://docs.matryoshkadoll.me/docs/en/server/getting_started

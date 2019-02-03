@@ -19,9 +19,4 @@ class AndroidApp extends Model
         'price',
         'avatar',
     ];
-
-    public function androidAppPermission()
-    {
-        return $this->hasOne('App\AndroidAppPermission');
-    }
 }

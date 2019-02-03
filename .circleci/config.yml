@@ -13,7 +13,7 @@ jobs:
       # Database image
       - image: circleci/mysql:8.0.13
         environment:
-          MYSQL_DATABASE: appstore
+          MYSQL_DATABASE: matryoshka
           MYSQL_ROOT_PASSWORD: CircleCI
 
     # Root directory of the application
@@ -23,7 +23,7 @@ jobs:
     steps:
       - run:
           name: Install PHP extensions
-          command: sudo docker-php-ext-install pdo_mysql
+          command: sudo docker-php-ext-install pdo_mysql php-xdebug
 
       # Checkout the repository at the current commit
       - checkout
@@ -65,7 +65,16 @@ jobs:
       # Run PHPUnit tests
       - run:
           name: Run PHPUnit tests
-          command: ./vendor/bin/phpunit
+          command: |
+            mkdir -p ~/phpunit
+            ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml tests
+          when: always
+
+      # Save PHPUnit tests
+      - store_test_results:
+          path: ~/phpunit
+      - store_artifacts:
+          path: ~/phpunit
 
   # Deploy the application
   Deploy:
@@ -83,7 +92,7 @@ jobs:
       # Deploy to the deloyment server via SSH
       - run:
           name: Deploy via SSH
-          command: ssh $SSH_USER@$SSH_HOST "./deploy.sh"
+          command: ssh $SSH_USER@$SSH_HOST "cd /var/www/html/matryoshka/;php artisan app:install -p"
 
 # Definition of job orders (workflows)
 workflows:

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ApiControllers\V1;
 
 use App\AndroidApp;
+use App\Http\Resources\AndroidApp as AndroidAppResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
@@ -11,7 +12,7 @@ class AndroidAppController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['index', 'show']]);
+        $this->middleware('auth:api');
     }
 
     /**
@@ -21,7 +22,7 @@ class AndroidAppController extends Controller
      */
     public function index()
     {
-        return AndroidApp::all();
+        return AndroidAppResource::collection(AndroidApp::paginate());
     }
 
     /**
@@ -46,11 +47,7 @@ class AndroidAppController extends Controller
 
         $androidApp = AndroidApp::create($request->all());
 
-        $androidApp->androidAppPermission()->create([
-            'available' => true
-        ]);
-
-        return $androidApp;
+        return new AndroidAppResource($androidApp);
     }
 
     /**
@@ -61,7 +58,7 @@ class AndroidAppController extends Controller
      */
     public function show(AndroidApp $androidApp)
     {
-        return AndroidApp::findOrFail($androidApp);
+        return new AndroidAppResource(AndroidApp::findOrFail($androidApp));
     }
 
     /**
@@ -75,7 +72,7 @@ class AndroidAppController extends Controller
     {
         $androidApp->update($request->all());
 
-        return response()->json($androidApp, 200);
+        return new AndroidAppResource($androidApp);
     }
 
     /**

@@ -36,7 +36,7 @@ class AndroidAppObserver
      */
     public function deleting(AndroidApp $androidApp)
     {
-        $androidApp->androidAppPermission->delete();
+        //
     }
 
     /**
