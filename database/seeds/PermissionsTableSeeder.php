@@ -12,15 +12,12 @@ class PermissionsTableSeeder extends Seeder
     {
         $keys = [
             'browse_admin',
-            'browse_bread',
-            'browse_database',
-            'browse_media',
             'browse_compass',
         ];
 
         foreach ($keys as $key) {
             Permission::firstOrCreate([
-                'key'        => $key,
+                'key' => $key,
                 'table_name' => null,
             ]);
         }
@@ -30,6 +27,8 @@ class PermissionsTableSeeder extends Seeder
         Permission::generateFor('roles');
 
         Permission::generateFor('users');
+
+        Permission::generateFor('android_apps');
 
         Permission::generateFor('settings');
     }
