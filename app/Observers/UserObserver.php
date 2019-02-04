@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\User;
+use TCG\Voyager\Models\Role;
 
 class UserObserver
 {
@@ -14,7 +15,12 @@ class UserObserver
      */
     public function created(User $user)
     {
-        //
+        // Set the default role to user unless otherwise specified
+        if (!$user->role) {
+            $role = Role::where('name', 'user')->firstOrFail();
+            $user->role()->associate($role);
+            $user->save();
+        }
     }
 
     /**

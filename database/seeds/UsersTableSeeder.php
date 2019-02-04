@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Models\Role;
-use TCG\Voyager\Models\User;
+use App\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
 
         $credentials = [
             'name' => 'Administrator',
-            'email' => 'admin@admin.com',
+            'email' => 'admin@matryoshkadoll.me',
             'password' => bcrypt('password'),
             'locale' => 'en'
         ];
@@ -28,5 +28,30 @@ class UsersTableSeeder extends Seeder
         $user = User::make($credentials);
         $user->role()->associate($role);
         $user->save();
+
+        // Only seed additional users on development
+        if (!App::environment('local')) return;
+
+        $role = Role::where('name', 'vendor')->firstOrFail();
+
+        $credentials = [
+            'name' => 'Vendor',
+            'email' => 'vendor@matryoshkadoll.me',
+            'password' => bcrypt('password'),
+            'locale' => 'en'
+        ];
+
+        $user = User::make($credentials);
+        $user->role()->associate($role);
+        $user->save();
+
+        $credentials = [
+            'name' => 'User',
+            'email' => 'user@matryoshkadoll.me',
+            'password' => bcrypt('password'),
+            'locale' => 'en'
+        ];
+
+        $user = User::create($credentials);
     }
 }

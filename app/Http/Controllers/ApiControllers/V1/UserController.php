@@ -13,6 +13,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->authorizeResource(User::class, 'user');
     }
 
     /**
@@ -22,18 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return new UserResource(User::paginate());
     }
 
     /**
@@ -43,6 +33,17 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
+    {
+        return new UserResource(User::findOrFail($user));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         //
     }

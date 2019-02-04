@@ -13,6 +13,7 @@ class AndroidAppPolicy extends BasePolicy
 
     /**
      * Determine which users are allowed full access to android apps.
+     *
      * @param  \App\User  $user
      * @param  mixed  $ability
      * @return mixed
@@ -23,6 +24,19 @@ class AndroidAppPolicy extends BasePolicy
     }
 
     /**
+     * Determine whether the user can view all android apps.
+     *
+     * @param  \App\User  $user
+     * @param  \App\AndroidApp  $androidApp
+     * @return mixed
+     */
+    public function index(User $user)
+    {
+        return true;
+    }
+
+
+    /**
      * Determine whether the user can view the android app.
      *
      * @param  \App\User  $user
@@ -31,18 +45,7 @@ class AndroidAppPolicy extends BasePolicy
      */
     public function view(User $user, AndroidApp $androidApp)
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can view the listing of android apps.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function browse(User $user)
-    {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +56,7 @@ class AndroidAppPolicy extends BasePolicy
      */
     public function create(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -65,7 +68,7 @@ class AndroidAppPolicy extends BasePolicy
      */
     public function update(User $user, AndroidApp $androidApp)
     {
-        //
+        return false;
     }
 
     /**
@@ -77,30 +80,6 @@ class AndroidAppPolicy extends BasePolicy
      */
     public function delete(User $user, AndroidApp $androidApp)
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the android app.
-     *
-     * @param  \App\User  $user
-     * @param  \App\AndroidApp  $androidApp
-     * @return mixed
-     */
-    public function restore(User $user, AndroidApp $androidApp)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the android app.
-     *
-     * @param  \App\User  $user
-     * @param  \App\AndroidApp  $androidApp
-     * @return mixed
-     */
-    public function forceDelete(User $user, AndroidApp $androidApp)
-    {
-        //
+        return false;
     }
 }
