@@ -9,5 +9,19 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use DispatchesJobs, ValidatesRequests;
+
+    use AuthorizesRequests {
+        resourceAbilityMap as protected resourceAbilityMapTrait;
+    }
+
+    /**
+     * Map resource methods to ability names.
+     *
+     * @return array
+     */
+    protected function resourceAbilityMap()
+    {
+        return array_merge($this->resourceAbilityMapTrait(), ['index' => 'index']);
+    }
 }

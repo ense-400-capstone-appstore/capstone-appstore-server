@@ -100,7 +100,7 @@ class Install extends Command
         echo "If there were no errors, the application is ready!\n";
         echo "\n";
         echo "Administrator credentials:\n";
-        echo "Email:    admin@admin.com\n";
+        echo "Email:    admin@matryoshkadoll.me\n";
         echo "Password: password\n";
     }
 }

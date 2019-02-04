@@ -13,6 +13,7 @@ class AndroidAppController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->authorizeResource(AndroidApp::class, 'android_app');
     }
 
     /**
@@ -23,6 +24,17 @@ class AndroidAppController extends Controller
     public function index()
     {
         return AndroidAppResource::collection(AndroidApp::paginate());
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\AndroidApp  $androidApp
+     * @return \Illuminate\Http\Response
+     */
+    public function show(AndroidApp $androidApp)
+    {
+        return new AndroidAppResource(AndroidApp::findOrFail($androidApp));
     }
 
     /**
@@ -48,17 +60,6 @@ class AndroidAppController extends Controller
         $androidApp = AndroidApp::create($request->all());
 
         return new AndroidAppResource($androidApp);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\AndroidApp  $androidApp
-     * @return \Illuminate\Http\Response
-     */
-    public function show(AndroidApp $androidApp)
-    {
-        return new AndroidAppResource(AndroidApp::findOrFail($androidApp));
     }
 
     /**

@@ -1,5 +1,5 @@
 <?php
-namespace App\Widgets;
+namespace App\Admin\Widgets;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -22,11 +22,11 @@ class AndroidAppDimmer extends BaseDimmer
     public function run()
     {
         $count = AndroidApp::count();
-        $string = trans_choice('voyager::dimmer.user', $count);
+        $string = $count == 1 ? 'Android App' : 'Android Apps';
         return view('voyager::dimmer', array_merge($this->config, [
             'icon' => 'voyager-basket',
-            'title' => "{$count} Android Apps",
-            'text' => "You have {$count} Android Apps in your database.",
+            'title' => "{$count} {$string}",
+            'text' => "You have {$count} {$string} in your database.",
             'button' => [
                 'text' => 'View all Android Apps',
                 'link' => route('voyager.android_apps.index'),
