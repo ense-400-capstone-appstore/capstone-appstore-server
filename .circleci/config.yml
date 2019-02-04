@@ -22,8 +22,12 @@ jobs:
     # Steps in build job
     steps:
       - run:
+          name: Install additional software
+          command: sudo apt-get install php-xdebug -y
+
+      - run:
           name: Install PHP extensions
-          command: sudo docker-php-ext-install pdo_mysql php-xdebug
+          command: sudo docker-php-ext-install pdo_mysql
 
       # Checkout the repository at the current commit
       - checkout
