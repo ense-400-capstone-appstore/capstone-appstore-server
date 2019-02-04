@@ -49,8 +49,7 @@ class AndroidAppController extends Controller
             'name' => 'required',
             'version' => 'required',
             'description' => 'required',
-            'price' => 'required',
-            'avatar' => 'required'
+            'price' => 'required'
         ]);
 
         if ($validator->fails()) {
