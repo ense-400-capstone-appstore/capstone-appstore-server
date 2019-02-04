@@ -43,8 +43,9 @@ class Install extends Command
         // Set flags for every option that was passed as input
         $flagProduction = $this->option('production');
         $flagCleanInstall = $this->option('clean-install');
+        $flagNoInteraction = $this->option('no-interaction');
 
-        if ($flagCleanInstall) {
+        if ($flagCleanInstall && !$flagNoInteraction) {
             $confirm = $this->confirm('CAUTION! This will delete ALL application data. Continue?');
 
             if (!$confirm) return;
