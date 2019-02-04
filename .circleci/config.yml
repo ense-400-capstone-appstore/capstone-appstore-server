@@ -60,14 +60,14 @@ jobs:
       # Complete the installation using the install script
       - run:
           name: Install application
-          command: php artisan app:build
+          command: php artisan app:install -c -n
 
       # Run PHPUnit tests
       - run:
           name: Run PHPUnit tests
           command: |
             mkdir -p ~/phpunit
-            phpunit --log-junit ~/phpunit/junit.xml tests
+            ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml tests
           when: always
 
       # Save PHPUnit tests
