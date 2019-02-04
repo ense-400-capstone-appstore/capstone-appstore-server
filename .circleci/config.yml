@@ -22,10 +22,6 @@ jobs:
     # Steps in build job
     steps:
       - run:
-          name: Install additional software
-          command: sudo apt-get install php-xdebug -y
-
-      - run:
           name: Install PHP extensions
           command: sudo docker-php-ext-install pdo_mysql
 
@@ -71,7 +67,7 @@ jobs:
           name: Run PHPUnit tests
           command: |
             mkdir -p ~/phpunit
-            ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml tests
+            phpunit --log-junit ~/phpunit/junit.xml tests
           when: always
 
       # Save PHPUnit tests
