@@ -4,43 +4,43 @@ namespace App\Admin\Widgets;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use TCG\Voyager\Facades\Voyager;
-use TCG\Voyager\Widgets\BaseDimmer;
+use App\Admin\Widgets\BaseDimmer;
 use App\User;
 
 class UserDimmer extends BaseDimmer
 {
     /**
-     * The configuration array.
+     * The Laravel model.
      *
-     * @var array
+     * @var mixed
      */
-    protected $config = [];
+    protected $model = User::class;
+
     /**
-     * Treat this method as a controller action.
-     * Return view() or other content to display.
-     */
-    public function run()
-    {
-        $count = User::count();
-        $string = $count == 1 ? 'User' : 'Users';
-        return view('voyager::dimmer', array_merge($this->config, [
-            'icon' => 'voyager-people',
-            'title' => "{$count} {$string}",
-            'text' => "You have {$count} {$string} in your database.",
-            'button' => [
-                'text' => 'View all Users',
-                'link' => route('voyager.users.index'),
-            ],
-            'image' => voyager_asset('images/widget-backgrounds/01.jpg'),
-        ]));
-    }
-    /**
-     * Determine if the widget should be displayed.
+     * The singular display name for the model.
      *
-     * @return bool
+     * @var string
      */
-    public function shouldBeDisplayed()
-    {
-        return Auth::user()->can('browse', User::class);
-    }
+    protected $singular_display_name = 'User';
+
+    /**
+     * The plural display name for the model.
+     *
+     * @var string
+     */
+    protected $plural_display_name = 'Users';
+
+    /**
+     * The name of the database table for this Laravel model
+     *
+     * @var string
+     */
+    protected $database_table_name = 'users';
+
+    /**
+     * The background image ID for this widget
+     *
+     * @var string
+     */
+    protected $widget_background_name = '01.jpg';
 }
