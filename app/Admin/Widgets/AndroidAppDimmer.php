@@ -4,43 +4,43 @@ namespace App\Admin\Widgets;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use TCG\Voyager\Facades\Voyager;
-use TCG\Voyager\Widgets\BaseDimmer;
+use App\Admin\Widgets\BaseDimmer;
 use App\AndroidApp;
 
 class AndroidAppDimmer extends BaseDimmer
 {
     /**
-     * The configuration array.
+     * The Laravel model.
      *
-     * @var array
+     * @var mixed
      */
-    protected $config = [];
+    protected $model = AndroidApp::class;
+
     /**
-     * Treat this method as a controller action.
-     * Return view() or other content to display.
-     */
-    public function run()
-    {
-        $count = AndroidApp::count();
-        $string = $count == 1 ? 'Android App' : 'Android Apps';
-        return view('voyager::dimmer', array_merge($this->config, [
-            'icon' => 'voyager-basket',
-            'title' => "{$count} {$string}",
-            'text' => "You have {$count} {$string} in your database.",
-            'button' => [
-                'text' => 'View all Android Apps',
-                'link' => route('voyager.android_apps.index'),
-            ],
-            'image' => voyager_asset('images/widget-backgrounds/02.jpg'),
-        ]));
-    }
-    /**
-     * Determine if the widget should be displayed.
+     * The singular display name for the model.
      *
-     * @return bool
+     * @var string
      */
-    public function shouldBeDisplayed()
-    {
-        return Auth::user()->can('browse', AndroidApp::class);
-    }
+    protected $singular_display_name = 'Android App';
+
+    /**
+     * The plural display name for the model.
+     *
+     * @var string
+     */
+    protected $plural_display_name = 'Android Apps';
+
+    /**
+     * The name of the database table for this Laravel model
+     *
+     * @var string
+     */
+    protected $database_table_name = 'android_apps';
+
+    /**
+     * The background image ID for this widget
+     *
+     * @var string
+     */
+    protected $widget_background_name = '02.jpg';
 }
