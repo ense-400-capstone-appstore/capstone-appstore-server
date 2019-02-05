@@ -5,10 +5,13 @@ version: 2
 jobs:
   # Build the application and run tests
   Build and Test:
+    environment:
+      # Code Climate Test Coverage
+      CC_TEST_REPORTER_ID: 3bf87c06bd5f606cc7c35fbb45e86069add4fbe49a2d7132cd42894c49e10935
     # Use docker images
     docker:
       # Application image
-      - image: circleci/php:7.2.10-apache-node
+      - image: circleci/php:7.2.10-apache-node-browsers
 
       # Database image
       - image: circleci/mysql:8.0.13
@@ -23,7 +26,7 @@ jobs:
     steps:
       - run:
           name: Install PHP extensions
-          command: sudo docker-php-ext-install pdo_mysql
+          command: sudo docker-php-ext-install pdo_mysql xdebug
 
       # Checkout the repository at the current commit
       - checkout
@@ -35,12 +38,10 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      # Install composer dependencies
       - run:
           name: Install composer dependencies
           command: composer install -n --prefer-dist
 
-      # Install Node.js dependencies
       - run:
           name: Install Node.js dependencies
           command: npm install
@@ -52,22 +53,30 @@ jobs:
             - ./node_modules
           key: v1-dependencies-{{ checksum "composer.json" }}-{{ checksum "package.json" }}
 
-      # Use the CircleCI environment configuration file
       - run:
-          name: Use CircleCI environment
+          name: Use CircleCI environment file
           command: cp .env.circleci .env
 
-      # Complete the installation using the install script
       - run:
-          name: Install application
+          name: Run app:install command
           command: php artisan app:install -c -n
 
-      # Run PHPUnit tests
+      - run:
+          name: Setup Code CLimate test-reporter
+          command: |
+            # download test reporter as a static binary
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+
       - run:
           name: Run PHPUnit tests
           command: |
+            # notify Code Climate of a pending test report using `before-build`
+            ./cc-test-reporter before-build
             mkdir -p ~/phpunit
-            ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml tests
+            sudo vendor/bin/phpunit --log-junit ~/phpunit/junit.xml tests --coverage-clover clover.xml
+            # upload test report to Code Climate using `after-build`
+            ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
           when: always
 
       # Save PHPUnit tests
