@@ -13,53 +13,10 @@ class RefineSchemaAdditions extends Migration
      */
     public function up()
     {
-        Schema::create('group_android_app', function (Blueprint $table) {
-            $table->unsignedInteger('group_id');
-            $table->foreign('group_id')->references('id')->on('groups');
-
-            $table->unsignedInteger('android_app_id');
-            $table->foreign('android_app_id')->references('id')->on('android_apps');
-
-            $table->primary(['group_id', 'android_app_id']);
-
-            $table->timestamps();
-        });
-
-        Schema::create('category_android_app', function (Blueprint $table) {
-            $table->unsignedInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
-
-            $table->unsignedInteger('android_app_id');
-            $table->foreign('android_app_id')->references('id')->on('android_apps');
-
-            $table->primary(['category_id', 'android_app_id']);
-
-            $table->timestamps();
-        });
-
-        Schema::create('user_group', function (Blueprint $table) {
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-
-            $table->unsignedInteger('group_id');
-            $table->foreign('group_id')->references('id')->on('groups');
-
-            $table->primary(['user_id', 'group_id']);
-
-            $table->timestamps();
-        });
-
-        Schema::create('permission_android_app', function (Blueprint $table) {
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-
-            $table->unsignedInteger('group_id');
-            $table->foreign('group_id')->references('id')->on('groups');
-
-            $table->primary(['user_id', 'group_id']);
-
-            $table->timestamps();
-        });
+        $this->createJunctionTable('category', 'android_app');
+        $this->createJunctionTable('permission', 'android_app');
+        $this->createJunctionTable('group', 'user');
+        $this->createJunctionTable('group', 'android_app');
     }
 
     /**
@@ -69,9 +26,30 @@ class RefineSchemaAdditions extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group_android_app');
         Schema::dropIfExists('category_android_app');
-        Schema::dropIfExists('user_group');
         Schema::dropIfExists('permission_android_app');
+        Schema::dropIfExists('group_user');
+        Schema::dropIfExists('group_android_app');
+    }
+
+    /**
+     * Create a junction table between two other tables.
+     *
+     * @param string $singularTableOne Singular form of first table's name
+     * @param string $singularTableTwo Singular form of second table's name
+     */
+    protected function createJunctionTable(string $singularTableOne, string $singularTableTwo)
+    {
+        Schema::create("{$singularTableOne}_{$singularTableTwo}", function (Blueprint $table) use ($singularTableOne, $singularTableTwo) {
+            $table->unsignedInteger("{$singularTableOne}_id");
+            $table->foreign("{$singularTableOne}_id")->references('id')->on(str_plural($singularTableOne));
+
+            $table->unsignedInteger("{$singularTableTwo}_id");
+            $table->foreign("{$singularTableTwo}_id")->references('id')->on(str_plural($singularTableTwo));
+
+            $table->primary(["{$singularTableOne}_id", "{$singularTableTwo}_id"]);
+
+            $table->timestamps();
+        });
     }
 }
