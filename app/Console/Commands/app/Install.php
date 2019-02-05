@@ -86,7 +86,7 @@ class Install extends Command
         }
 
         echo "Installing front-end dependencies ...\n";
-        exec('npm install');
+        exec('npm install --no-progress');
 
         if ($flagProduction) {
             echo "Compiling optimized production front-end code ...\n";
