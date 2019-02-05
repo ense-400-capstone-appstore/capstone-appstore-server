@@ -16,42 +16,40 @@ class UsersTableSeeder extends Seeder
         // Only seed unless users already exist
         if (User::count()) return;
 
-        $role = Role::where('name', 'admin')->firstOrFail();
-
-        $credentials = [
+        $this->createUser([
             'name' => 'Administrator',
             'email' => 'admin@matryoshkadoll.me',
-            'password' => bcrypt('password'),
-            'locale' => 'en'
-        ];
-
-        $user = User::make($credentials);
-        $user->role()->associate($role);
-        $user->save();
+            'password' => bcrypt('password')
+        ], 'admin');
 
         // Only seed additional users on development
         if (!App::environment('local')) return;
 
-        $role = Role::where('name', 'vendor')->firstOrFail();
-
-        $credentials = [
+        $this->createUser([
             'name' => 'Vendor',
             'email' => 'vendor@matryoshkadoll.me',
-            'password' => bcrypt('password'),
-            'locale' => 'en'
-        ];
+            'password' => bcrypt('password')
+        ], 'vendor');
 
-        $user = User::make($credentials);
-        $user->role()->associate($role);
-        $user->save();
-
-        $credentials = [
+        $this->createUser([
             'name' => 'User',
             'email' => 'user@matryoshkadoll.me',
-            'password' => bcrypt('password'),
-            'locale' => 'en'
-        ];
+            'password' => bcrypt('password')
+        ]);
+    }
 
-        $user = User::create($credentials);
+    /**
+     * Create a user with the given user details and role name.
+     *
+     * @param array $userDetails
+     * @param string $roleName
+     */
+    protected function createUser(array $userDetails, string $roleName = 'user')
+    {
+        $role = Role::where('name', $roleName)->firstOrFail();
+
+        $user = User::make($userDetails);
+        $user->role()->associate($role);
+        $user->save();
     }
 }

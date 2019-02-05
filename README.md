@@ -1,6 +1,6 @@
 ![Matryoshka Logo](./public/images/brand/256h/Logo_x256.png)
 
-# Matryoshka Server &middot; [![CircleCI](https://circleci.com/gh/matryoshkadoll/matryoshka-server.svg?style=svg)](https://circleci.com/gh/matryoshkadoll/matryoshka-server) [![Maintainability](https://api.codeclimate.com/v1/badges/017b845d676b8e20e28f/maintainability)](https://codeclimate.com/github/matryoshkadoll/matryoshka-server/maintainability)
+# Matryoshka Server &middot; [![CircleCI](https://circleci.com/gh/matryoshkadoll/matryoshka-server.svg?style=svg)](https://circleci.com/gh/matryoshkadoll/matryoshka-server) [![Maintainability](https://api.codeclimate.com/v1/badges/017b845d676b8e20e28f/maintainability)](https://codeclimate.com/github/matryoshkadoll/matryoshka-server/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/017b845d676b8e20e28f/test_coverage)](https://codeclimate.com/github/matryoshkadoll/matryoshka-server/test_coverage)
 
 > Laravel backend powering the Matryoshka website and API
 
