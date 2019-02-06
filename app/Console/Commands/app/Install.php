@@ -118,7 +118,7 @@ class Install extends Command
         if (!$this->flagCleanInstall) return;
 
         echo "Linking storage ...\n";
-        $this->call('storage:link', ['--force' => $this->flagProduction]);
+        $this->call('storage:link');
     }
 
     /**
@@ -129,8 +129,8 @@ class Install extends Command
         if (!$this->flagCleanInstall) return;
 
         echo "Generating Passport keys ...\n";
-        $this->call('passport:install', ['--force' => $this->flagProduction]);
-        $this->call('passport:keys', ['--force' => $this->flagProduction]);
+        $this->call('passport:install', ['--force' => true]);
+        $this->call('passport:keys', ['--force' => true]);
     }
 
     /**
