@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\App;
 
+use App;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 

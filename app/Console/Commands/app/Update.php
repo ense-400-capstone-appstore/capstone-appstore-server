@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\app;
 
+use App;
 use Illuminate\Console\Command;
 
 class Update extends Command
