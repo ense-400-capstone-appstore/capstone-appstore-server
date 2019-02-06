@@ -13,15 +13,14 @@ class Install extends Command
      * @var string
      */
     protected $signature = 'app:install
-                            {--c|clean-install : Drops and rebuilds the database}
-                            {--p|production : Also runs commands specific to production deployments}';
+                            {--c|clean-install : Drops and rebuilds the database}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Install or update the application for development or production.';
+    protected $description = 'Install or re-install the application.';
 
     /**
      * Create a new command instance.
@@ -41,20 +40,18 @@ class Install extends Command
     public function handle()
     {
         // Set flags for every option that was passed as input
-        $this->flagProduction = $this->option('production');
+        $this->flagProduction = App::environment() == 'production';
         $this->flagCleanInstall = $this->option('clean-install');
         $this->flagNoInteraction = $this->option('no-interaction');
 
         if (!$this->getConfirmation()) return;
 
         // Run installation steps
-        $this->pullCodeChanges();
         $this->generateAppKey();
         $this->runMigrations();
         $this->seedDatabase();
         $this->linkStorage();
         $this->installPassport();
-        $this->installFrontEnd();
 
         $this->showSuccessMessage();
     }
@@ -77,18 +74,6 @@ class Install extends Command
     }
 
     /**
-     * Pull newest commit on this branch from GitHub.
-     */
-    protected function pullCodeChanges()
-    {
-        if (!$this->flagProduction) return;
-
-        echo "Updating application code from GitHub ...\n";
-        exec('git reset --hard');
-        exec('git pull');
-    }
-
-    /**
      * Generate application key for encryption.
      */
     protected function generateAppKey()
@@ -96,7 +81,7 @@ class Install extends Command
         if (!$this->flagCleanInstall) return;
 
         echo "Generating application key ...\n";
-        $this->call('key:generate');
+        $this->call('key:generate', ['--force' => $this->flagProduction]);
     }
 
     /**
@@ -107,11 +92,11 @@ class Install extends Command
         echo "Running migrations ...\n";
         if ($this->flagCleanInstall) {
             echo "Dropping database if it exists ...\n";
-            $this->call('migrate:fresh');
+            $this->call('migrate:fresh', ['--force' => $this->flagProduction]);
         } elseif ($this->flagProduction) {
-            $this->call('migrate', ['--force' => true]);
+            $this->call('migrate', ['--force' => $this->flagProduction]);
         } else {
-            $this->call('migrate');
+            $this->call('migrate', ['--force' => $this->flagProduction]);
         }
     }
 
@@ -121,7 +106,7 @@ class Install extends Command
     protected function seedDatabase()
     {
         echo "Seeding database ...\n";
-        $this->call('db:seed');
+        $this->call('db:seed', ['--force' => $this->flagProduction]);
     }
 
     /**
@@ -132,7 +117,7 @@ class Install extends Command
         if (!$this->flagCleanInstall) return;
 
         echo "Linking storage ...\n";
-        $this->call('storage:link');
+        $this->call('storage:link', ['--force' => $this->flagProduction]);
     }
 
     /**
@@ -143,25 +128,8 @@ class Install extends Command
         if (!$this->flagCleanInstall) return;
 
         echo "Generating Passport keys ...\n";
-        $this->call('passport:install');
-        $this->call('passport:keys');
-    }
-
-    /**
-     * Handle installation of NPM front-end code.
-     */
-    protected function installFrontEnd()
-    {
-        echo "Installing front-end dependencies ...\n";
-        exec('npm install --no-progress');
-
-        if ($this->flagProduction) {
-            echo "Compiling optimized production front-end code ...\n";
-            exec('npm run prod');
-        } else {
-            echo "Compiling front-end code ...\n";
-            exec('npm run dev');
-        }
+        $this->call('passport:install', ['--force' => $this->flagProduction]);
+        $this->call('passport:keys', ['--force' => $this->flagProduction]);
     }
 
     /**
