@@ -82,7 +82,7 @@ class Install extends Command
         if (!$this->flagCleanInstall) return;
 
         echo "Generating application key ...\n";
-        $this->call('key:generate', ['--force' => $this->flagProduction]);
+        $this->call('key:generate');
     }
 
     /**
