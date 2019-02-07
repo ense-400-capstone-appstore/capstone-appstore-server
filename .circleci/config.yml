@@ -54,6 +54,10 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}-{{ checksum "package.json" }}
 
       - run:
+          name: Compile Node.js assets
+          command: npm run dev
+
+      - run:
           name: Use CircleCI environment file
           command: cp .env.circleci .env
 
@@ -62,7 +66,7 @@ jobs:
           command: php artisan app:install -c -n
 
       - run:
-          name: Setup Code CLimate test-reporter
+          name: Setup Code Climate test-reporter
           command: |
             # download test reporter as a static binary
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter

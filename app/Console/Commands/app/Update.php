@@ -12,7 +12,8 @@ class Update extends Command
      *
      * @var string
      */
-    protected $signature = 'app:update';
+    protected $signature = 'app:update
+                            {--r|release= : Specifies release to update to (e.g., 1.0.0)}';
 
     /**
      * The console command description.
@@ -39,6 +40,7 @@ class Update extends Command
     public function handle()
     {
         $this->flagProduction = App::environment() == 'production';
+        $this->release = $this->option('release');
 
         // Run update steps
         $this->pullCodeChanges();
@@ -53,9 +55,12 @@ class Update extends Command
      */
     protected function pullCodeChanges()
     {
-        echo "Updating application code from GitHub ...\n";
+        if (!$this->release) return;
+
+        echo "Attempting to update to version {$this->release} ...\n";
         exec('git reset --hard');
-        exec('git pull');
+        exec('git fetch');
+        exec("git checkout {$this->release}");
     }
 
     /**
