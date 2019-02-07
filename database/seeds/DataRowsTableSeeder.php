@@ -151,6 +151,20 @@ class DataRowsTableSeeder extends Seeder
             'order' => 10,
         ])->save();
 
+        $dataRow = $this->dataRow($userDataType, 'user_belongstomany_role_relationship');
+        $dataRow->fill([
+            'type' => 'hidden',
+            'display_name' => 'Roles',
+            'required' => 0,
+            'browse' => 0,
+            'read' => 0,
+            'edit' => 1,
+            'add' => 1,
+            'delete' => 1,
+            'details' => '',
+            'order' => 11,
+        ])->save();
+
         $dataRow = $this->dataRow($userDataType, 'locale');
         $dataRow->fill([
             'type' => 'text',

@@ -30,8 +30,6 @@ class UserPolicy extends VoyagerUserPolicy
      */
     public function index(User $user)
     {
-        if ($user->hasRole('admin')) return true;
-
         return false;
     }
 

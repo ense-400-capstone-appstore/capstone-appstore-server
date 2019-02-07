@@ -141,6 +141,9 @@ class Install extends Command
         echo "\n";
         echo "Please check above if there were any errors.\n";
         echo "If there were no errors, the application is ready!\n";
+
+        if (!$this->flagCleanInstall) return;
+
         echo "\n";
         echo "Administrator credentials:\n";
         echo "Email:    admin@matryoshkadoll.me\n";
