@@ -34,7 +34,7 @@ class AndroidAppController extends Controller
      */
     public function show(AndroidApp $androidApp)
     {
-        return new AndroidAppResource(AndroidApp::findOrFail($androidApp));
+        return new AndroidAppResource(AndroidApp::find($androidApp->id));
     }
 
     /**
