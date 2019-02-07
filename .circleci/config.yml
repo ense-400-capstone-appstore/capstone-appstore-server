@@ -105,7 +105,7 @@ jobs:
       # Deploy to the deloyment server via SSH
       - run:
           name: Deploy via SSH
-          command: ssh $SSH_USER@$SSH_HOST "cd /var/www/html/matryoshka/;php artisan app:update;php artisan app:install"
+          command: ssh $SSH_USER@$SSH_HOST "cd /var/www/html/matryoshka/;php artisan app:update -r $CIRCLE_TAG;php artisan app:install"
 
 # Definition of job orders (workflows)
 workflows:
