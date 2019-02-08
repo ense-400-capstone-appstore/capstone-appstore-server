@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         AndroidApp::observe(AndroidAppObserver::class);
         //limit string length see: https://laravel-news.com/laravel-5-4-key-too-long-error
-        Schema::defaultStringLength(191);
+        //Schema::defaultStringLength(191);
         // Component aliases
         Blade::component('components.linkbutton', 'linkbutton');
         Blade::component('components.card', 'card');
