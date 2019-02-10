@@ -10,7 +10,7 @@ use App\AndroidApp;
 
 use App\Observers\UserObserver;
 use App\Observers\AndroidAppObserver;
-use Illuminate\Support\Facades\Schema;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,8 +23,7 @@ class AppServiceProvider extends ServiceProvider
         // Observers
         User::observe(UserObserver::class);
         AndroidApp::observe(AndroidAppObserver::class);
-        //limit string length see: https://laravel-news.com/laravel-5-4-key-too-long-error
-        //Schema::defaultStringLength(191);
+
         // Component aliases
         Blade::component('components.linkbutton', 'linkbutton');
         Blade::component('components.card', 'card');

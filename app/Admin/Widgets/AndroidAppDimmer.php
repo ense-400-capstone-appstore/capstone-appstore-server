@@ -17,6 +17,13 @@ class AndroidAppDimmer extends BaseDimmer
     protected $model = AndroidApp::class;
 
     /**
+     * The Voyager icon to use for the widget.
+     *
+     * @var string
+     */
+    protected $icon = 'voyager-basket';
+
+    /**
      * The singular display name for the model.
      *
      * @var string
