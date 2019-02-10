@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Response;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -30,6 +31,15 @@ class Handler extends ExceptionHandler
     ];
 
     /**
+     * Standard JSON response codes and messages
+     *
+     * @var array
+     */
+    protected $jsonResponses = [
+        404 => 'Not Found',
+    ];
+
+    /**
      * Report or log an exception.
      *
      * @param  \Exception  $exception
@@ -49,16 +59,30 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($request->isJson() || $request->wantsJson()) {
-            if ($exception instanceof ModelNotFoundException) {
-                return redirect()->route('api.v1.errors.404');
-            }
-
-            if ($exception instanceof NotFoundHttpException) {
-                return redirect()->route('api.v1.errors.404');
+        if ($request->wantsJson()) {
+            switch (true) {
+                case $exception instanceof ModelNotFoundException:
+                case $exception instanceof NotFoundHttpException:
+                    return $this->jsonResponse(404);
             }
         }
 
         return parent::render($request, $exception);
+    }
+
+    /**
+     * Render a JSON response by providing the HTTP code.
+     *
+     * @param string $code
+     * @return \Illuminate\Http\Response
+     */
+    protected function jsonResponse($code)
+    {
+        return response()->json(
+            [
+                'message' => $this->jsonResponses[$code]
+            ],
+            $code
+        );
     }
 }
