@@ -17,6 +17,13 @@ class UserDimmer extends BaseDimmer
     protected $model = User::class;
 
     /**
+     * The Voyager icon to use for the widget.
+     *
+     * @var string
+     */
+    protected $icon = 'voyager-people';
+
+    /**
      * The singular display name for the model.
      *
      * @var string

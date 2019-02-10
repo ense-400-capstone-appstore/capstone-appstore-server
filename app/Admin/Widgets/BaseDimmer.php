@@ -22,6 +22,14 @@ class BaseDimmer extends VoyagerBaseDimmer
      */
     protected $model = null;
 
+
+    /**
+     * The Voyager icon to use for the widget.
+     *
+     * @var string
+     */
+    protected $icon = 'voyager-helm';
+
     /**
      * The singular display name for the model.
      *
@@ -62,7 +70,7 @@ class BaseDimmer extends VoyagerBaseDimmer
             : $this->plural_display_name;
 
         return view('voyager::dimmer', array_merge($this->config, [
-            'icon' => 'voyager-basket',
+            'icon' => $this->icon,
             'title' => "{$count} {$string}",
             'text' => "You have {$count} {$string} in your database.",
             'button' => [
