@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Unit\Api\V1;
+namespace Tests\Feature\Api\V1;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -208,7 +208,7 @@ class AndroidAppTest extends TestCase
             $res = $this->actingAs($user, 'api')
                 ->json('DELETE', "/api/v1/android_apps/9999");
 
-            $res->assertStatus(302);
+            $res->assertStatus(404);
         }
     }
 }

@@ -56,7 +56,12 @@ class AndroidAppController extends Controller
             return response()->json(['error' => $validator->errors()], 401);
         }
 
-        $androidApp = AndroidApp::create($request->all());
+        $androidApp = AndroidApp::create($request->only([
+            'name',
+            'version',
+            'description',
+            'price'
+        ]));
 
         return new AndroidAppResource($androidApp);
     }
@@ -70,7 +75,12 @@ class AndroidAppController extends Controller
      */
     public function update(Request $request, AndroidApp $androidApp)
     {
-        $androidApp->update($request->all());
+        $androidApp->update($request->only([
+            'name',
+            'version',
+            'description',
+            'price'
+        ]));
 
         return new AndroidAppResource($androidApp);
     }

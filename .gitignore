@@ -21,8 +21,10 @@ yarn-error.log
 /storage/app/public/*
 !/storage/app/public/users
 /storage/app/public/users/*
+!/storage/app/public/android_apps
+/storage/app/public/android_apps/*
 
 # "default storage items" to not ignore. These are used for default branding, icons, etc.
 !/storage/app/public/users/default.png
-!/storage/app/public/android-apps/default.png
+!/storage/app/public/android_apps/default.png
 !/storage/app/public/brand
