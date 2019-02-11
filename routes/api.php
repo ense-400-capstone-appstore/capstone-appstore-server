@@ -25,17 +25,17 @@ Route::namespace('ApiControllers')->name('api.')->group(function () {
          */
         Route::get('users/current', 'UserController@current');
 
-        Route::post('users/avatar', 'UserController@avatarUpload');
-        Route::get('users/avatar', 'UserController@avatarDownload');
+        Route::post('users/{user}/avatar', 'UserController@avatarUpload');
+        Route::get('users/{user}/avatar', 'UserController@avatarDownload');
 
         /**
          * AndroidApps
          */
-        Route::post('android_apps/file', 'AndroidAppController@fileUpload');
-        Route::get('android_apps/file', 'AndroidAppController@fileDownload');
+        Route::post('android_apps/{android_app}/file', 'AndroidAppController@fileUpload');
+        Route::get('android_apps/{android_app}/file', 'AndroidAppController@fileDownload');
 
-        Route::post('android_apps/avatar', 'AndroidAppController@avatarUpload');
-        Route::get('android_apps/avatar', 'AndroidAppController@avatarDownload');
+        Route::post('android_apps/{android_app}/avatar', 'AndroidAppController@avatarUpload');
+        Route::get('android_apps/{android_app}/avatar', 'AndroidAppController@avatarDownload');
 
         /**
          * Resources
