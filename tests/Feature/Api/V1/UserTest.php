@@ -7,9 +7,8 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use TCG\Voyager\Models\Role;
-use App\AndroidApp;
 
-class AndroidAppTest extends TestCase
+class UserTest extends TestCase
 {
     use WithFaker;
 
@@ -40,6 +39,17 @@ class AndroidAppTest extends TestCase
                 $this->roles['user']->id
             )->firstOrFail()
         ];
+
+        $this->testUser = factory(User::class)->create();
+    }
+
+    /**
+     * Tear down after every test
+     */
+    public function tearDown()
+    {
+        $this->testUser->delete();
+        parent::tearDown();
     }
 
     /**
@@ -47,41 +57,45 @@ class AndroidAppTest extends TestCase
      */
     public function testRequireAuth()
     {
-        $this->json('POST', '/api/v1/android_apps')->assertStatus(401);
-        $this->json('GET', '/api/v1/android_apps')->assertStatus(401);
-        $this->json('GET', '/api/v1/android_apps/1')->assertStatus(401);
-        $this->json('PATCH', '/api/v1/android_apps/1')->assertStatus(401);
-        $this->json('DELETE', '/api/v1/android_apps/1')->assertStatus(401);
+        $this->json('POST', '/api/v1/users')->assertStatus(401);
+        $this->json('GET', '/api/v1/users')->assertStatus(401);
+        $this->json('GET', '/api/v1/users/1')->assertStatus(401);
+        $this->json('PATCH', '/api/v1/users/1')->assertStatus(401);
+        $this->json('DELETE', '/api/v1/users/1')->assertStatus(401);
 
-        $this->json('POST', '/api/v1/android_apps/1/avatar')->assertStatus(401);
-        $this->json('GET', '/api/v1/android_apps/1/avatar')->assertStatus(401);
-
-        $this->json('POST', '/api/v1/android_apps/1/file')->assertStatus(401);
-        $this->json('GET', '/api/v1/android_apps/1/file')->assertStatus(401);
+        $this->json('POST', '/api/v1/users/1/avatar')->assertStatus(401);
+        $this->json('GET', '/api/v1/users/1/avatar')->assertStatus(401);
     }
 
     /**
-     * AndroidApps can be created.
+     * Users can be created.
      */
-    public function testCanCreateAndroidApps()
+    public function testCanCreateUsers()
     {
         foreach ($this->users as $user) {
             $payload = [
-                'name' => $this->faker->company,
-                'version' => '1.0.0',
-                'description' => $this->faker->text,
-                'price' => $this->faker->randomFloat(2, 0, 10),
+                'name' => $this->faker->name,
+                'email' => $this->faker->unique()->safeEmail,
+                'password' => 'password',
             ];
 
             $res = $this->actingAs($user, 'api')
-                ->json('POST', '/api/v1/android_apps', $payload);
+                ->json('POST', '/api/v1/users', $payload);
 
             switch ($user->role_id) {
                 case $this->roles['admin']->id:
-                    $res->assertStatus(201)->assertJson(['data' => $payload]);
+                    $res->assertStatus(201)->assertJsonStructure([
+                        'data' => [
+                            'id',
+                            'name',
+                            'email',
+                            'created_at',
+                            'updated_at',
+                        ],
+                    ]);
                     $resData = $res->getData()->data;
-                    $createdAndroidApp = AndroidApp::find($resData->id);
-                    $createdAndroidApp->delete();
+                    $createdUser = User::find($resData->id);
+                    $createdUser->delete();
                     break;
                 case $this->roles['vendor']->id:
                 case $this->roles['user']->id:
@@ -93,22 +107,20 @@ class AndroidAppTest extends TestCase
     }
 
     /**
-     * AndroidApps can be indexed.
+     * Users can be indexed.
      */
-    public function testCanIndexAndroidApps()
+    public function testCanIndexUsers()
     {
         foreach ($this->users as $user) {
             $res = $this->actingAs($user, 'api')
-                ->json('GET', '/api/v1/android_apps')
+                ->json('GET', '/api/v1/users')
                 ->assertStatus(200)
                 ->assertJsonStructure([
                     'data' => [
                         [
                             'id',
                             'name',
-                            'description',
-                            'version',
-                            'price',
+                            'email',
                             'created_at',
                             'updated_at',
                         ]
@@ -120,21 +132,19 @@ class AndroidAppTest extends TestCase
     }
 
     /**
-     * AndroidApps can be shown.
+     * Users can be viewed.
      */
-    public function testCanShowAndroidApps()
+    public function testCanViewUsers()
     {
         foreach ($this->users as $user) {
             $res = $this->actingAs($user, 'api')
-                ->json('GET', '/api/v1/android_apps/1')
+                ->json('GET', "/api/v1/users/{$this->testUser->id}")
                 ->assertStatus(200)
                 ->assertJsonStructure([
                     'data' => [
                         'id',
                         'name',
-                        'description',
-                        'version',
-                        'price',
+                        'email',
                         'created_at',
                         'updated_at',
                     ],
@@ -143,25 +153,30 @@ class AndroidAppTest extends TestCase
     }
 
     /**
-     * AndroidApps can be updated.
+     * Users can be updated.
      */
-    public function testCanUpdateAndroidApps()
+    public function testCanUpdateUsers()
     {
         foreach ($this->users as $user) {
             $payload = [
-                'name' => $this->faker->company,
-                'version' => '1.0.0',
-                'description' => $this->faker->text,
-                'price' => $this->faker->randomFloat(2, 0, 10),
+                'name' => $this->faker->name,
+                'email' => $this->faker->unique()->safeEmail,
+                'password' => 'password',
             ];
 
             $res = $this->actingAs($user, 'api')
-                ->json('PATCH', '/api/v1/android_apps/1', $payload);
+                ->json('PATCH', "/api/v1/users/{$this->testUser->id}", $payload);
 
             switch ($user->role_id) {
                 case $this->roles['admin']->id:
-                    $res->assertStatus(200)->assertJson([
-                        'data' => $payload
+                    $res->assertStatus(200)->assertJsonStructure([
+                        'data' => [
+                            'id',
+                            'name',
+                            'email',
+                            'created_at',
+                            'updated_at',
+                        ],
                     ]);
                     break;
                 case $this->roles['vendor']->id:
@@ -174,44 +189,63 @@ class AndroidAppTest extends TestCase
     }
 
     /**
-     * AndroidApps can be deleted.
+     * Users can be deleted.
      */
-    public function testCanDeleteAndroidApps()
+    public function testCanDeleteUsers()
     {
         foreach ($this->users as $user) {
-            $androidApp = factory(AndroidApp::class)->create();
+            $testUser = factory(User::class)->create();
 
             $res = $this->actingAs($user, 'api')
-                ->json('DELETE', "/api/v1/android_apps/{$androidApp->id}");
+                ->json('DELETE', "/api/v1/users/{$testUser->id}");
 
             switch ($user->role_id) {
                 case $this->roles['admin']->id:
                     $res->assertStatus(204);
-                    $this->assertNull(AndroidApp::find($androidApp->id));
+                    $this->assertNull(User::find($testUser->id));
                     break;
                 case $this->roles['vendor']->id:
                 case $this->roles['user']->id:
                 default:
                     $res->assertForbidden();
-                    $androidApp->delete();
+                    $testUser->delete();
                     break;
             }
         }
     }
 
     /**
-     * AndroidApps that don't exist can't be modified.
+     * Users that don't exist can't be modified.
      */
-    public function testNonExistingAndroidApps()
+    public function testNonExistingUsers()
     {
         foreach ($this->users as $user) {
             $this->actingAs($user, 'api')
-                ->json('PATCH', "/api/v1/android_apps/9999")
+                ->json('PATCH', "/api/v1/users/9999")
                 ->assertStatus(404);
 
             $this->actingAs($user, 'api')
-                ->json('DELETE', "/api/v1/android_apps/9999")
+                ->json('DELETE', "/api/v1/users/9999")
                 ->assertStatus(404);
+        }
+    }
+
+    /**
+     * The current user's information can be retrieved.
+     */
+    public function testCurrentUser()
+    {
+        foreach ($this->users as $user) {
+            $this->actingAs($user, 'api')
+                ->json('GET', "/api/v1/users/current")
+                ->assertSuccessful()
+                ->assertJson([
+                    'data' => [
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'email' => $user->email,
+                    ]
+                ]);
         }
     }
 }

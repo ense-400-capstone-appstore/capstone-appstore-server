@@ -34,7 +34,7 @@ class AndroidAppController extends Controller
      */
     public function show(AndroidApp $androidApp)
     {
-        return new AndroidAppResource(AndroidApp::find($androidApp->id));
+        return new AndroidAppResource($androidApp);
     }
 
     /**
@@ -45,16 +45,12 @@ class AndroidAppController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'version' => 'required',
-            'description' => 'required',
-            'price' => 'required'
+        $request->validate([
+            'name' => 'required|string',
+            'version' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric'
         ]);
-
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 401);
-        }
 
         $androidApp = AndroidApp::create($request->only([
             'name',
@@ -75,6 +71,13 @@ class AndroidAppController extends Controller
      */
     public function update(Request $request, AndroidApp $androidApp)
     {
+        $request->validate([
+            'name' => 'string',
+            'version' => 'string',
+            'description' => 'string',
+            'price' => 'numeric'
+        ]);
+
         $androidApp->update($request->only([
             'name',
             'version',
@@ -94,7 +97,60 @@ class AndroidAppController extends Controller
     public function destroy(AndroidApp $androidApp)
     {
         $androidApp->delete();
+        return response(null, 204);
+    }
 
-        return response()->json(null, 204);
+    /**
+     * Retrieve an uploaded image and store it as the AndroidApp's avatar
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function avatarUpload(Request $request, AndroidApp $androidApp)
+    {
+        $this->authorize('setAvatar', $androidApp);
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,bmp,png|max:5120'
+        ]);
+
+        $androidApp->setAvatar($request->file('avatar'));
+        return response(null, 201);
+    }
+
+    /**
+     * Download the AndroidApp's avatar
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function avatarDownload(AndroidApp $androidApp)
+    {
+        $this->authorize('getAvatar', $androidApp);
+        return $androidApp->getAvatar();
+    }
+
+    /**
+     * Retrieve an uploaded file and store it as the AndroidApp's file
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function fileUpload(Request $request, AndroidApp $androidApp)
+    {
+        $this->authorize('setFile', $androidApp);
+        $request->validate([
+            'file' => 'required|mimes:apk,jar|max:102400'
+        ]);
+
+        $androidApp->setFile($request->file('file'));
+        return response(null, 201);
+    }
+
+    /**
+     * Download the AndroidApp's file
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function fileDownload(AndroidApp $androidApp)
+    {
+        $this->authorize('getFile', $androidApp);
+        return $androidApp->getFile();
     }
 }

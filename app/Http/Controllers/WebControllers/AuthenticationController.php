@@ -64,8 +64,8 @@ class AuthenticationController extends Controller
         $credentials = $request->only('first_name', 'last_name', 'email', 'password', 'password_confirmation');
 
         $validator = Validator::make($credentials, [
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
         ]);

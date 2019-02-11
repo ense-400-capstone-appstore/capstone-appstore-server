@@ -7,6 +7,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use TCG\Voyager\Models\User as VoyagerUser;
+use Illuminate\Support\Facades\Storage;
+use Image;
 
 class User extends VoyagerUser
 {
@@ -29,4 +31,28 @@ class User extends VoyagerUser
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Set the avatar for this user
+     *
+     * @var Illuminate\Http\UploadedFile $avatar
+     */
+    public function setAvatar($avatar)
+    {
+        $path = "users/{$this->id}/avatar.jpg";
+        $avatarResized = Image::make($avatar)->fit(256)->encode('jpg');
+
+        Storage::disk('public')->put($path, $avatarResized);
+
+        $this->avatar = $path;
+        $this->save();
+    }
+
+    /**
+     * Get this user's avatar
+     */
+    public function getAvatar()
+    {
+        return Storage::disk('public')->download($this->avatar);
+    }
 }

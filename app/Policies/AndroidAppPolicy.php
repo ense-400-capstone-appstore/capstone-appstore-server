@@ -82,4 +82,56 @@ class AndroidAppPolicy extends BasePolicy
     {
         return false;
     }
+
+    /**
+     * Determine whether the user can set an avatar.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return mixed
+     */
+    public function setAvatar(User $user, AndroidApp $model)
+    {
+        return $user->id == $model->id;
+    }
+
+    /**
+     * Determine whether the user can get an avatar.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return mixed
+     */
+    public function getAvatar(User $user, AndroidApp $model)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can set a file.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return mixed
+     */
+    public function setFile(User $user, AndroidApp $model)
+    {
+        return $user->id == $model->id;
+    }
+
+    /**
+     * Determine whether the user can get a file.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return mixed
+     */
+    public function getFile(User $user, AndroidApp $model)
+    {
+        // TODO: Only the owner and users who have this AndroidApp associated
+        // with their model (i.e., they "purchased" the app) may access the file
+        // First need to implement many to many relationship between User
+        // and AndroidApp
+        return $user->id == $model->id;
+    }
 }

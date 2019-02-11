@@ -30,7 +30,19 @@ class UserPolicy extends VoyagerUserPolicy
      */
     public function index(User $user)
     {
-        return false;
+        return true;
+    }
+
+    /**
+     * Determine whether the user can view the user.
+     *
+     * @param  \App\User  $user
+     * @param  \App\AndroidApp  $androidApp
+     * @return mixed
+     */
+    public function view(User $user, User $model)
+    {
+        return true;
     }
 
     /**
@@ -90,5 +102,29 @@ class UserPolicy extends VoyagerUserPolicy
     public function forceDelete(User $user, User $model)
     {
         return false;
+    }
+
+    /**
+     * Determine whether the user can set an avatar.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return mixed
+     */
+    public function setAvatar(User $user, User $model)
+    {
+        return $user->id == $model->id;
+    }
+
+    /**
+     * Determine whether the user can get an avatar.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return mixed
+     */
+    public function getAvatar(User $user, User $model)
+    {
+        return true;
     }
 }
