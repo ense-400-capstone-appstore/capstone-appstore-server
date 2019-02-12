@@ -53,6 +53,6 @@ class User extends VoyagerUser
      */
     public function getAvatar()
     {
-        return Storage::disk('public')->download($this->avatar);
+        return Storage::disk('public')->get($this->avatar);
     }
 }

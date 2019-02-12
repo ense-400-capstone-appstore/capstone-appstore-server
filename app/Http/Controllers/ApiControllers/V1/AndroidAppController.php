@@ -7,6 +7,7 @@ use App\Http\Resources\AndroidApp as AndroidAppResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
+use Image;
 
 class AndroidAppController extends Controller
 {
@@ -124,7 +125,7 @@ class AndroidAppController extends Controller
     public function avatarDownload(AndroidApp $androidApp)
     {
         $this->authorize('getAvatar', $androidApp);
-        return $androidApp->getAvatar();
+        return Image::make($androidApp->getAvatar())->response();
     }
 
     /**
