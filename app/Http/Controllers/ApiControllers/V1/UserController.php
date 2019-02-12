@@ -7,6 +7,7 @@ use App\Http\Resources\User as UserResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Image;
 
 class UserController extends Controller
 {
@@ -130,6 +131,6 @@ class UserController extends Controller
     public function avatarDownload(User $user)
     {
         $this->authorize('getAvatar', $user);
-        return $user->getAvatar();
+        return Image::make($user->getAvatar())->response();
     }
 }
