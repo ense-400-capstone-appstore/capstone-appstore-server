@@ -11,24 +11,26 @@
     },
     "devDependencies": {
         "@babel/preset-react": "^7.0.0",
-        "@fortawesome/fontawesome-free": "^5.6.3",
+        "@fortawesome/fontawesome-free": "^5.7.2",
         "axios": "^0.18",
         "babel-preset-react": "^6.23.0",
         "cross-env": "^5.1",
         "jquery": "^3.2",
         "lodash": "^4.17.5",
-        "popper.js": "^1.14.6",
-        "react": "^16.7.0",
-        "react-dom": "^16.7.0",
+        "popper.js": "^1.14.7",
+        "react": "^16.8.2",
+        "react-dom": "^16.8.2",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.16.0",
+        "sass": "^1.17.0",
         "sass-loader": "^7.1.0",
-        "tippy.js": "^3.4.0"
+        "tippy.js": "^3.4.1"
     },
     "dependencies": {
-        "laravel-mix": "^4.0.13",
-        "material-components-web": "^0.43.0",
+        "laravel-mix": "^4.0.14",
+        "material-components-web": "^0.43.1",
         "material-design-icons": "^3.0.1",
-        "normalize.css": "^8.0.1"
+        "nodelist-foreach-polyfill": "^1.2.0",
+        "normalize.css": "^8.0.1",
+        "smoothscroll-polyfill": "^0.4.3"
     }
 }

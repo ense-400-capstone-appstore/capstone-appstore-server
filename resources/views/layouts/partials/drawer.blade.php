@@ -1,8 +1,7 @@
 <aside id="app-drawer" class="mdc-drawer mdc-drawer--modal">
     <div class="mdc-drawer__header">
         <h3 class="mdc-drawer__title">
-            <img aria-hidden="true" src="{{asset('/images/brand/64h/Icon_x64.png')}}"/>
-            @lang('app.name')
+            <img aria-hidden="true" alt="app-logo" src="{{asset('/images/brand/64h/Logo_x64.png')}}"/>
         </h3>
     </div>
 

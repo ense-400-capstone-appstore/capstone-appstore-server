@@ -3,16 +3,19 @@
 @import './partials/footer';
 @import './partials/user_menu';
 
-// Sticky footer
-body {
-    min-height: 100vh;
+html {
+    scroll-behavior: smooth;
+}
 
+body {
     display: flex;
     flex-direction: column;
+
+    height: 100vh;
 }
 
 #app-content-wrapper {
-    flex: 1;
+    flex: 1 0 auto;
 
     display: flex;
     flex-direction: column;

@@ -19,7 +19,7 @@
                         'target' => '_blank'
                     ])
                         <i class="mdc-button__icon fas fa-arrow-down"></i>
-                        <span clas="mdc-button__label">Get the app</span>
+                        <span class="mdc-button__label">Get the app</span>
                     @endlinkbutton
 
                     @linkbutton([

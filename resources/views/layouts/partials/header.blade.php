@@ -14,7 +14,7 @@
                 'classes' => 'mdc-icon-button mq-phone',
                 'href' => '/'
             ])
-                <img aria-hidden="true" src="{{asset('/images/brand/32h/Icon_x32.png')}}"/>
+                <img aria-hidden="true" alt="app-icon" src="{{asset('/images/brand/32h/Icon_x32.png')}}"/>
             @endlinkbutton
 
             {{-- Icon, tablet and desktop --}}
@@ -22,7 +22,7 @@
                 'classes' => 'mdc-button mdc-button--unelevated mq-not-phone',
                 'href' => '/'
             ])
-                <img class="mdc-button__icon" aria-hidden="true" src="{{asset('/images/brand/32h/Icon_x32.png')}}"/>
+                <img class="mdc-button__icon" alt="app-icon" aria-hidden="true" src="{{asset('/images/brand/32h/Icon_x32.png')}}"/>
                 @lang('app.name')
             @endlinkbutton
         </section>
