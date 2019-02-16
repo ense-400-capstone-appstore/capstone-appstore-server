@@ -6,9 +6,13 @@
 import bootstrap from "./bootstrap";
 import mdc from "./mdc";
 import views from "./views";
+import polyfills from "./polyfills";
 
 // Bootstrapping code (NOT the bootstrap library)
 bootstrap();
+
+// Polyfills for browsers that do not support certain JS features natively
+polyfills();
 
 // MDC specific JS
 // https://material.io/develop/web/

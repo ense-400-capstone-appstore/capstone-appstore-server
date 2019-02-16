@@ -62,6 +62,7 @@
         background-color: $secondary;
 
         #home-what-is-this-content {
+            flex-shrink: 0;
             flex: 1;
 
             display: flex;

@@ -1,0 +1,4 @@
+header#app-header {
+    // Ensure that tooltips are below the header
+    z-index: 10000 !important;
+}

@@ -1,4 +1,6 @@
-#app-drawer {
+aside#app-drawer {
+    z-index: 10002 !important;
+
     .mdc-drawer__header {
         display: flex;
 
@@ -10,6 +12,15 @@
             flex: 1;
 
             text-transform: uppercase;
+
+            img {
+                height: auto;
+                width: 100%;
+            }
         }
     }
+}
+
+.mdc-drawer-scrim {
+    z-index: 10001 !important;
 }
