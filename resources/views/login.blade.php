@@ -3,19 +3,8 @@
 @section('title', 'Login')
 
 @section('html')
+    {{-- Login, Register tabs --}}
     <div id="page-login" class="page-content mdc-layout-grid">
-        @if ($errors->any())
-            <div class="mdc-layout-grid__inner page-content-item">
-                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                    <ul class="error-list">
-                        @foreach ($errors->all() as $error)
-                            <li class="error">{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        @endif
-
         <div class="mdc-layout-grid__inner page-content-item">
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <div class="mdc-tab-bar" role="tablist">
@@ -51,9 +40,27 @@
         </div>
 
         <div class="mdc-layout-grid__inner page-content-item">
-            <div id="tab-login" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 tab">
-                <p class="login-required-warning">Fields marked * are required.</p>
+            @if ($errors->any())
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 errors">
+                    <span>Please correct the errors below and try again:</span>
 
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="error">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <p class="login-required-warning">
+                    Fields marked * are required.
+                </p>
+            </div>
+        </div>
+
+        <div class="mdc-layout-grid__inner page-content-item">
+            <div id="tab-login" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 tab">
                 <form method="POST" action="login" id="login">
                     @csrf
                     <input type="hidden" name="g-recaptcha-token" class="g-recaptcha-token">
@@ -103,26 +110,16 @@
             </div>
 
             <div id="tab-register" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 tab tab--invisible">
-                <p class="login-required-warning">Fields marked * are required.</p>
-
                 <form method="POST" action="register" id="register">
                     @csrf
                     <input type="hidden" name="g-recaptcha-token" class="g-recaptcha-token">
 
-                    {{-- First name field --}}
+                    {{-- Full Name field --}}
                     @textfield([
-                        "name" => "first_name",
+                        "name" => "name",
                         "required" => "true"
                     ])
-                        First Name
-                    @endtextfield
-
-                    {{-- Last name field --}}
-                    @textfield([
-                        "name" => "last_name",
-                        "required" => "true"
-                    ])
-                        Last Name
+                        Full Name
                     @endtextfield
 
                     {{-- Email field --}}

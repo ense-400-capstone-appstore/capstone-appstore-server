@@ -1,26 +1,26 @@
 @import '../variables';
 
 #page-login {
-    width: 100%;
-    padding-top: 150px;
-
-    flex: 1;
+    margin-top: 50px;
 
     form > * {
         margin: 10px 0;
         width: 100%;
     }
 
-    .error-list {
+    .errors {
         margin: 10px 0;
-        padding: 10px;
+        padding: 10px 20px;
 
-        border: 2px solid red;
         border-radius: 5px;
 
-        color: $red;
+        background-color: $red;
+        color: white;
         font-weight: bold;
-        list-style-type: none;
+
+        ul {
+            margin: 0;
+        }
     }
 
     #login-grid {

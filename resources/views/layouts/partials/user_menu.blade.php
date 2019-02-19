@@ -9,7 +9,7 @@
             'href' => '#'
         ])
             <img
-                class="mdc-button__icon user-icon"
+                class="mdc-button__icon rounded-icon"
                 src="/storage/{{ Auth::user()->avatar }}"
             />
         @endlinkbutton
@@ -24,7 +24,7 @@
                             height="35px"
                             width="auto"
                         />
-                        <span class="user-name">{{ Auth::user()->name }}</span>
+                        <span class="nowrap">{{ Auth::user()->name }}</span>
                     </span>
                 </li>
 
