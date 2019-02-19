@@ -61,11 +61,16 @@ class AuthenticationController extends Controller
             return view('login', ['errors' => $recaptchaVerificationErrors]);
         }
 
-        $credentials = $request->only('first_name', 'last_name', 'email', 'password', 'password_confirmation');
+        $credentials = $request->only(
+            'first_name',
+            'last_name',
+            'email',
+            'password',
+            'password_confirmation'
+        );
 
         $validator = Validator::make($credentials, [
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
+            'full_name' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
         ]);
@@ -105,9 +110,7 @@ class AuthenticationController extends Controller
     {
         $recaptcha_token = $request->input('g-recaptcha-token');
 
-        if (!$recaptcha_token) {
-            return;
-        }
+        if (!$recaptcha_token) return;
 
         $recaptcha = new \ReCaptcha\ReCaptcha(config('recaptcha.v3_secret_key'));
         $resp = $recaptcha->setScoreThreshold(0.1)

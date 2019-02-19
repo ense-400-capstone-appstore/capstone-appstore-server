@@ -3,46 +3,51 @@
 @import './partials/footer';
 @import './partials/user_menu';
 
-html {
-    scroll-behavior: smooth;
+* {
+    box-sizing: border-box;
 }
 
 body {
+    height: 100vh;
+}
+
+html,
+body,
+#app-content-wrapper,
+.page-content {
     display: flex;
     flex-direction: column;
-
-    height: 100vh;
 }
 
 #app-content-wrapper {
     flex: 1 0 auto;
 
-    display: flex;
-    flex-direction: column;
+    overflow: auto;
+
+    .page-content {
+        width: 100%;
+
+        padding-top: 64px;
+
+        @media all and (max-width: mdc-layout-grid-breakpoint-max(tablet)) {
+            padding-top: 56px;
+        }
+
+         .page-content-item {
+            align-self: center;
+
+            height: 100%;
+            width: 100%;
+            max-width: 1200px;
+        }
+    }
 }
 
-.page-content {
-    align-self: center;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-.page-content-item {
-    align-self: center;
-
-    height: 100%;
-    width: 100%;
-    max-width: 1200px;
-}
-
-img.user-icon {
+img.rounded-icon {
     border-radius: 50%;
 }
 
-.user-name {
+.nowrap {
     white-space: nowrap;
 }
 

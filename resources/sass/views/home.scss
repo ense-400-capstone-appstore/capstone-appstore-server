@@ -2,8 +2,11 @@
 
 #page-home {
     .home-section {
-        min-height: 50vh;
+        height: 600px;
+
         padding: 60px 50px;
+
+        flex: 1 0 auto;
 
         display: flex;
         flex-direction: column;
@@ -15,7 +18,11 @@
     }
 
     #home-jumbotron {
-        height: 100vh;
+        height: calc(100vh - 64px);
+
+        @media all and (max-width: mdc-layout-grid-breakpoint-max(tablet)) {
+            height: calc(100vh - 56px);
+        }
 
         color: $primary-text;
         background-color: $primary;
@@ -74,9 +81,5 @@
         .mdc-button {
             margin: 5px;
         }
-    }
-
-    .feature-card {
-        width: 100%;
     }
 }
