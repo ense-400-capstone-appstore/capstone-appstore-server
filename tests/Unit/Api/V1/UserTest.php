@@ -5,8 +5,10 @@ namespace Tests\Unit\Api\V1;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\User;
+use TCG\Voyager\Models\Role;
 
-class AndroidAppTest extends TestCase
+class UserTest extends TestCase
 {
     public function testCreate()
     {

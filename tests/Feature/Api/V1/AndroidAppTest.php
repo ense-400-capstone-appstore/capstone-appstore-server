@@ -63,7 +63,7 @@ class AndroidAppTest extends TestCase
     /**
      * AndroidApps can be created.
      */
-    public function testCanCreateAndroidApps()
+    public function testCreate()
     {
         foreach ($this->users as $user) {
             $payload = [
@@ -95,7 +95,7 @@ class AndroidAppTest extends TestCase
     /**
      * AndroidApps can be indexed.
      */
-    public function testCanIndexAndroidApps()
+    public function testIndex()
     {
         foreach ($this->users as $user) {
             $res = $this->actingAs($user, 'api')
@@ -122,7 +122,7 @@ class AndroidAppTest extends TestCase
     /**
      * AndroidApps can be shown.
      */
-    public function testCanShowAndroidApps()
+    public function testShow()
     {
         foreach ($this->users as $user) {
             $res = $this->actingAs($user, 'api')
@@ -145,7 +145,7 @@ class AndroidAppTest extends TestCase
     /**
      * AndroidApps can be updated.
      */
-    public function testCanUpdateAndroidApps()
+    public function testUpdate()
     {
         foreach ($this->users as $user) {
             $payload = [
@@ -176,7 +176,7 @@ class AndroidAppTest extends TestCase
     /**
      * AndroidApps can be deleted.
      */
-    public function testCanDeleteAndroidApps()
+    public function testDelete()
     {
         foreach ($this->users as $user) {
             $androidApp = factory(AndroidApp::class)->create();
@@ -202,7 +202,7 @@ class AndroidAppTest extends TestCase
     /**
      * AndroidApps that don't exist can't be modified.
      */
-    public function testNonExistingAndroidApps()
+    public function testNonExisting()
     {
         foreach ($this->users as $user) {
             $this->actingAs($user, 'api')
