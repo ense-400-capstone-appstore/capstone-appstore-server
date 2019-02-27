@@ -14,7 +14,7 @@
                 'classes' => 'mdc-icon-button mq-phone',
                 'href' => '/'
             ])
-                <img aria-hidden="true" alt="app-icon" src="{{asset('/images/brand/32h/Icon_x32.png')}}"/>
+                <img class="mdc-button__icon" aria-hidden="true" alt="app-icon" src="{{asset('/images/brand/32h/Icon_x32.png')}}"/>
             @endlinkbutton
 
             {{-- Icon, tablet and desktop --}}

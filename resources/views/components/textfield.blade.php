@@ -3,7 +3,8 @@
         type="{{ $type ?? 'text' }}"
         name="{{ $name }}"
         class="mdc-text-field__input"
-        {{ $required ? 'required' : '' }}
+        {{ isset($required) && $required == 'true' ? 'required' : '' }}
+        {{ isset($value) ? 'value=' . $value : '' }}
     >
     <label class="mdc-floating-label" for="{{ $name }}">{{ $slot ?? '' }}</label>
     <div class="mdc-line-ripple"></div>

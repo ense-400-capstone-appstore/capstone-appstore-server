@@ -19,6 +19,8 @@ Route::namespace('WebControllers')->group(function () {
     Route::post('login', 'AuthenticationController@authenticate');
     Route::post('register', 'AuthenticationController@register');
     Route::get('logout', 'AuthenticationController@logout');
+
+    Route::resource('users', 'UserController')->only('show', 'update');
 });
 
 

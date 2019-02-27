@@ -49,6 +49,7 @@
 //
 @import './views/home.scss';
 @import './views/login.scss';
+@import './views/resources/users';
 
 //
 // Global styles
@@ -67,4 +68,21 @@
 // Recaptcha badge
 .grecaptcha-badge {
     z-index: 999;
+}
+
+.errors {
+    text-align: left;
+
+    margin: 10px 0;
+    padding: 10px 20px;
+
+    border-radius: 5px;
+
+    background-color: $red;
+    color: white;
+    font-weight: bold;
+
+    ul {
+        margin: 0;
+    }
 }

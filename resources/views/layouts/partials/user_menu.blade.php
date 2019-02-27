@@ -9,7 +9,7 @@
             'href' => '#'
         ])
             <img
-                class="mdc-button__icon rounded-icon"
+                class="mdc-button__icon rounded-icon user-menu-icon"
                 src="/storage/{{ Auth::user()->avatar }}"
             />
         @endlinkbutton
@@ -31,7 +31,11 @@
                 <hr class="mdc-list-divider">
 
                 {{-- Link to user profile --}}
-                <li class="mdc-list-item" role="menuitem">
+                <li
+                    class="mdc-list-item"
+                    role="menuitem"
+                    onclick="window.location.href='/users/{{ Auth::user()->id }}'"
+                    >
                     <span class="mdc-list-item__text">Profile</span>
                 </li>
 
