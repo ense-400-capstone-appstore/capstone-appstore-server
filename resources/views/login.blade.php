@@ -116,7 +116,7 @@
 
                     {{-- Full Name field --}}
                     @textfield([
-                        "name" => "name",
+                        "name" => "full_name",
                         "required" => "true"
                     ])
                         Full Name

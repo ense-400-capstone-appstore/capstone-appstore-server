@@ -23,7 +23,7 @@ class UserPolicy extends VoyagerUserPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can view models.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -65,7 +65,7 @@ class UserPolicy extends VoyagerUserPolicy
      */
     public function update(User $user, User $model)
     {
-        return false;
+        return $user->id == $model->id;
     }
 
     /**

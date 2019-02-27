@@ -62,8 +62,7 @@ class AuthenticationController extends Controller
         }
 
         $credentials = $request->only(
-            'first_name',
-            'last_name',
+            'full_name',
             'email',
             'password',
             'password_confirmation'
@@ -80,7 +79,7 @@ class AuthenticationController extends Controller
         }
 
         $credentials['password'] = bcrypt($credentials['password']);
-        $credentials['name'] = $credentials['first_name'] . ' ' . $credentials['last_name'];
+        $credentials['name'] = $credentials['full_name'];
         $user = User::create($credentials);
 
         Auth::login($user);

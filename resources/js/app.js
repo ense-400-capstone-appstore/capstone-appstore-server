@@ -6,6 +6,7 @@
 import bootstrap from "./bootstrap";
 import mdc from "./mdc";
 import views from "./views";
+import resources from "./resources";
 import polyfills from "./polyfills";
 
 // Bootstrapping code (NOT the bootstrap library)
@@ -20,3 +21,6 @@ mdc();
 
 // View specific JS
 views();
+
+// Resource specific JS
+resources();

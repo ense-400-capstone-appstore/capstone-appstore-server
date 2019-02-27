@@ -7,6 +7,9 @@ import { MDCTabBar } from "@material/tab-bar";
 import { MDCTextField } from "@material/textfield";
 import { MDCFormField } from "@material/form-field";
 import { MDCCheckbox } from "@material/checkbox";
+import { MDCChipSet } from "@material/chips";
+import { MDCNotchedOutline } from "@material/notched-outline";
+import { MDCDialog } from "@material/dialog";
 
 const topAppBarEl = document.querySelector(".mdc-top-app-bar");
 const topAppBarNavButtonEl = document.querySelector(
@@ -20,6 +23,9 @@ const drawerEl = document.querySelector(".mdc-drawer");
 const drawerListEl = document.querySelector(".mdc-drawer .mdc-list");
 const listsEl = document.querySelectorAll(".mdc-list");
 const tabBarEls = document.querySelectorAll(".mdc-tab-bar");
+const chipSetEls = document.querySelectorAll(".mdc-chip-set");
+const notchedOutlineEls = document.querySelectorAll(".mdc-notched-outline");
+const dialogEls = document.querySelectorAll(".mdc-dialog");
 
 const userMenuEl = document.querySelector("#user-menu");
 const userMenuButtonEl = document.querySelector("#user-menu-button");
@@ -47,12 +53,15 @@ export default () => {
     tabBarEls.forEach(
         el => new MDCTabBar(document.querySelector(".mdc-tab-bar"))
     );
+    chipSetEls.forEach(el => new MDCChipSet(el));
     textFieldsEl.forEach(el => new MDCTextField(el));
     checkboxesEl.forEach((el, i) => {
         const checkbox = new MDCCheckbox(el);
         const formField = new MDCFormField(formFieldsEl[i]);
         formField.input = checkbox;
     });
+    notchedOutlineEls.forEach(el => new MDCNotchedOutline(el));
+    dialogEls.forEach(el => new MDCDialog(el));
 
     //
     // Events

@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         AndroidApp::observe(AndroidAppObserver::class);
 
         // Component aliases
+        Blade::component('components.button', 'button');
         Blade::component('components.linkbutton', 'linkbutton');
         Blade::component('components.card', 'card');
         Blade::component('components.textfield', 'textfield');

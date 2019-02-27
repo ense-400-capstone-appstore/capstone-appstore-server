@@ -1,0 +1,48 @@
+@import '../../variables';
+
+.page-content-users {
+    &#page-users-show.page-content {
+        text-align: center;
+
+        .mdc-chip-set .mdc-chip {
+            margin: auto;
+        }
+
+        .profile-container {
+            margin: 0 20px;
+
+            background-color: $primary;
+            color: $primary-text;
+        }
+
+        .profile-private-container {
+            padding: 20px;
+
+            background-color: $tertiary;
+            color: $primary-text;
+
+            h1, h2, h3, h4 {
+                margin: 0;
+            }
+
+            .profile-private-key {
+                margin: 10px;
+
+                font-weight: bold;
+                color: $secondary;
+            }
+
+            .profile-private-value.mdc-text-field {
+                width: 100%;
+
+                @include mdc-text-field-shape-radius(20px);
+
+                background-color: darken($tertiary, 10%);
+
+                ::placeholder {
+                    color: $primary-text;
+                }
+            }
+        }
+    }
+}
