@@ -20,7 +20,7 @@
     #home-jumbotron {
         height: calc(100vh - 64px);
 
-        @media all and (max-width: mdc-layout-grid-breakpoint-max(tablet)) {
+        @media all and (max-width: 600px) {
             height: calc(100vh - 56px);
         }
 

@@ -42,13 +42,14 @@
 // Layout styles
 //
 
-@import './views/layouts/app.scss';
+@import './views/layouts/app';
 
 //
 // View styles
 //
-@import './views/home.scss';
-@import './views/login.scss';
+@import './views/about';
+@import './views/dashboard';
+@import './views/login';
 @import './views/resources/users';
 
 //

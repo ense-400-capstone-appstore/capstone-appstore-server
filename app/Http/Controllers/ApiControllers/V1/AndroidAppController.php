@@ -137,7 +137,7 @@ class AndroidAppController extends Controller
     {
         $this->authorize('setFile', $androidApp);
         $request->validate([
-            'file' => 'required|mimes:apk,jar|max:102400'
+            'file' => 'required|max:102400'
         ]);
 
         $androidApp->setFile($request->file('file'));
