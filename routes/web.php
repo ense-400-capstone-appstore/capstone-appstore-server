@@ -21,6 +21,17 @@ Route::namespace('WebControllers')->group(function () {
     Route::get('logout', 'AuthenticationController@logout');
 
     Route::resource('users', 'UserController')->only('show', 'update');
+    Route::resource('android_apps', 'AndroidAppController')->only('index', 'show', 'update');
+    Route::resource('categories', 'CategoryController')->only('index', 'show');
+
+    /**
+     * AndroidApps
+     */
+    Route::post('android_apps/{android_app}/file', 'AndroidAppController@fileUpload');
+    Route::get('android_apps/{android_app}/file', 'AndroidAppController@fileDownload');
+
+    Route::post('android_apps/{android_app}/avatar', 'AndroidAppController@avatarUpload');
+    Route::get('android_apps/{android_app}/avatar', 'AndroidAppController@avatarDownload');
 });
 
 
