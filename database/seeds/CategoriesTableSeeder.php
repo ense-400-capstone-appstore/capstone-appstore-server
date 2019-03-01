@@ -18,7 +18,6 @@ class CategoriesTableSeeder extends Seeder
 
         $categories = [
             ['name' => 'Education'],
-            ['name' => "Education"],
             ['name' => "Business"],
             ['name' => "Dating"],
             ['name' => "Entertainment"],

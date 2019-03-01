@@ -16,29 +16,16 @@
         color: $primary;
     }
 
-    .card-link {
-        display: block;
-        text-decoration: none;
-        color: inherit;
+    .mdc-card {
+        &.card-get-app {
+        background-color: $primary;
+        color: $primary-text;
     }
 
-    .mdc-card {
-        width: 100%;
-        height: 100%;
+        &.card-admin {
+            text-align: center;
 
-        .mdc-card__primary-action {
-            padding: 20px;
-
-            width: 100%;
-            height: 100%;
-        }
-
-        .mdc-typography--headline6 {
-            margin: 0;
-        }
-
-        &.card-get-app {
-            background-color: $primary;
+            background-color: $tertiary;
             color: $primary-text;
         }
     }

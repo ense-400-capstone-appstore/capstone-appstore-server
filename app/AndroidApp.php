@@ -67,6 +67,8 @@ class AndroidApp extends Model
      */
     public function getFile()
     {
+        if ($this->file == '') return;
+
         return Storage::disk('local')->download($this->file, null, [
             'Content-Type' => 'application/vnd.android.package-archive'
         ]);
