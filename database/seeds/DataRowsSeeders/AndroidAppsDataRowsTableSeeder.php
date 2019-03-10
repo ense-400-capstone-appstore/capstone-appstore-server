@@ -46,7 +46,7 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'type' => 'markdown_editor',
             'display_name' => 'Description',
             'required' => 1,
-            'browse' => 1,
+            'browse' => 0,
             'read' => 1,
             'edit' => 1,
             'add' => 1,
@@ -87,6 +87,43 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'order' => 5,
         ])->save();
 
+        $dataRow = $this->dataRow($dataType, 'package_name');
+        $dataRow->fill([
+            'type' => 'text',
+            'display_name' => 'Package Name',
+            'required' => 0,
+            'browse' => 0,
+            'read' => 1,
+            'edit' => 1,
+            'add' => 1,
+            'delete' => 1,
+            'details' => '',
+            'order' => 6,
+        ])->save();
+
+        $dataRow = $this->dataRow($dataType, 'android_app_belongsto_user_relationship');
+        $dataRow->fill([
+            'type' => 'relationship',
+            'display_name' => 'Creator',
+            'required' => 0,
+            'browse' => 1,
+            'read' => 1,
+            'edit' => 1,
+            'add' => 1,
+            'delete' => 0,
+            'details' => [
+                'model' => 'App\\User',
+                'table' => 'users',
+                'type' => 'belongsTo',
+                'column' => 'creator_id',
+                'key' => 'id',
+                'label' => 'name',
+                'pivot_table' => 'users',
+                'pivot' => 0,
+            ],
+            'order' => 7,
+        ])->save();
+
         $dataRow = $this->dataRow($dataType, 'avatar');
         $dataRow->fill([
             'type' => 'image',
@@ -98,7 +135,7 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 1,
             'delete' => 1,
             'details' => '',
-            'order' => 6,
+            'order' => 8,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'created_at');
@@ -112,7 +149,7 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 0,
             'delete' => 0,
             'details' => '',
-            'order' => 7,
+            'order' => 9,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'updated_at');
@@ -126,7 +163,7 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 0,
             'delete' => 0,
             'details' => '',
-            'order' => 8,
+            'order' => 10,
         ])->save();
     }
 }
