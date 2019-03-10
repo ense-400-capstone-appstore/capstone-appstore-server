@@ -15,11 +15,11 @@ class AndroidApp extends Model
      */
     protected $fillable = [
         'name',
-        'name',
         'version',
         'description',
         'price',
         'avatar',
+        'package_name'
     ];
 
     /**

@@ -20,6 +20,8 @@ class AndroidApp extends JsonResource
             'version' => $this->version,
             'description' => $this->description,
             'price' => $this->price,
+            'package_name' => $this->package_name,
+            'creator_id' => $this->creator_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
