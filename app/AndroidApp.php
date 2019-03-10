@@ -23,6 +23,26 @@ class AndroidApp extends Model
     ];
 
     /**
+     * Get the user that created this AndroidApp
+     *
+     * @return void
+     */
+    public function creator()
+    {
+        return $this->belongsTo('App\User', 'creator_id');
+    }
+
+    /**
+     * Get the users that own this AndroidApp
+     *
+     * @return void
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'user_android_app');
+    }
+
+    /**
      * Set the avatar for this user
      *
      * @var Illuminate\Http\UploadedFile $avatar

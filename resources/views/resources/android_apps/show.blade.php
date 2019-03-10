@@ -48,7 +48,7 @@
                         </h2>
 
                         <h3 class="mdc-typography--headline5">
-                            By {{ $androidApp->user ?? 'N/A' }}
+                            By {{ $androidApp->creator->name ?? 'N/A' }}
                         </h3>
 
                         <h4 class="mdc-typography--headline6">

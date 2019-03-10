@@ -33,6 +33,16 @@ class User extends VoyagerUser
     ];
 
     /**
+     * Get the AndroidApps that this user owns
+     *
+     * @return void
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\AndroidApp', 'user_android_app');
+    }
+
+    /**
      * Set the avatar for this user
      *
      * @var Illuminate\Http\UploadedFile $avatar

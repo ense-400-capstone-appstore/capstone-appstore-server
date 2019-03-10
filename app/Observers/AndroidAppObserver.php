@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\AndroidApp;
+use Auth;
 
 class AndroidAppObserver
 {
@@ -14,7 +15,11 @@ class AndroidAppObserver
      */
     public function created(AndroidApp $androidApp)
     {
-        //
+        // Set the app's creator to the current user on creation
+        if (Auth::user()) {
+            $androidApp->creator()->associate(Auth::user());
+            $androidApp->save();
+        }
     }
 
     /**
