@@ -8,6 +8,8 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 
 use App\User;
 use App\Policies\UserPolicy;
+use App\Category;
+use App\Policies\CategoryPolicy;
 use App\AndroidApp;
 use App\Policies\AndroidAppPolicy;
 
@@ -20,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         User::class => UserPolicy::class,
+        Category::class => CategoryPolicy::class,
         AndroidApp::class => AndroidAppPolicy::class
     ];
 

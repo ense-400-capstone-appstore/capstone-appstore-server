@@ -11,5 +11,17 @@ class Category extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name'
+    ];
+
+    /**
+     * Return the AndroidApps that belong to this category
+     *
+     * @return void
+     */
+    public function androidApps()
+    {
+        return $this->belongsToMany('App\AndroidApp', 'category_android_app');
+    }
 }

@@ -15,7 +15,7 @@ Route::namespace('WebControllers')->group(function () {
     Route::get('/', 'AppController@home')->name('home');
 
     // Authentication
-    Route::get('login', 'AuthenticationController@login');
+    Route::get('login', 'AuthenticationController@login')->name('login');
     Route::post('login', 'AuthenticationController@authenticate');
     Route::post('register', 'AuthenticationController@register');
     Route::get('logout', 'AuthenticationController@logout');

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use Image;
+use App\Http\Resources\Category as CategoryResource;
 
 class AndroidAppController extends Controller
 {
@@ -153,5 +154,30 @@ class AndroidAppController extends Controller
     {
         $this->authorize('getFile', $androidApp);
         return $androidApp->getFile();
+    }
+
+    /**
+     * Retrieve a single AndroidApp by package name
+     *
+     * @param  String  $packageName
+     */
+    public function byPackageName(String $packageName)
+    {
+        return new AndroidAppResource(
+            AndroidApp::where('package_name', $packageName)->firstOrFail()
+        );
+    }
+
+    /**
+     * Get this AndroidApp's categories
+     *
+     * @param AndroidApp $androidApp
+     * @return void
+     */
+    public function categories(AndroidApp $androidApp)
+    {
+        return CategoryResource::collection(
+            $androidApp->categories()->paginate(15)
+        );
     }
 }

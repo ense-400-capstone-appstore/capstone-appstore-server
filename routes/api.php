@@ -31,11 +31,20 @@ Route::namespace('ApiControllers')->name('api.')->group(function () {
         /**
          * AndroidApps
          */
+        Route::get('android_apps/package_name/{package_name}', 'AndroidAppController@byPackageName');
+
         Route::post('android_apps/{android_app}/file', 'AndroidAppController@fileUpload');
         Route::get('android_apps/{android_app}/file', 'AndroidAppController@fileDownload');
 
         Route::post('android_apps/{android_app}/avatar', 'AndroidAppController@avatarUpload');
         Route::get('android_apps/{android_app}/avatar', 'AndroidAppController@avatarDownload');
+
+        Route::get('android_apps/{android_app}/categories', 'AndroidAppController@categories');
+
+        /**
+         * Categories
+         */
+        Route::get('categories/{category}/android_apps', 'CategoryController@androidApps');
 
         /**
          * Resources
@@ -46,6 +55,7 @@ Route::namespace('ApiControllers')->name('api.')->group(function () {
          */
         Route::apiResources([
             'android_apps' => 'AndroidAppController',
+            'categories' => 'CategoryController',
             'users' => 'UserController'
         ]);
     });

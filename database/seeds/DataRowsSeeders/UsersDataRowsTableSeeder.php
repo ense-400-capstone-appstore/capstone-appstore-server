@@ -83,34 +83,6 @@ class UsersDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'order' => 5,
         ])->save();
 
-        $dataRow = $this->dataRow($dataType, 'created_at');
-        $dataRow->fill([
-            'type' => 'timestamp',
-            'display_name' => __('voyager::seeders.data_rows.created_at'),
-            'required' => 0,
-            'browse' => 1,
-            'read' => 1,
-            'edit' => 0,
-            'add' => 0,
-            'delete' => 0,
-            'details' => '',
-            'order' => 6,
-        ])->save();
-
-        $dataRow = $this->dataRow($dataType, 'updated_at');
-        $dataRow->fill([
-            'type' => 'timestamp',
-            'display_name' => __('voyager::seeders.data_rows.updated_at'),
-            'required' => 0,
-            'browse' => 0,
-            'read' => 0,
-            'edit' => 0,
-            'add' => 0,
-            'delete' => 0,
-            'details' => '',
-            'order' => 7,
-        ])->save();
-
         $dataRow = $this->dataRow($dataType, 'avatar');
         $dataRow->fill([
             'type' => 'image',
@@ -122,7 +94,7 @@ class UsersDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 1,
             'delete' => 1,
             'details' => '',
-            'order' => 8,
+            'order' => 6,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'user_belongsto_role_relationship');
@@ -200,6 +172,34 @@ class UsersDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'edit' => 1,
             'add' => 1,
             'delete' => 1,
+            'details' => '',
+            'order' => 7,
+        ])->save();
+
+        $dataRow = $this->dataRow($dataType, 'created_at');
+        $dataRow->fill([
+            'type' => 'timestamp',
+            'display_name' => __('voyager::seeders.data_rows.created_at'),
+            'required' => 0,
+            'browse' => 1,
+            'read' => 1,
+            'edit' => 0,
+            'add' => 0,
+            'delete' => 0,
+            'details' => '',
+            'order' => 8,
+        ])->save();
+
+        $dataRow = $this->dataRow($dataType, 'updated_at');
+        $dataRow->fill([
+            'type' => 'timestamp',
+            'display_name' => __('voyager::seeders.data_rows.updated_at'),
+            'required' => 0,
+            'browse' => 0,
+            'read' => 0,
+            'edit' => 0,
+            'add' => 0,
+            'delete' => 0,
             'details' => '',
             'order' => 9,
         ])->save();
