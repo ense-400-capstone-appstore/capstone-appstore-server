@@ -19,7 +19,8 @@ class AndroidApp extends Model
         'description',
         'price',
         'avatar',
-        'package_name'
+        'package_name',
+        'creator_id'
     ];
 
     /**
@@ -40,6 +41,16 @@ class AndroidApp extends Model
     public function users()
     {
         return $this->belongsToMany('App\User', 'user_android_app');
+    }
+
+    /**
+     * Return the categories that this AndroidApp belongs to
+     *
+     * @return void
+     */
+    public function categories()
+    {
+        return $this->belongsToMany('App\Category', 'category_android_app');
     }
 
     /**
@@ -74,7 +85,7 @@ class AndroidApp extends Model
     public function setFile($file)
     {
         $path = "android_apps/{$this->id}";
-        $fileName = "{$this->version}.apk";
+        $fileName = "{$this->id}-{$this->version}.apk";
 
         $filePath = Storage::disk('local')->putFileAs($path, $file, $fileName);
 

@@ -1,18 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\WebControllers;
+namespace App\Http\Controllers\ApiControllers\V1;
 
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Category as CategoryResource;
+use App\Http\Reosurces\AndroidApp as AndroidAppResource;
 
 class CategoryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -20,19 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(15);
-
-        return view('resources/categories/index', ['categories' =>  $categories]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return CategoryResource::collection(Category::paginate());
     }
 
     /**
@@ -54,18 +39,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('resources/categories/show', ['category' =>  $category]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
+        return new CategoryResource($category);
     }
 
     /**
@@ -89,5 +63,18 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+    }
+
+    /**
+     * Get this Category's AndroidApps
+     *
+     * @param Category $category
+     * @return void
+     */
+    public function androidApps(Category $category)
+    {
+        return AndroidAppResource::collection(
+            $category->androidApps()->paginate(15)
+        );
     }
 }

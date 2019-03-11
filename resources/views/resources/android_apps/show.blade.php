@@ -75,7 +75,7 @@
                     @if (Auth::user() && Auth::user()->hasRole('admin'))
                         <div class="mdc-card__actions">
                             <a href="{{ $androidApp->id }}/file" class="mdc-button mdc-button--raised mdc-card__action mdc-card__action--button">
-                                Download
+                                Download File
                             </a>
                         </div>
                     @endif

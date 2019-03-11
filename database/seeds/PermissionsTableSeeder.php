@@ -29,6 +29,8 @@ class PermissionsTableSeeder extends Seeder
 
         Permission::generateFor('android_apps');
 
+        Permission::generateFor('categories');
+
         Permission::generateFor('settings');
     }
 }

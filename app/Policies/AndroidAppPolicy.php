@@ -35,7 +35,6 @@ class AndroidAppPolicy extends BasePolicy
         return true;
     }
 
-
     /**
      * Determine whether the user can view the android app.
      *

@@ -61,6 +61,20 @@ class MenuItemsTableSeeder extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
+            'title' => 'Categories',
+            'url' => '',
+            'route' => 'voyager.categories.index',
+        ]);
+        $menuItem->fill([
+            'target' => '_self',
+            'icon_class' => 'voyager-folder',
+            'color' => null,
+            'parent_id' => null,
+            'order' => 4,
+        ])->save();
+
+        $menuItem = MenuItem::firstOrNew([
+            'menu_id' => $menu->id,
             'title' => __('voyager::seeders.menu_items.settings'),
             'url' => '',
             'route' => 'voyager.settings.index',

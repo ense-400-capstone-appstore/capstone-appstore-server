@@ -36,6 +36,19 @@ class DataTypesTableSeeder extends Seeder
             'description' => '',
         ])->save();
 
+        $dataType = $this->dataType('slug', 'categories');
+        $dataType->fill([
+            'name' => 'categories',
+            'display_name_singular' => 'Category',
+            'display_name_plural' => 'Categories',
+            'icon' => 'voyager-folder',
+            'model_name' => 'App\\Category',
+            'policy_name' => 'App\\Policies\\CategoryPolicy',
+            'controller' => '',
+            'generate_permissions' => 1,
+            'description' => '',
+        ])->save();
+
         $dataType = $this->dataType('slug', 'menus');
         $dataType->fill([
             'name' => 'menus',

@@ -40,7 +40,7 @@
                 <a href="/android_apps/{{ $androidApp->id }}" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
                     <div class="mdc-card">
                         <div class="mdc-card__primary-action" tabindex="0">
-                            <div class="my-card__media mdc-card__media mdc-card__media--square" style="background: url('{{ '/storage/' . $androidApp->avatar }}'); background-size: cover;">
+                            <div class="mdc-card__media mdc-card__media--square" style="background: url('{{ '/storage/' . $androidApp->avatar }}'); background-size: cover;">
                                 <div class="mdc-card__media-content">
                                     <div class="card-content">
                                         <h2 class="mdc-typography--headline6">
@@ -70,6 +70,7 @@
         </div>
     </div>
 </div>
+
 {{ $androidApps->links() }}
 
 @endsection

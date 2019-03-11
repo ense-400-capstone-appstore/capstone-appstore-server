@@ -20,7 +20,7 @@
     </div>
 
     <div class="mdc-layout-grid page-content-item">
-        <h1 class="page-title mdc-typography--headline6 text-center">Categories</h1>
+        <h1 class="page-title mdc-typography--headline4 text-center">Categories</h1>
     </div>
 
     <div class="mdc-layout-grid page-content-item">
@@ -41,6 +41,7 @@
         </div>
     </div>
 </div>
+
 {{ $categories->links() }}
 
 @endsection

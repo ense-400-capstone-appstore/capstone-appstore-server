@@ -124,6 +124,29 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'order' => 7,
         ])->save();
 
+        $dataRow = $this->dataRow($dataType, 'android_app_belongstomany_category_relationship');
+        $dataRow->fill([
+            'type' => 'relationship',
+            'display_name' => 'Categories',
+            'required' => 0,
+            'browse' => 0,
+            'read' => 1,
+            'edit' => 1,
+            'add' => 1,
+            'delete' => 0,
+            'details' => [
+                'model' => 'App\\Category',
+                'table' => 'categories',
+                'type' => 'belongsToMany',
+                'column' => 'id',
+                'key' => 'id',
+                'label' => 'name',
+                'pivot_table' => 'category_android_app',
+                'pivot' => 1,
+            ],
+            'order' => 7,
+        ])->save();
+
         $dataRow = $this->dataRow($dataType, 'avatar');
         $dataRow->fill([
             'type' => 'image',

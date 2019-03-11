@@ -14,6 +14,7 @@ class DataRowsTableSeeder extends Seeder
         $this->call([
             // Seeders in DataRowsSeeders directory
             AndroidAppsDataRowsTableSeeder::class,
+            CategoriesDataRowsTableSeeder::class,
             MenusDataRowsTableSeeder::class,
             RolesDataRowsTableSeeder::class,
             UsersDataRowsTableSeeder::class,
