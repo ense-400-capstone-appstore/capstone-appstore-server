@@ -2,7 +2,10 @@
 
 #page-home {
     .home-section {
-        height: 600px;
+        min-height: 50vh;
+        width: 100%;
+
+        overflow: hidden;
 
         padding: 60px 50px;
 
@@ -13,8 +16,6 @@
         justify-content: center;
 
         text-align: center;
-
-        width: 100%;
     }
 
     #home-jumbotron {
@@ -37,6 +38,8 @@
         .home-title {
             font-weight: bolder;
             font-size: 5rem;
+
+            margin: 0.4em 0;
 
             @media all and (max-width: mdc-layout-grid-breakpoint-max(tablet)) {
                 font-size: 3.5rem;
@@ -73,9 +76,29 @@
             flex: 1;
 
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            text-align: center;
+
+            & > * {
+                flex: 1 1 50%;
+            }
+
+            .left {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    height: auto;
+                    max-width: 100%;
+                }
+            }
+
+            .right {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                text-align: center;
+            }
         }
 
         .mdc-button {

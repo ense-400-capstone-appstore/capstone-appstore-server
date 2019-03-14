@@ -11,7 +11,7 @@
             <div></div>
 
             <div>
-                <h1 class="home-title">@lang('app.name')</h1>
+                <h1 class="home-title">{{ strtoupper(__('app.name')) }}</h1>
                 <h3>@lang('app.slogan')</h3>
 
                 @linkbutton([
@@ -22,6 +22,14 @@
                 ])
                     <i class="mdc-button__icon fas fa-arrow-down"></i>
                     <span class="mdc-button__label">Get the app</span>
+                @endlinkbutton
+
+                @linkbutton([
+                    'classes' => 'home-jumbotron-button mdc-button mdc-button--unelevated',
+                    'href' => '/login'
+                ])
+                    <i class="mdc-button__icon fas fa-sign-in-alt" aria-hidden="true"></i>
+                    <span class="mdc-button__label">Login / Sign Up</span>
                 @endlinkbutton
 
                 @linkbutton([
@@ -48,61 +56,67 @@
     {{-- "What is this?" section --}}
     <div id="home-what-is-this" class="home-section">
         <div id="home-what-is-this-content" class="page-content-item">
-            <div>
-                <h2>What is this?</h2>
-
-                This is an undergraduate Capstone project for the University of Regina.
-                It is a basic private appstore for the Android operating system.
+            <div class="left">
+                <img src={{asset('/images/brand/512h/Icon_x512.png')}} alt="Logo" />
             </div>
 
-            <div>
-                <h4>Source Code</h4>
-                <p>This project is open-source and all of the source code is available on GitHub!</p>
+            <div class="right">
+                <div>
+                    <h2>What is this?</h2>
 
-                @linkbutton([
-                    'classes' => 'mdc-button mdc-button--raised',
-                    'tooltip' => 'See the source code on GitHub!',
-                    'href' => config('web.links.github.href'),
-                    'target' => '_blank'
-                ])
-                    <i class="mdc-button__icon fab fa-github"></i>
-                    <span class="mdc-button__label">Source Code</span>
-                @endlinkbutton
-            </div>
+                    This is an undergraduate Capstone project for the University of Regina.
+                    It is a basic private appstore for the Android operating system.
+                </div>
 
-            <div>
-                <h4>The Team</h4>
-
-                <div id="home-made-by">
-                    @linkbutton([
-                        'classes' => 'mdc-button mdc-button--raised',
-                        'tooltip' => 'Daniel Shevtsov',
-                        'href' => 'https://github.com/shevtsod',
-                        'target' => '_blank'
-                    ])
-                        <i class="mdc-button__icon fab fa-github"></i>
-                        <span class="mdc-button__label">@shevtsod</span>
-                    @endlinkbutton
+                <div>
+                    <h4>Source Code</h4>
+                    <p>This project is open-source and all of the source code is available on GitHub!</p>
 
                     @linkbutton([
                         'classes' => 'mdc-button mdc-button--raised',
-                        'tooltip' => 'Chengyu Lou',
-                        'href' => 'https://github.com/oscar666666',
+                        'tooltip' => 'See the source code on GitHub!',
+                        'href' => config('web.links.github.href'),
                         'target' => '_blank'
                     ])
                         <i class="mdc-button__icon fab fa-github"></i>
-                        <span class="mdc-button__label">@oscar666666</span>
+                        <span class="mdc-button__label">Source Code</span>
                     @endlinkbutton
+                </div>
 
-                    @linkbutton([
-                        'classes' => 'mdc-button mdc-button--raised',
-                        'tooltip' => 'Uys Kriek',
-                        'href' => 'https://github.com/Uyser',
-                        'target' => '_blank'
-                    ])
-                        <i class="mdc-button__icon fab fa-github"></i>
-                        <span class="mdc-button__label">@uyser</span>
-                    @endlinkbutton
+                <div>
+                    <h4>The Team</h4>
+
+                    <div id="home-made-by">
+                        @linkbutton([
+                            'classes' => 'mdc-button mdc-button--raised',
+                            'tooltip' => 'Daniel Shevtsov',
+                            'href' => 'https://github.com/shevtsod',
+                            'target' => '_blank'
+                        ])
+                            <i class="mdc-button__icon fab fa-github"></i>
+                            <span class="mdc-button__label">@shevtsod</span>
+                        @endlinkbutton
+
+                        @linkbutton([
+                            'classes' => 'mdc-button mdc-button--raised',
+                            'tooltip' => 'Chengyu Lou',
+                            'href' => 'https://github.com/oscar666666',
+                            'target' => '_blank'
+                        ])
+                            <i class="mdc-button__icon fab fa-github"></i>
+                            <span class="mdc-button__label">@oscar666666</span>
+                        @endlinkbutton
+
+                        @linkbutton([
+                            'classes' => 'mdc-button mdc-button--raised',
+                            'tooltip' => 'Uys Kriek',
+                            'href' => 'https://github.com/Uyser',
+                            'target' => '_blank'
+                        ])
+                            <i class="mdc-button__icon fab fa-github"></i>
+                            <span class="mdc-button__label">@uyser</span>
+                        @endlinkbutton
+                    </div>
                 </div>
             </div>
         </div>
