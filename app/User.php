@@ -42,9 +42,24 @@ class User extends VoyagerUser
         return $this->belongsToMany('App\AndroidApp', 'user_android_app');
     }
 
+    /**
+     * Get the AndroidApps that this user created
+     *
+     * @return void
+     */
     public function createdAndroidApps()
     {
         return $this->hasMany('App\AndroidApp', 'creator_id');
+    }
+
+    /**
+     * Return true if user's role is "admin" or "vendor"
+     *
+     * @return boolean
+     */
+    public function isAdminOrVendor()
+    {
+        return $this->hasRole('vendor') || $this->hasRole('admin');
     }
 
     /**

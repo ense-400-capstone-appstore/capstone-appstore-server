@@ -115,7 +115,7 @@ class AndroidAppPolicy extends BasePolicy
      */
     public function setFile(User $user, AndroidApp $model)
     {
-        return $user->id == $model->id;
+        return $user->id == $model->creator_id;
     }
 
     /**
@@ -127,10 +127,14 @@ class AndroidAppPolicy extends BasePolicy
      */
     public function getFile(User $user, AndroidApp $model)
     {
-        // TODO: Only the owner and users who have this AndroidApp associated
-        // with their model (i.e., they "purchased" the app) may access the file
-        // First need to implement many to many relationship between User
-        // and AndroidApp
-        return $user->id == $model->id;
+        // The owner can download the file
+        if ($user->id == $model->creator_id) return true;
+
+        // Users who own the app can download the file
+        if ($user->androidApps->pluck('id')->contains($model->id)) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -141,12 +141,25 @@ class UserController extends Controller
      * Get a listing of this user's AndroidApps
      *
      * @param User $user
-     * @return void
+     * @return Collection
      */
     public function androidApps(User $user)
     {
         $this->authorize('androidApps', $user);
 
         return AndroidAppResource::collection($user->androidApps()->paginate());
+    }
+
+    /**
+     * Get a listing of this user's created AndroidAPps
+     *
+     * @param User $user
+     * @return Collection
+     */
+    public function createdAndroidApps(User $user)
+    {
+        $this->authorize('createdAndroidApps', $user);
+
+        return AndroidAppResource::collection($user->createdAndroidApps()->paginate());
     }
 }

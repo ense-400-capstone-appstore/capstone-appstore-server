@@ -139,4 +139,19 @@ class UserPolicy extends VoyagerUserPolicy
     {
         return $user->id == $model->id;
     }
+
+
+    /**
+     * Determine whether the user can get a listing of a user's
+     * created AndroidApps
+     *
+     * @param User $user
+     * @return void
+     */
+    public function createdAndroidApps(User $user, User $model)
+    {
+        if (!$user->hasRole('vendor')) return false;
+
+        return $user->id == $model->id;
+    }
 }
