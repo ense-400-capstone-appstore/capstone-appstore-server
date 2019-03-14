@@ -46,6 +46,7 @@ Route::namespace('ApiControllers')->name('api.')->group(function () {
         Route::post('users/{user}/avatar', 'UserController@avatarUpload');
         Route::get('users/{user}/avatar', 'UserController@avatarDownload');
         Route::get('users/{user}/android_apps', 'UserController@androidApps');
+        Route::get('users/{user}/created_android_apps', 'UserController@createdAndroidApps');
 
         /**
          * Resources
