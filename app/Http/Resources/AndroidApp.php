@@ -22,6 +22,12 @@ class AndroidApp extends JsonResource
             'price' => $this->price,
             'package_name' => $this->package_name,
             'creator_id' => $this->creator_id,
+            'pivot' => $this->when(
+                isset($this->pivot),
+                function () {
+                    return $this->pivot;
+                }
+            ),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

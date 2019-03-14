@@ -54,7 +54,10 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('resources/categories/show', ['category' =>  $category]);
+        return view('resources/categories/show', [
+            'category' =>  $category,
+            'androidApps' => $category->androidApps()->paginate(15)
+        ]);
     }
 
     /**

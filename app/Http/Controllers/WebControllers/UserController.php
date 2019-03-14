@@ -119,4 +119,20 @@ class UserController extends Controller
     {
         //
     }
+
+    /**
+     * Get a listing of this user's AndroidApps
+     *
+     * @param User $user
+     * @return void
+     */
+    public function androidApps(User $user)
+    {
+        $this->authorize('androidApps', $user);
+
+        return view('resources/users/android_apps', [
+            'user' => $user,
+            'androidApps' => $user->androidApps()->paginate(15)
+        ]);
+    }
 }

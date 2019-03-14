@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
 
             // Application seeders
             UsersTableSeeder::class,
-            AndroidAppsTableSeeder::class,
             CategoriesTableSeeder::class,
+            AndroidAppsTableSeeder::class,
             // ReviewsTableSeeder::class,
             // RepliesTableSeeder::class,
         ]);

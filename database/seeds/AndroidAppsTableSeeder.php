@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 use App\AndroidApp;
+use App\Category;
 
 class AndroidAppsTableSeeder extends Seeder
 {
@@ -22,8 +21,12 @@ class AndroidAppsTableSeeder extends Seeder
         if (AndroidApp::count() > 0) return;
 
         // Create some free and premium AndroidApps
-        factory(AndroidApp::class, 2)->create();
+        $apps = factory(AndroidApp::class, 2)->create();
         factory(AndroidApp::class, 2)->states('premium')->create();
-    }
 
+        // Assign some apps to categories
+        foreach ($apps as $app) {
+            $app->categories()->attach(Category::first());
+        }
+    }
 }

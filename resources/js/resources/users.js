@@ -2,7 +2,7 @@ import { MDCDialog } from "@material/dialog";
 
 export default () => {
     const userEditButtonEl = document.querySelector("#user-edit");
-    const userEditDialogEl = document.querySelector("#user-edit-dialog");
+    const userEditDialogEl = document.querySelector("#page-users-edit");
 
     if (userEditButtonEl && userEditDialogEl) {
         const userEditDialog = new MDCDialog(userEditDialogEl);

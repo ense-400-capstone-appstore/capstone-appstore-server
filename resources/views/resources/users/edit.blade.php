@@ -1,6 +1,6 @@
 <div
-    id="user-edit-dialog"
-    class="mdc-dialog"
+    id="page-users-edit"
+    class="mdc-dialog page-content-users"
     role="alertdialog"
     aria-modal="true"
     aria-labelledby="my-dialog-title"
@@ -13,61 +13,86 @@
                 <h3>Change Profile Information</h3>
 
                 <form method="POST" action="/users/{{ $user->id }}">
-                    @method('PUT')
-                    @csrf
-                    <input type="hidden" name="g-recaptcha-token" class="g-recaptcha-token">
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            @method('PUT')
+                            @csrf
 
-                    {{-- Full Name field --}}
-                    @textfield([
-                        "name" => "full_name",
-                        "value" => $user->name
-                    ])
-                        Full Name
-                    @endtextfield
+                            <input type="hidden" name="g-recaptcha-token" class="g-recaptcha-token">
 
-                    {{-- Email field --}}
-                    @textfield([
-                        "name" => "email",
-                        "value" => $user->email
-                    ])
-                        Email
-                    @endtextfield
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
+                                {{-- Full Name field --}}
+                                @textfield([
+                                    "name" => "full_name",
+                                    "value" => $user->name
+                                ])
+                                    Full Name
+                                @endtextfield
+                            </div>
 
-                    {{-- Submit button --}}
-                    <button class="mdc-button mdc-button--raised submit" type="submit">
-                        <span class="mdc-button__label">Submit</span>
-                    </button>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
+                                {{-- Email field --}}
+                                @textfield([
+                                    "name" => "email",
+                                    "value" => $user->email
+                                ])
+                                    Email
+                                @endtextfield
+                            </div>
+                        </div>
+
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                                {{-- Submit button --}}
+                                <button class="mdc-button mdc-button--raised submit" type="submit">
+                                    <span class="mdc-button__label">Submit</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
 
                 <h3>Change Password</h3>
 
                 <form method="POST" action="/users/{{ $user->id }}">
-                    @method('PUT')
-                    @csrf
-                    <input type="hidden" name="g-recaptcha-token" class="g-recaptcha-token">
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            @method('PUT')
+                            @csrf
+                            <input type="hidden" name="g-recaptcha-token" class="g-recaptcha-token">
 
-                    {{-- Password field --}}
-                     @textfield([
-                        "name" => "password",
-                        "type" => "password",
-                        "required" => "true"
-                    ])
-                        Password
-                    @endtextfield
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
+                                {{-- Password field --}}
+                                @textfield([
+                                    "name" => "password",
+                                    "type" => "password",
+                                    "required" => "true"
+                                ])
+                                    Password
+                                @endtextfield
+                            </div>
 
-                    {{-- Password confirmation field --}}
-                     @textfield([
-                        "name" => "password_confirmation",
-                        "type" => "password",
-                        "required" => "true"
-                    ])
-                        Confirm Password
-                    @endtextfield
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
+                            {{-- Password confirmation field --}}
+                                @textfield([
+                                    "name" => "password_confirmation",
+                                    "type" => "password",
+                                    "required" => "true"
+                                ])
+                                    Confirm Password
+                                @endtextfield
+                            </div>
+                        </div>
 
-                    {{-- Submit button --}}
-                    <button class="mdc-button mdc-button--raised submit" type="submit">
-                        <span class="mdc-button__label">Submit</span>
-                    </button>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                                {{-- Submit button --}}
+                                <button class="mdc-button mdc-button--raised submit" type="submit">
+                                    <span class="mdc-button__label">Submit</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

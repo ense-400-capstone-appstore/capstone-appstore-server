@@ -29,8 +29,6 @@ class CategoriesTableSeeder extends Seeder
             ['name' => "Weather"]
         ];
 
-        foreach ($categories as $category) {
-            Category::create($category);
-        }
+        foreach ($categories as $category) Category::create($category);
     }
 }

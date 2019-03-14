@@ -72,13 +72,30 @@
                         </p>
                     </div>
 
-                    @if (Auth::user() && Auth::user()->hasRole('admin'))
-                        <div class="mdc-card__actions">
-                            <a href="{{ $androidApp->id }}/file" class="mdc-button mdc-button--raised mdc-card__action mdc-card__action--button">
+                    <div class="mdc-card__actions">
+                        @if (Auth::user())
+                             <form method="POST" action="{{ $androidApp->id }}/toggle_own/{{ Auth::user()->id }}">
+                                @csrf
+                                <button class="mdc-button mdc-button--raised submit" type="submit">
+                                    <span class="mdc-button__label">
+                                        @if(Auth::user()->androidApps()->find($androidApp->id) == null)
+                                            Get this app
+                                        @else
+                                            Remove from owned apps
+                                        @endif
+                                    </span>
+                                </button>
+                            </form>
+                        @endif
+
+                        @if (Auth::user() && Auth::user()->hasRole('admin'))
+                            <a href="{{ $androidApp->id }}/file" class="mdc-button mdc-card__action mdc-card__action--button">
                                 Download File
                             </a>
-                        </div>
-                    @endif
+                        @endif
+                    </div>
+
+
                 </div>
             </div>
         </div>

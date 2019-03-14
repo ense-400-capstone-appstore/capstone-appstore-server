@@ -111,7 +111,7 @@ class UserPolicy extends VoyagerUserPolicy
      * @param  \App\User  $model
      * @return mixed
      */
-    public function setAvatar(User $user, User $model)
+    public function avatarUpload(User $user, User $model)
     {
         return $user->id == $model->id;
     }
@@ -123,8 +123,20 @@ class UserPolicy extends VoyagerUserPolicy
      * @param  \App\User  $model
      * @return mixed
      */
-    public function getAvatar(User $user, User $model)
+    public function avatarDownload(User $user, User $model)
     {
         return true;
+    }
+
+    /**
+     * Determine whether the user can get a listing of a user's AndroidApps
+     *
+     * @param User $user
+     * @param User $model
+     * @return void
+     */
+    public function androidApps(User $user, User $model)
+    {
+        return $user->id == $model->id;
     }
 }

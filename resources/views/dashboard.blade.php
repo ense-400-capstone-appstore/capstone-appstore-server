@@ -29,7 +29,7 @@
 
         <div class="mdc-layout-grid__inner">
             {{-- Apps by Category --}}
-            <a href="/categories" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
+            <a href="/categories" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
                 <div class="mdc-card">
                     <div class="mdc-card__primary-action" tabindex="0">
                         <div class="card-content">
@@ -43,7 +43,7 @@
             </a>
 
             {{-- All Apps --}}
-            <a href="/android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
+            <a href="/android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
                 <div class="mdc-card">
                     <div class="mdc-card__primary-action" tabindex="0">
                         <div class="card-content">
@@ -55,21 +55,6 @@
                     </div>
                 </div>
             </a>
-
-            {{-- Search --}}
-            <a href="/android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
-                <div class="mdc-card">
-                    <div class="mdc-card__primary-action" tabindex="0">
-                        <div class="card-content">
-                            <h2 class="mdc-typography--headline6">Search</h2>
-                            <p class="mdc-typography--body2">
-                                Search for and find specific apps
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
         </div>
 
         <h1 class="page-title mdc-typography--headline6">Your Account</h1>
@@ -90,7 +75,7 @@
             </a>
 
             {{-- Your Apps --}}
-            <a href="#" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
+            <a href="/users/{{ Auth::user()->id }}/android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
                 <div class="mdc-card">
                     <div class="mdc-card__primary-action" tabindex="0">
                         <div class="card-content">

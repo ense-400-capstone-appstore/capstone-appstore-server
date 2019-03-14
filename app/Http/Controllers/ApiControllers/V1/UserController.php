@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Image;
+use App\Http\Resources\AndroidApp as AndroidAppResource;
 
 class UserController extends Controller
 {
@@ -114,7 +115,8 @@ class UserController extends Controller
      */
     public function avatarUpload(Request $request, User $user)
     {
-        $this->authorize('setAvatar', $user);
+        $this->authorize('avatarUpload', $user);
+
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,bmp,png|max:5120'
         ]);
@@ -130,7 +132,21 @@ class UserController extends Controller
      */
     public function avatarDownload(User $user)
     {
-        $this->authorize('getAvatar', $user);
+        $this->authorize('avatarDownload', $user);
+
         return Image::make($user->getAvatar())->response();
+    }
+
+    /**
+     * Get a listing of this user's AndroidApps
+     *
+     * @param User $user
+     * @return void
+     */
+    public function androidApps(User $user)
+    {
+        $this->authorize('androidApps', $user);
+
+        return AndroidAppResource::collection($user->androidApps()->paginate());
     }
 }

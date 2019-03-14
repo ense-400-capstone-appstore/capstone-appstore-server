@@ -32,6 +32,13 @@ Route::namespace('WebControllers')->group(function () {
 
     Route::post('android_apps/{android_app}/avatar', 'AndroidAppController@avatarUpload');
     Route::get('android_apps/{android_app}/avatar', 'AndroidAppController@avatarDownload');
+
+    Route::post('android_apps/{android_app}/toggle_own/{user}', 'AndroidAppController@toggleOwn');
+
+    /**
+     * Users
+     */
+    Route::get('users/{user}/android_apps', 'UserController@androidApps');
 });
 
 

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Image;
+use App\User;
 
 class AndroidApp extends Model
 {
@@ -103,5 +104,28 @@ class AndroidApp extends Model
         return Storage::disk('local')->download($this->file, null, [
             'Content-Type' => 'application/vnd.android.package-archive'
         ]);
+    }
+
+    /**
+     * Add this AndroidApp to a user (i.e., the user 'owns' this AndroidApp)
+     *
+     * @param User $user
+     * @return void
+     */
+    public function addToUser(User $user)
+    {
+        return $user->androidApps()->attach($this);
+    }
+
+    /**
+     * Remove this AndroidApp from a user (i.e., the user no longer
+     * 'owns' this AndroidApp)
+     *
+     * @param User $user
+     * @return void
+     */
+    public function removeFromUser(User $user)
+    {
+        return $user->androidApps()->detach($this);
     }
 }

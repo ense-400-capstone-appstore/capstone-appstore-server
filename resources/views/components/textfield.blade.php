@@ -1,4 +1,4 @@
-<div class="mdc-text-field">
+<div class="mdc-text-field {{ $classes ?? '' }}">
     <input
         type="{{ $type ?? 'text' }}"
         name="{{ $name }}"

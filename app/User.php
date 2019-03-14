@@ -37,7 +37,7 @@ class User extends VoyagerUser
      *
      * @return void
      */
-    public function users()
+    public function androidApps()
     {
         return $this->belongsToMany('App\AndroidApp', 'user_android_app');
     }

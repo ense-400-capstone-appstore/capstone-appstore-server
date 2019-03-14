@@ -21,14 +21,6 @@ Route::namespace('ApiControllers')->name('api.')->group(function () {
         Route::post('login', 'AuthenticationController@authenticate')->name('login');
 
         /**
-         * Users
-         */
-        Route::get('users/current', 'UserController@current');
-
-        Route::post('users/{user}/avatar', 'UserController@avatarUpload');
-        Route::get('users/{user}/avatar', 'UserController@avatarDownload');
-
-        /**
          * AndroidApps
          */
         Route::get('android_apps/package_name/{package_name}', 'AndroidAppController@byPackageName');
@@ -45,6 +37,15 @@ Route::namespace('ApiControllers')->name('api.')->group(function () {
          * Categories
          */
         Route::get('categories/{category}/android_apps', 'CategoryController@androidApps');
+
+        /**
+         * Users
+         */
+        Route::get('users/current', 'UserController@current');
+
+        Route::post('users/{user}/avatar', 'UserController@avatarUpload');
+        Route::get('users/{user}/avatar', 'UserController@avatarDownload');
+        Route::get('users/{user}/android_apps', 'UserController@androidApps');
 
         /**
          * Resources
