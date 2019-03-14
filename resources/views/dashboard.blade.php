@@ -89,7 +89,60 @@
             </a>
         </div>
 
-        {{-- Admin Panel --}}
+        {{-- Vendor Settings --}}
+        @if(Auth::user()->isAdminOrVendor())
+            <h1 class="page-title mdc-typography--headline6">Vendor Settings</h1>
+
+            <p class="mdc-typography--body2 text-center">
+                (this section is only available to Vendors)
+            </p>
+
+            <div class="mdc-layout-grid__inner">
+                    {{-- Your Groups --}}
+                <a href="/users/{{ Auth::user()->id }}/groups" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
+                    <div class="mdc-card mdc-card">
+                        <div class="mdc-card__primary-action" tabindex="0">
+                            <div class="card-content">
+                                <h2 class="mdc-typography--headline6">Your Groups</h2>
+                                <p class="mdc-typography--body2">
+                                    Manage your groups, Apps in each group, and users who have access to the group.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                {{-- Your Apps --}}
+                <a href="/users/{{ Auth::user()->id }}/created_android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
+                    <div class="mdc-card">
+                        <div class="mdc-card__primary-action" tabindex="0">
+                            <div class="card-content">
+                                <h2 class="mdc-typography--headline6">Your Created Apps</h2>
+                                <p class="mdc-typography--body2">
+                                    Manage apps you created
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                {{-- Add an App --}}
+                <a href="/users/{{ Auth::user()->id }}/android_apps/create" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
+                    <div class="mdc-card">
+                        <div class="mdc-card__primary-action" tabindex="0">
+                            <div class="card-content">
+                                <h2 class="mdc-typography--headline6">Add an App</h2>
+                                <p class="mdc-typography--body2">
+                                    Host a new Android App on Matryoshka for users to purchase.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        @endif
+
+        {{-- System Administration --}}
         @if(Auth::user()->hasRole('admin'))
             <h1 class="page-title mdc-typography--headline6">System Administration</h1>
 
