@@ -124,6 +124,20 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'order' => 7,
         ])->save();
 
+        $dataRow = $this->dataRow($dataType, 'creator_id');
+        $dataRow->fill([
+            'type' => 'text',
+            'display_name' => 'Creator',
+            'required' => 1,
+            'browse' => 1,
+            'read' => 1,
+            'edit' => 1,
+            'add' => 1,
+            'delete' => 1,
+            'details' => '',
+            'order' => 8,
+        ])->save();
+
         $dataRow = $this->dataRow($dataType, 'android_app_belongstomany_category_relationship');
         $dataRow->fill([
             'type' => 'relationship',
@@ -144,7 +158,7 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
                 'pivot_table' => 'category_android_app',
                 'pivot' => 1,
             ],
-            'order' => 7,
+            'order' => 9,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'avatar');
@@ -158,7 +172,7 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 1,
             'delete' => 1,
             'details' => '',
-            'order' => 8,
+            'order' => 10,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'created_at');
@@ -172,7 +186,7 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 0,
             'delete' => 0,
             'details' => '',
-            'order' => 9,
+            'order' => 11,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'updated_at');
@@ -186,7 +200,7 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 0,
             'delete' => 0,
             'details' => '',
-            'order' => 10,
+            'order' => 12,
         ])->save();
     }
 }

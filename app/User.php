@@ -42,6 +42,11 @@ class User extends VoyagerUser
         return $this->belongsToMany('App\AndroidApp', 'user_android_app');
     }
 
+    public function createdAndroidApps()
+    {
+        return $this->hasMany('App\AndroidApp', 'creator_id');
+    }
+
     /**
      * Set the avatar for this user
      *
