@@ -13,8 +13,10 @@
         <link rel="shortcut icon" href="/favicon.ico?v=eEGjQP3keR">
         <meta name="msapplication-TileColor" content="#dadff7">
         <meta name="theme-color" content="#6075E0">
+
         {{-- Compiled application styles --}}
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
         {{-- Custom styles --}}
         @yield('css')
     </head>
@@ -39,10 +41,16 @@
 
         {{-- Compiled application scripts --}}
         <script src="{{ mix('js/app.js') }}"></script>
+
         {{-- reCAPTCHA script. Only load if key was set up --}}
         @if(config('recaptcha.v3_site_key'))
             <script src="https://www.google.com/recaptcha/api.js?render={{ config('recaptcha.v3_site_key') }}"></script>
+
+            <script>
+                initRecaptcha("{{ config('recaptcha.v3_site_key') }}");
+            </script>
         @endif
+
         {{-- Custom scripts --}}
         @yield('js')
     </body>

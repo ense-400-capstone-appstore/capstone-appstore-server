@@ -19,7 +19,9 @@
 
         <div class="app-footer-copyright mdc-layout-grid__inner">
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <div class="app-footer-title">@lang('app.name')</div>
+                <div class="app-footer-title">
+                    <img src="{{asset('/images/brand/64h/Logo_Inverse_x64.png')}}" alt="footer logo" />
+                </div>
                 <div class="app-footer-version">
                     <a href="https://github.com/matryoshkadoll/matryoshka-server/releases/tag/{{ config('version.currentTag') }}">
                         {{ config('version.currentTag') }}

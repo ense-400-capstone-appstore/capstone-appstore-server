@@ -4,7 +4,6 @@
 
 @section('html')
 <div id="page-android-apps-show" class="page-content page-content-android-apps">
-
     <div class="mdc-layout-grid page-content-item">
         {{-- Controls --}}
         <div class="mdc-layout-grid__inner">

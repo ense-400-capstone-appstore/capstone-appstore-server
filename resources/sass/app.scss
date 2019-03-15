@@ -96,6 +96,11 @@
     }
 }
 
+.required-warning {
+    color: $red;
+    text-align: initial;
+}
+
 // Block-level <a> elements
 a.block-link {
     display: block;

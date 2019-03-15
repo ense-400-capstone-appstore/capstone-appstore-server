@@ -7,6 +7,15 @@
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
         }
     }
+
+    &#page-android-apps-create.page-content {
+        margin-bottom: 100px;
+
+        form > * {
+            margin: 10px 0;
+            width: 100%;
+        }
+    }
 }
 
 .android_app_card {

@@ -33,7 +33,9 @@ class AndroidAppController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', AndroidApp::class);
+
+        return view('resources/android_apps/create');
     }
 
     /**
@@ -44,7 +46,35 @@ class AndroidAppController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('store', AndroidApp::class);
+
+        $request->validate([
+            'name' => 'required|string',
+            'version' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric'
+        ]);
+
+        $androidApp = AndroidApp::create($request->only([
+            'name',
+            'version',
+            'description',
+            'price'
+        ]));
+
+        if (request()->avatar) {
+            $request->validate(['avatar' => 'image']);
+            $androidApp->setAvatar(request()->avatar);
+        }
+
+        if (request()->file) {
+            $request->validate(['file' => 'file']);
+            $androidApp->setFile(request()->file);
+        }
+
+        return redirect()->action('WebControllers\AndroidAppController@show', [
+            'androidApp' => $androidApp
+        ]);
     }
 
     /**
