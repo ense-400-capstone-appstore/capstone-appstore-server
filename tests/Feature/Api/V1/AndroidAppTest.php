@@ -78,12 +78,12 @@ class AndroidAppTest extends TestCase
 
             switch ($user->role_id) {
                 case $this->roles['admin']->id:
+                case $this->roles['vendor']->id:
                     $res->assertStatus(201)->assertJson(['data' => $payload]);
                     $resData = $res->getData()->data;
                     $createdAndroidApp = AndroidApp::find($resData->id);
                     $createdAndroidApp->delete();
                     break;
-                case $this->roles['vendor']->id:
                 case $this->roles['user']->id:
                 default:
                     $res->assertForbidden();
