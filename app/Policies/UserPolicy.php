@@ -150,7 +150,7 @@ class UserPolicy extends VoyagerUserPolicy
      */
     public function createdAndroidApps(User $user, User $model)
     {
-        if (!$user->hasRole('vendor')) return false;
+        if (!$user->isVendor()) return false;
 
         return $user->id == $model->id;
     }

@@ -20,7 +20,7 @@
     </div>
 
     <div class="mdc-layout-grid page-content-item">
-        <h1 class="page-title mdc-typography--headline4 text-center">{{ $category->name }}</h1>
+        <h1 class="page-title mdc-typography--headline4 text-center">Category: {{ $category->name }}</h1>
     </div>
 
     <div class="mdc-layout-grid page-content-item">

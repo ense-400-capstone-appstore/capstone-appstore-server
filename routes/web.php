@@ -21,7 +21,7 @@ Route::namespace('WebControllers')->group(function () {
     Route::get('logout', 'AuthenticationController@logout');
 
     Route::resource('users', 'UserController')->only('show', 'update');
-    Route::resource('android_apps', 'AndroidAppController')->only('index', 'show', 'update');
+    Route::resource('android_apps', 'AndroidAppController');
     Route::resource('categories', 'CategoryController')->only('index', 'show');
 
     /**
@@ -39,6 +39,7 @@ Route::namespace('WebControllers')->group(function () {
      * Users
      */
     Route::get('users/{user}/android_apps', 'UserController@androidApps');
+    Route::get('users/{user}/created_android_apps', 'UserController@createdAndroidApps');
 });
 
 

@@ -135,4 +135,14 @@ class UserController extends Controller
             'androidApps' => $user->androidApps()->paginate(15)
         ]);
     }
+
+    public function createdAndroidApps(User $user)
+    {
+        $this->authorize('createdAndroidApps', $user);
+
+        return view('resources/users/created_android_apps', [
+            'user' => $user,
+            'androidApps' => $user->createdAndroidApps()->paginate(15)
+        ]);
+    }
 }

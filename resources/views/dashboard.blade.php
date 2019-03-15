@@ -30,12 +30,19 @@
         <div class="mdc-layout-grid__inner">
             {{-- Apps by Category --}}
             <a href="/categories" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
-                <div class="mdc-card">
+                <div class="mdc-card card-button">
                     <div class="mdc-card__primary-action" tabindex="0">
+                        <div class="mdc-card__media">
+                            <div class="mdc-card__media-content">
+                                <div class="card-content">
+                                    <h2 class="mdc-typography--headline6">Apps by Category</h2>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="card-content">
-                            <h2 class="mdc-typography--headline6">Apps by Category</h2>
                             <p class="mdc-typography--body2">
-                                Filter applications by searching in specific categories
+                                Filter apps by searching in specific categories
                             </p>
                         </div>
                     </div>
@@ -44,12 +51,19 @@
 
             {{-- All Apps --}}
             <a href="/android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
-                <div class="mdc-card">
+                <div class="mdc-card card-button">
                     <div class="mdc-card__primary-action" tabindex="0">
+                        <div class="mdc-card__media">
+                            <div class="mdc-card__media-content">
+                                <div class="card-content">
+                                    <h2 class="mdc-typography--headline6">All Apps</h2>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="card-content">
-                            <h2 class="mdc-typography--headline6">All Apps</h2>
                             <p class="mdc-typography--body2">
-                                View all available applications
+                                View all available apps
                             </p>
                         </div>
                     </div>
@@ -62,10 +76,17 @@
         <div class="mdc-layout-grid__inner">
             {{-- Profile --}}
             <a href="/users/{{ Auth::user()->id }}" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
-                <div class="mdc-card mdc-card">
+                <div class="mdc-card card-button">
                     <div class="mdc-card__primary-action" tabindex="0">
+                        <div class="mdc-card__media">
+                            <div class="mdc-card__media-content">
+                                <div class="card-content">
+                                    <h2 class="mdc-typography--headline6">Profile</h2>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="card-content">
-                            <h2 class="mdc-typography--headline6">Profile</h2>
                             <p class="mdc-typography--body2">
                                 View and modify your public profile information
                             </p>
@@ -76,10 +97,17 @@
 
             {{-- Your Apps --}}
             <a href="/users/{{ Auth::user()->id }}/android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
-                <div class="mdc-card">
+                <div class="mdc-card card-button">
                     <div class="mdc-card__primary-action" tabindex="0">
+                        <div class="mdc-card__media">
+                            <div class="mdc-card__media-content">
+                                <div class="card-content">
+                                    <h2 class="mdc-typography--headline6">Your Apps</h2>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="card-content">
-                            <h2 class="mdc-typography--headline6">Your Apps</h2>
                             <p class="mdc-typography--body2">
                                 Manage apps you purchased or installed
                             </p>
@@ -98,14 +126,21 @@
             </p>
 
             <div class="mdc-layout-grid__inner">
-                    {{-- Your Groups --}}
-                <a href="/users/{{ Auth::user()->id }}/groups" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
-                    <div class="mdc-card mdc-card">
+                {{-- Add an App --}}
+                <a href="/android_apps/create" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
+                    <div class="mdc-card card-button">
                         <div class="mdc-card__primary-action" tabindex="0">
+                            <div class="mdc-card__media">
+                                <div class="mdc-card__media-content">
+                                    <div class="card-content">
+                                        <h2 class="mdc-typography--headline6">Add an App</h2>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="card-content">
-                                <h2 class="mdc-typography--headline6">Your Groups</h2>
                                 <p class="mdc-typography--body2">
-                                    Manage your groups, Apps in each group, and users who have access to the group.
+                                    Host a new app for users to purchase
                                 </p>
                             </div>
                         </div>
@@ -113,27 +148,20 @@
                 </a>
 
                 {{-- Your Apps --}}
-                <a href="/users/{{ Auth::user()->id }}/created_android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
-                    <div class="mdc-card">
+                <a href="/users/{{ Auth::user()->id }}/created_android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
+                    <div class="mdc-card card-button">
                         <div class="mdc-card__primary-action" tabindex="0">
+                            <div class="mdc-card__media">
+                                <div class="mdc-card__media-content">
+                                    <div class="card-content">
+                                        <h2 class="mdc-typography--headline6">Your Created Apps</h2>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="card-content">
-                                <h2 class="mdc-typography--headline6">Your Created Apps</h2>
                                 <p class="mdc-typography--body2">
                                     Manage apps you created
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                {{-- Add an App --}}
-                <a href="/users/{{ Auth::user()->id }}/android_apps/create" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
-                    <div class="mdc-card">
-                        <div class="mdc-card__primary-action" tabindex="0">
-                            <div class="card-content">
-                                <h2 class="mdc-typography--headline6">Add an App</h2>
-                                <p class="mdc-typography--body2">
-                                    Host a new Android App on Matryoshka for users to purchase.
                                 </p>
                             </div>
                         </div>
@@ -143,7 +171,7 @@
         @endif
 
         {{-- System Administration --}}
-        @if(Auth::user()->hasRole('admin'))
+        @if(Auth::user()->isAdmin())
             <h1 class="page-title mdc-typography--headline6">System Administration</h1>
 
             <p class="mdc-typography--body2 text-center">

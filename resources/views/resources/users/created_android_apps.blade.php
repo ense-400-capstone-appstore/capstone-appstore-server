@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Android Apps')
+@section('title', $user->name . "'s Created Apps")
 
 @section('html')
 <div id="page-android-apps-index" class="page-content page-content-android-apps">
+
     <div class="mdc-layout-grid page-content-item">
         {{-- Controls --}}
         <div class="mdc-layout-grid__inner">
@@ -22,23 +23,40 @@
 
             @if(Auth::user() && !Auth::user()->hasRole('user'))
                 <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
-                    @button([
+                    @linkbutton([
                         'id' => 'android-app-create',
-                        'classes' => 'mdc-button mdc-button--outlined'
+                        'classes' => 'mdc-button mdc-button--outlined',
+                        'href' => '/android_apps/create'
                     ])
                         Create New
-                    @endbutton
+                    @endlinkbutton
                 </div>
             @endif
         </div>
     </div>
 
     <div class="mdc-layout-grid page-content-item">
-        <h1 class="page-title mdc-typography--headline4 text-center">All Android Apps</h1>
+        <h1 class="page-title mdc-typography--headline4 text-center">
+            @if ($user->id == Auth::user()->id)
+                Your Created Apps
+            @else
+                {{ $user->name . "'s Created Apps" }}
+            @endif
+        </h1>
     </div>
 
     <div class="mdc-layout-grid page-content-item">
         <div class="mdc-layout-grid__inner">
+            @if ($androidApps->isEmpty())
+                <h2 class="mdc-typography--headline6 text-center mdc-layout-grid__cell--span-12">
+                    @if ($user->id == Auth::user()->id)
+                        You do not own any apps.
+                    @else
+                        This user does not own any apps.
+                    @endif
+                </h2>
+            @endif
+
             @foreach ($androidApps as $androidApp)
                 @component('resources.android_apps.partials.card', [
                     'androidApp' => $androidApp

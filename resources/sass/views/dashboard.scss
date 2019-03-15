@@ -18,15 +18,22 @@
 
     .mdc-card {
         &.card-get-app {
-        background-color: $primary;
-        color: $primary-text;
-    }
+            background-color: $primary;
+            color: $primary-text;
+        }
 
         &.card-admin {
             text-align: center;
 
             background-color: $tertiary;
             color: $primary-text;
+        }
+
+        .mdc-card__media-content {
+            position: inherit;
+
+            color: $primary-text;
+            background-color: $primary;
         }
     }
 }

@@ -53,6 +53,26 @@ class User extends VoyagerUser
     }
 
     /**
+     * Return true if user's role is "admin"
+     *
+     * @return boolean
+     */
+    public function isAdmin()
+    {
+        return $this->hasRole('admin');
+    }
+
+    /**
+     * Return true if user's role is "vendor"
+     *
+     * @return boolean
+     */
+    public function isVendor()
+    {
+        return $this->hasRole('vendor');
+    }
+
+    /**
      * Return true if user's role is "admin" or "vendor"
      *
      * @return boolean

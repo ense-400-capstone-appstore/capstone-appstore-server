@@ -20,7 +20,7 @@ class AndroidAppPolicy extends BasePolicy
      */
     public function before($user, $ability)
     {
-        if ($user->hasRole('admin')) return true;
+        if ($user->isAdmin()) return true;
     }
 
     /**
@@ -55,7 +55,18 @@ class AndroidAppPolicy extends BasePolicy
      */
     public function create(User $user)
     {
-        return false;
+        return $user->isAdminOrVendor();
+    }
+
+    /**
+     * Determine whether the user can store android apps.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function store(User $user)
+    {
+        return $user->isAdminOrVendor();
     }
 
     /**
