@@ -70,14 +70,32 @@ class AndroidAppPolicy extends BasePolicy
     }
 
     /**
+     * Determine whether the user can edit the android app.
+     *
+     * @param  \App\User  $user
+     * @param  \App\AndroidApp  $model
+     * @return mixed
+     */
+    public function edit(User $user, AndroidApp $model)
+    {
+        // The creator can edit the app
+        if ($user->id == $model->creator_id) return true;
+
+        return false;
+    }
+
+    /**
      * Determine whether the user can update the android app.
      *
      * @param  \App\User  $user
-     * @param  \App\AndroidApp  $androidApp
+     * @param  \App\AndroidApp  $model
      * @return mixed
      */
-    public function update(User $user, AndroidApp $androidApp)
+    public function update(User $user, AndroidApp $model)
     {
+        // The creator can update the app
+        if ($user->id == $model->creator_id) return true;
+
         return false;
     }
 
