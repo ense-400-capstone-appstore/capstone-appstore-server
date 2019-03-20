@@ -20,14 +20,15 @@
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet
             mdc-layout-grid__cell--span-2-phone"></div>
 
-            @if(Auth::user() && !Auth::user()->hasRole('user'))
+            @if(Auth::user() && Auth::user()->createdAndroidApps()->pluck('id')->contains($androidApp->id))
                 <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1">
-                    @button([
+                    @linkbutton([
                         'id' => 'android-app-create',
-                        'classes' => 'mdc-button mdc-button--outlined'
+                        'classes' => 'mdc-button mdc-button--outlined',
+                        'href' => '/android_apps/' . $androidApp->id . '/edit'
                     ])
                         Edit
-                    @endbutton
+                    @endlinkbutton
                 </div>
             @endif
         </div>

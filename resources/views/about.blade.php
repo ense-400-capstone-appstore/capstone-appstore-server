@@ -56,7 +56,7 @@
     {{-- "What is this?" section --}}
     <div id="home-what-is-this" class="home-section">
         <div id="home-what-is-this-content" class="page-content-item">
-            <div class="left">
+            <div class="left mq-not-phone">
                 <img src={{asset('/images/brand/512h/Icon_x512.png')}} alt="Logo" />
             </div>
 

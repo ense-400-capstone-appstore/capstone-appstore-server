@@ -96,7 +96,9 @@ class AndroidAppController extends Controller
      */
     public function edit(AndroidApp $androidApp)
     {
-        //
+        $this->authorize('edit', $androidApp);
+
+        return view('resources/android_apps/edit', ['androidApp' => $androidApp]);
     }
 
     /**
@@ -108,7 +110,35 @@ class AndroidAppController extends Controller
      */
     public function update(Request $request, AndroidApp $androidApp)
     {
-        //
+        $this->authorize('update', $androidApp);
+
+        $request->validate([
+            'name' => 'required|string',
+            'version' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric'
+        ]);
+
+        $androidApp->update($request->only([
+            'name',
+            'version',
+            'description',
+            'price'
+        ]));
+
+        if (request()->avatar) {
+            $request->validate(['avatar' => 'image']);
+            $androidApp->setAvatar(request()->avatar);
+        }
+
+        if (request()->file) {
+            $request->validate(['file' => 'file']);
+            $androidApp->setFile(request()->file);
+        }
+
+        return redirect()->action('WebControllers\AndroidAppController@show', [
+            'androidApp' => $androidApp
+        ]);
     }
 
     /**
