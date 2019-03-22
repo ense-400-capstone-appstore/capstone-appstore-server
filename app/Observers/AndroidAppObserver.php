@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\AndroidApp;
+use App\User;
 use Auth;
 
 class AndroidAppObserver
@@ -15,11 +16,20 @@ class AndroidAppObserver
      */
     public function created(AndroidApp $androidApp)
     {
-        // Set the app's creator to the current user on creation
+        $creator = null;
+
+        // Set the app's creator to the current user or first admin on creation
         if (Auth::user()) {
-            $androidApp->creator()->associate(Auth::user());
-            $androidApp->save();
+            $creator = Auth::user();
+        } else {
+            $creator = User::where(
+                'role_id',
+                Role::where('name', 'admin')->first()
+            );
         }
+
+        $androidApp->creator()->associate($creator);
+        $androidApp->save();
     }
 
     /**

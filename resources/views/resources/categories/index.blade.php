@@ -27,6 +27,12 @@
         <div class="mdc-layout-grid__inner">
             <div class="mdc-layout-grid__cell--span-12">
                 <ul class="mdc-list">
+                    @if ($categories->isEmpty())
+                        <h2 class="mdc-typography--headline6 text-center mdc-layout-grid__cell--span-12">
+                            There are no categories available.
+                        </h2>
+                    @endif
+
                      @foreach ($categories as $category)
                         <a href="/categories/{{ $category->id }}" class="block-link">
                             <li class="mdc-list-item" tabindex="0">

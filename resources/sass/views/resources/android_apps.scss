@@ -25,6 +25,20 @@
 }
 
 .android_app_card {
+    &.android_app_not_approved {
+        background-color: #ccc;
+
+        .android_app_not_approved_message {
+            padding: 8px;
+            margin: 0;
+
+            border-radius: 8px;
+
+            color: #000;
+            background-color: $secondary;
+        }
+    }
+
     .mdc-card__media-content .card-content {
         background-color: rgba(0, 0, 0, 0.45);
 
