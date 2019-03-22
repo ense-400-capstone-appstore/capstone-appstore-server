@@ -8,6 +8,7 @@ $factory->define(AndroidApp::class, function (Faker $faker) {
         'name' => $faker->company,
         'version' => '1.0.0',
         'description' => $faker->text,
+        'approved' => true,
         'price' => 0.00,
     ];
 });
