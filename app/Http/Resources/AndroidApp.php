@@ -21,6 +21,8 @@ class AndroidApp extends JsonResource
             'description' => $this->description,
             'price' => $this->price,
             'package_name' => $this->package_name,
+            'private' => !!$this->private,
+            'approved' => !!$this->approved,
             'creator_id' => $this->creator_id,
             'pivot' => $this->when(
                 isset($this->pivot),

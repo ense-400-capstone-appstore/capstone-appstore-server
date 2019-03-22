@@ -39,6 +39,12 @@
 
     <div class="mdc-layout-grid page-content-item">
         <div class="mdc-layout-grid__inner">
+            @if ($androidApps->isEmpty())
+                <h2 class="mdc-typography--headline6 text-center mdc-layout-grid__cell--span-12">
+                    There are no apps available.
+                </h2>
+            @endif
+
             @foreach ($androidApps as $androidApp)
                 @component('resources.android_apps.partials.card', [
                     'androidApp' => $androidApp

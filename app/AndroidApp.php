@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Collection;
 use Image;
 use App\User;
+use App\Scopes\ApprovedScope;
 
 class AndroidApp extends Model
 {
@@ -23,6 +25,17 @@ class AndroidApp extends Model
         'package_name',
         'creator_id'
     ];
+
+    /**
+     * The booting method of the model
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new ApprovedScope);
+    }
 
     /**
      * Get the user that created this AndroidApp
