@@ -26,7 +26,7 @@ class AndroidAppObserver
             $creator = User::where(
                 'role_id',
                 Role::where('name', 'admin')->first()->id
-            );
+            )->first();
         }
 
         $androidApp->creator()->associate($creator);
