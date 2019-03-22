@@ -25,7 +25,7 @@ class AndroidAppObserver
         } else {
             $creator = User::where(
                 'role_id',
-                Role::where('name', 'admin')->first()
+                Role::where('name', 'admin')->first()->id
             );
         }
 
