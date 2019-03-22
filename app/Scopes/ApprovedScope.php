@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Auth;
-use TCG\Voyager\Models\Role;
 
 class ApprovedScope implements Scope
 {
