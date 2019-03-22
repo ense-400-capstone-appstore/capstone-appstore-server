@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\AndroidApp;
 use App\User;
 use Auth;
+use TCG\Voyager\Models\Role;
 
 class AndroidAppObserver
 {
