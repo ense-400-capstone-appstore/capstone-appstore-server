@@ -192,6 +192,30 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'order' => 11,
         ])->save();
 
+        $dataRow = $this->dataRow($dataType, 'android_app_belongstomany_group_relationship');
+        $dataRow->fill([
+            'type'         => 'relationship',
+            'display_name' => 'Groups',
+            'required'     => 0,
+            'browse'       => 0,
+            'read'         => 1,
+            'edit'         => 1,
+            'add'          => 1,
+            'delete'       => 0,
+            'details'      => [
+                'model'       => 'App\\Group',
+                'table'       => 'groups',
+                'type'        => 'belongsToMany',
+                'column'      => 'id',
+                'key'         => 'id',
+                'label'       => 'name',
+                'pivot_table' => 'group_android_app',
+                'pivot'       => '1',
+                'taggable'    => '0',
+            ],
+            'order'        => 12,
+        ])->save();
+
         $dataRow = $this->dataRow($dataType, 'avatar');
         $dataRow->fill([
             'type' => 'image',
@@ -203,7 +227,7 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 0,
             'delete' => 1,
             'details' => '',
-            'order' => 12,
+            'order' => 13,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'created_at');
@@ -217,7 +241,7 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 0,
             'delete' => 0,
             'details' => '',
-            'order' => 13,
+            'order' => 14,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'updated_at');
@@ -231,7 +255,7 @@ class AndroidAppsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 0,
             'delete' => 0,
             'details' => '',
-            'order' => 14,
+            'order' => 15,
         ])->save();
     }
 }

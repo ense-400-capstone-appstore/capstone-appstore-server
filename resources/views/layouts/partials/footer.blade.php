@@ -1,5 +1,5 @@
 <footer id="app-footer">
-    <div class="mdc-layout-grid page-content-item">
+    <div class="mdc-layout-grid">
         <div class="app-footer-links mdc-layout-grid__inner">
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3 mdc-layout-grid__cell--span-12-phone">
                 <h4 class="app-footer-title">Quick Links</h4>

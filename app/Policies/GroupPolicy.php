@@ -24,6 +24,17 @@ class GroupPolicy extends BasePolicy
     }
 
     /**
+     * Determine whether the user can view all groups
+     *
+     * @param User $user
+     * @return void
+     */
+    public function index(User $user)
+    {
+        return false;
+    }
+
+    /**
      * Determine whether the user can view the group.
      *
      * @param  \App\User  $user

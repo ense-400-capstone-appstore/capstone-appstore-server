@@ -120,7 +120,10 @@
                             @endif
 
                             @if (Auth::user() && Auth::user()->hasRole('admin'))
-                                <a href="{{ $androidApp->id }}/file" class="mdc-button mdc-card__action mdc-card__action--button">
+                                <a
+                                    href="{{ $androidApp->id }}/file"
+                                    class="mdc-button mdc-card__action mdc-card__action--button"
+                                    data-tippy="Only available to admins">
                                     Download File
                                 </a>
                             @endif

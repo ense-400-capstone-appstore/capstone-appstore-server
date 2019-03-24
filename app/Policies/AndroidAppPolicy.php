@@ -44,7 +44,7 @@ class AndroidAppPolicy extends BasePolicy
      */
     public function view(User $user, AndroidApp $androidApp)
     {
-        return true;
+        return !$androidApp->private;
     }
 
     /**
@@ -165,5 +165,17 @@ class AndroidAppPolicy extends BasePolicy
         }
 
         return false;
+    }
+
+    /**
+     * Determine whether the user can toggle ownership of an AndroidApp
+     *
+     * @param User $user
+     * @param AndroidApp $androidApp
+     * @return void
+     */
+    public function toggleOwn(User $user, AndroidApp $androidApp)
+    {
+        return !$androidApp->price;
     }
 }

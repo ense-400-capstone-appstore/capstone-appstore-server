@@ -78,6 +78,54 @@ class GroupsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'order' => 4,
         ])->save();
 
+        $dataRow = $this->dataRow($dataType, 'group_belongstomany_user_relationship');
+        $dataRow->fill([
+            'type'         => 'relationship',
+            'display_name' => 'Users',
+            'required'     => 0,
+            'browse'       => 1,
+            'read'         => 1,
+            'edit'         => 1,
+            'add'          => 1,
+            'delete'       => 0,
+            'details'      => [
+                'model'       => 'App\\User',
+                'table'       => 'users',
+                'type'        => 'belongsToMany',
+                'column'      => 'id',
+                'key'         => 'id',
+                'label'       => 'name',
+                'pivot_table' => 'group_user',
+                'pivot'       => '1',
+                'taggable'    => '0',
+            ],
+            'order'        => 5,
+        ])->save();
+
+        $dataRow = $this->dataRow($dataType, 'group_belongstomany_android_app_relationship');
+        $dataRow->fill([
+            'type'         => 'relationship',
+            'display_name' => 'Android Apps',
+            'required'     => 0,
+            'browse'       => 1,
+            'read'         => 1,
+            'edit'         => 1,
+            'add'          => 1,
+            'delete'       => 0,
+            'details'      => [
+                'model'       => 'App\\AndroidApp',
+                'table'       => 'android_apps',
+                'type'        => 'belongsToMany',
+                'column'      => 'id',
+                'key'         => 'id',
+                'label'       => 'name',
+                'pivot_table' => 'group_android_app',
+                'pivot'       => '1',
+                'taggable'    => '0',
+            ],
+            'order'        => 6,
+        ])->save();
+
         $dataRow = $this->dataRow($dataType, 'created_at');
         $dataRow->fill([
             'type' => 'timestamp',
@@ -89,7 +137,7 @@ class GroupsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 0,
             'delete' => 0,
             'details' => '',
-            'order' => 5,
+            'order' => 7,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'updated_at');
@@ -103,7 +151,7 @@ class GroupsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 0,
             'delete' => 0,
             'details' => '',
-            'order' => 6,
+            'order' => 8,
         ])->save();
     }
 }

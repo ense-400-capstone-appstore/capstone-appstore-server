@@ -20,7 +20,7 @@ class User extends VoyagerUser
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role_id'
     ];
 
     /**
@@ -50,6 +50,26 @@ class User extends VoyagerUser
     public function createdAndroidApps()
     {
         return $this->hasMany('App\AndroidApp', 'creator_id');
+    }
+
+    /**
+     * Get the groups that this user belongs to
+     *
+     * @return void
+     */
+    public function groups()
+    {
+        return $this->belongsToMany('App\Group', 'group_user');
+    }
+
+    /**
+     * Get the groups that this user created
+     *
+     * @return void
+     */
+    public function createdGroups()
+    {
+        return $this->hasMany('App\Group', 'owner_id');
     }
 
     /**

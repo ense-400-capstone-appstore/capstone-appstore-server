@@ -100,7 +100,7 @@ class UsersDataRowsTableSeeder extends BaseDataRowsTableSeeder
         $dataRow = $this->dataRow($dataType, 'user_belongsto_role_relationship');
         $dataRow->fill([
             'type' => 'relationship',
-            'display_name' => __('voyager::seeders.data_rows.role'),
+            'display_name' => 'Role',
             'required' => 1,
             'browse' => 1,
             'read' => 1,
@@ -117,7 +117,7 @@ class UsersDataRowsTableSeeder extends BaseDataRowsTableSeeder
                 'pivot_table' => 'roles',
                 'pivot' => 0,
             ],
-            'order' => 10,
+            'order' => 7,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'user_belongstomany_role_relationship');
@@ -127,11 +127,60 @@ class UsersDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'required' => 0,
             'browse' => 0,
             'read' => 0,
-            'edit' => 1,
-            'add' => 1,
-            'delete' => 1,
+            'edit' => 0,
+            'add' => 0,
+            'delete' => 0,
             'details' => '',
-            'order' => 11,
+            'order' => 8,
+        ])->save();
+
+        $dataRow = $this->dataRow($dataType, 'user_belongstomany_group_relationship');
+        $dataRow->fill([
+            'type'         => 'relationship',
+            'display_name' => 'Groups',
+            'required'     => 0,
+            'browse'       => 0,
+            'read'         => 1,
+            'edit'         => 1,
+            'add'          => 1,
+            'delete'       => 0,
+            'details'      => [
+                'model'       => 'App\\Group',
+                'table'       => 'groups',
+                'type'        => 'belongsToMany',
+                'column'      => 'id',
+                'key'         => 'id',
+                'label'       => 'name',
+                'pivot_table' => 'group_user',
+                'pivot'       => '1',
+                'taggable'    => '0',
+            ],
+            'order'        => 9,
+        ])->save();
+
+
+        $dataRow = $this->dataRow($dataType, 'user_belongstomany_android_app_relationship');
+        $dataRow->fill([
+            'type'         => 'relationship',
+            'display_name' => 'Android Apps',
+            'required'     => 0,
+            'browse'       => 0,
+            'read'         => 1,
+            'edit'         => 1,
+            'add'          => 1,
+            'delete'       => 0,
+            'details'      => [
+                'model'       => 'App\\AndroidApp',
+                'table'       => 'android_apps',
+                'type'        => 'belongsToMany',
+                'column'      => 'id',
+                'key'         => 'id',
+                'label'       => 'name',
+                'pivot_table' => 'user_android_app',
+                'pivot'       => '1',
+                'taggable'    => '0',
+            ],
+            'order'        => 10,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'locale');
@@ -139,13 +188,13 @@ class UsersDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'type' => 'text',
             'display_name' => 'Locale',
             'required' => 1,
-            'browse' => 1,
-            'read' => 1,
-            'edit' => 1,
+            'browse' => 0,
+            'read' => 0,
+            'edit' => 0,
             'add' => 1,
             'delete' => 0,
             'details' => '',
-            'order' => 12,
+            'order' => 11,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'settings');
@@ -159,13 +208,13 @@ class UsersDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 0,
             'delete' => 0,
             'details' => '',
-            'order' => 13,
+            'order' => 12,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'role_id');
         $dataRow->fill([
             'type' => 'text',
-            'display_name' => __('voyager::seeders.data_rows.role'),
+            'display_name' => 'Role',
             'required' => 1,
             'browse' => 1,
             'read' => 1,
@@ -173,7 +222,7 @@ class UsersDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 1,
             'delete' => 1,
             'details' => '',
-            'order' => 7,
+            'order' => 13,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'created_at');
@@ -187,7 +236,7 @@ class UsersDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 0,
             'delete' => 0,
             'details' => '',
-            'order' => 8,
+            'order' => 14,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'updated_at');
@@ -201,7 +250,7 @@ class UsersDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 0,
             'delete' => 0,
             'details' => '',
-            'order' => 9,
+            'order' => 15,
         ])->save();
     }
 }

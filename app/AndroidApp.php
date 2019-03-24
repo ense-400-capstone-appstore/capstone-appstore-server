@@ -68,6 +68,16 @@ class AndroidApp extends Model
     }
 
     /**
+     * Return the groups that this AndroidApp belongs to
+     *
+     * @return void
+     */
+    public function groups()
+    {
+        return $this->belongsToMany('App\Group', 'group_android_app');
+    }
+
+    /**
      * Set the avatar for this user
      *
      * @var Illuminate\Http\UploadedFile $avatar
