@@ -58,7 +58,8 @@ Route::namespace('ApiControllers')->name('api.')->group(function () {
         Route::apiResources([
             'android_apps' => 'AndroidAppController',
             'categories' => 'CategoryController',
-            'users' => 'UserController'
+            'users' => 'UserController',
+            'groups' => 'GroupController'
         ]);
     });
 });

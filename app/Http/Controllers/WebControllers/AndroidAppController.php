@@ -52,7 +52,9 @@ class AndroidAppController extends Controller
             'name' => 'required|string',
             'version' => 'required|string',
             'description' => 'required|string',
-            'price' => 'required|numeric'
+            'price' => 'required|numeric',
+            'categories' => 'array',
+            'categories.*' => 'numeric'
         ]);
 
         $androidApp = AndroidApp::create($request->only([
@@ -122,7 +124,8 @@ class AndroidAppController extends Controller
             'version' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric',
-            'categories' => 'array'
+            'categories' => 'array',
+            'categories.*' => 'numeric'
         ]);
 
         $androidApp->update($request->only([

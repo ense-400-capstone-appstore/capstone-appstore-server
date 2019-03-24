@@ -59,7 +59,7 @@
 
                     {{-- Description --}}
                     <div class="mdc-text-field mdc-text-field--textarea">
-                        <textarea name="description" class="mdc-text-field__input" rows="8" cols="40"></textarea>
+                        <textarea name="description" class="mdc-text-field__input" rows="8" cols="40" required></textarea>
                         <div class="mdc-notched-outline">
                             <div class="mdc-notched-outline__leading"></div>
                                 <div class="mdc-notched-outline__notch">
