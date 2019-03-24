@@ -5,6 +5,7 @@ namespace App\Http\Controllers\WebControllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Category;
 
 class AppController extends Controller
 {
@@ -15,7 +16,7 @@ class AppController extends Controller
      */
     public function home()
     {
-        if (Auth::user()) {
+        if (Auth::check()) {
             return view('dashboard');
         }
 
