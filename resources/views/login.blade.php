@@ -116,7 +116,7 @@
 
                     {{-- Full Name field --}}
                     @textfield([
-                        "name" => "full_name",
+                        "name" => "name",
                         "required" => "true"
                     ])
                         Full Name
@@ -147,6 +147,26 @@
                     ])
                         Confirm Password
                     @endtextfield
+
+                    {{-- Vendor checkbox --}}
+                    <div class="mdc-form-field">
+                        <div class="mdc-checkbox">
+                            <input type="checkbox"
+                                class="mdc-checkbox__native-control"
+                                name="is_vendor"
+                                id="is_vendor"/>
+                            <div class="mdc-checkbox__background">
+                            <svg class="mdc-checkbox__checkmark"
+                                viewBox="0 0 24 24">
+                                <path class="mdc-checkbox__checkmark-path"
+                                    fill="none"
+                                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                            </svg>
+                            <div class="mdc-checkbox__mixedmark"></div>
+                            </div>
+                        </div>
+                        <label for="is_vendor">I am a vendor and I want to host apps on Matryoshka.</label>
+                    </div>
 
                     {{-- Submit button --}}
                     <button class="mdc-button mdc-button--raised submit" type="submit" disabled>

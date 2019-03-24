@@ -9,6 +9,10 @@
     background-color: $secondary-text;
     color: $primary-text;
 
+    .mdc-layout-grid {
+        max-width: 1200px;
+    }
+
     .app-footer-title {
         font-weight: bolder;
         text-transform: uppercase;

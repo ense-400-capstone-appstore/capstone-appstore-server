@@ -21,6 +21,8 @@ class AndroidAppController extends Controller
      */
     public function index()
     {
+        $this->authorize('index', AndroidApp::class);
+
         $androidApps = AndroidApp::paginate(15);
 
         return view('resources/android_apps/index', ['androidApps' =>  $androidApps]);
@@ -92,6 +94,8 @@ class AndroidAppController extends Controller
      */
     public function show(AndroidApp $androidApp)
     {
+        $this->authorize('view', $androidApp);
+
         return view('resources/android_apps/show', ['androidApp' => $androidApp]);
     }
 
@@ -166,7 +170,7 @@ class AndroidAppController extends Controller
      */
     public function destroy(AndroidApp $androidApp)
     {
-        //
+        $this->authorize('destroy', $androidApp);
     }
 
     /**
@@ -198,6 +202,8 @@ class AndroidAppController extends Controller
      */
     public function toggleOwn(AndroidApp $androidApp, User $user)
     {
+        $this->authorize('toggleOwn', $androidApp);
+
         if ($user->androidApps()->find($androidApp->id) == null) {
             $androidApp->addToUser($user);
         } else {

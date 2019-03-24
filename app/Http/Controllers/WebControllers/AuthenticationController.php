@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
 use Validator;
 use App\User;
+use TCG\Voyager\Models\Role;
 
 class AuthenticationController extends Controller
 {
@@ -61,25 +62,27 @@ class AuthenticationController extends Controller
             return view('login', ['errors' => $recaptchaVerificationErrors]);
         }
 
-        $credentials = $request->only(
-            'full_name',
-            'email',
-            'password',
-            'password_confirmation'
-        );
-
-        $validator = Validator::make($credentials, [
-            'full_name' => 'required|string',
+        $request->validate([
+            'name' => 'required|string',
             'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed',
+            'password' => 'required|confirmed'
         ]);
 
-        if ($validator->fails()) {
-            return view('login', ['errors' => $validator->errors()]);
-        }
+        $credentials = $request->only(
+            'name',
+            'email',
+            'password',
+            'password_confirmation',
+            'is_vendor'
+        );
 
         $credentials['password'] = bcrypt($credentials['password']);
-        $credentials['name'] = $credentials['full_name'];
+
+        // Set user's role based on whether the is_vendor checkbox is selected
+        $credentials['role_id'] = $request->input('is_vendor')
+            ? Role::where('name', 'vendor')->first()->id
+            : Role::where('name', 'user')->first()->id;
+
         $user = User::create($credentials);
 
         Auth::login($user);
