@@ -28,6 +28,46 @@
             <hr class="mdc-list-divider">
 
             @if (Auth::check())
+                <h6 class="mdc-list-group__subheader">Android Apps</h6>
+
+                <a
+                    class="mdc-list-item"
+                    href="/users/{{ Auth::user()->id }}/android_apps"
+                >
+                    <i
+                        class="mdc-list-item__graphic material-icons"
+                        aria-hidden="true"
+                    >library_books</i>
+
+                    <span class="mdc-list-item__text">Owned Apps</span>
+                </a>
+
+                <a
+                    class="mdc-list-item"
+                    href="/users/{{ Auth::user()->id }}/created_android_apps"
+                >
+                    <i
+                        class="mdc-list-item__graphic material-icons"
+                        aria-hidden="true"
+                    >library_add</i>
+
+                    <span class="mdc-list-item__text">Created Apps</span>
+                </a>
+
+                <a
+                    class="mdc-list-item"
+                    href="/android_apps"
+                >
+                    <i
+                        class="mdc-list-item__graphic material-icons"
+                        aria-hidden="true"
+                    >more_horiz</i>
+
+                    <span class="mdc-list-item__text">More Apps</span>
+                </a>
+
+                <hr class="mdc-list-divider">
+
                 <h6 class="mdc-list-group__subheader">Categories</h6>
 
                 @foreach (App\Category::take(5)->get() as $category)
