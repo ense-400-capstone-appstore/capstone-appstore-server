@@ -28,6 +28,27 @@
         <h1 class="page-title mdc-typography--headline6">Discover Android Apps</h1>
 
         <div class="mdc-layout-grid__inner">
+            {{-- All Apps --}}
+            <a href="/android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
+                <div class="mdc-card card-button">
+                    <div class="mdc-card__primary-action" tabindex="0">
+                        <div class="mdc-card__media">
+                            <div class="mdc-card__media-content">
+                                <div class="card-content">
+                                    <h2 class="mdc-typography--headline6">All Apps</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="mdc-typography--body2">
+                                View all available apps
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
             {{-- Apps by Category --}}
             <a href="/categories" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
                 <div class="mdc-card card-button">
@@ -49,26 +70,6 @@
                 </div>
             </a>
 
-            {{-- All Apps --}}
-            <a href="/android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
-                <div class="mdc-card card-button">
-                    <div class="mdc-card__primary-action" tabindex="0">
-                        <div class="mdc-card__media">
-                            <div class="mdc-card__media-content">
-                                <div class="card-content">
-                                    <h2 class="mdc-typography--headline6">All Apps</h2>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-content">
-                            <p class="mdc-typography--body2">
-                                View all available apps
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </a>
         </div>
 
         <h1 class="page-title mdc-typography--headline6">Your Account</h1>

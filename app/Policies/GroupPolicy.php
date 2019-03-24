@@ -5,8 +5,9 @@ namespace App\Policies;
 use App\User;
 use App\Group;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use TCG\Voyager\Policies\BasePolicy;
 
-class GroupPolicy
+class GroupPolicy extends BasePolicy
 {
     use HandlesAuthorization;
 

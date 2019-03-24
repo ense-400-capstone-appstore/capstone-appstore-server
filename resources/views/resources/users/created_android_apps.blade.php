@@ -50,9 +50,9 @@
             @if ($androidApps->isEmpty())
                 <h2 class="mdc-typography--headline6 text-center mdc-layout-grid__cell--span-12">
                     @if ($user->id == Auth::user()->id)
-                        You do not own any apps.
+                        You did not create any apps.
                     @else
-                        This user does not own any apps.
+                        This user did not create any apps.
                     @endif
                 </h2>
             @endif
