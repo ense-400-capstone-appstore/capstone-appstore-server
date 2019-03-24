@@ -14,6 +14,18 @@ class Category extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'icon' => $this->icon,
+            'pivot' => $this->when(
+                isset($this->pivot),
+                function () {
+                    return $this->pivot;
+                }
+            ),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }

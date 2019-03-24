@@ -20,7 +20,7 @@
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet
             mdc-layout-grid__cell--span-2-phone"></div>
 
-            @if(Auth::user() && $androidApp->creator_id == Auth::user()->id)
+            @if(Auth::user() && ($androidApp->creator_id == Auth::user()->id || Auth::user()->isAdmin()))
                 <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1">
                     @linkbutton([
                         'id' => 'android-app-create',
@@ -51,7 +51,8 @@
                             @if ($androidApp->creator_id == Auth::user()->id)
                                 You created this app
                             @else
-                                By {{ $androidApp->creator->name ?? 'N/A' }}
+                                By <a href="/users/{{ $androidApp->creator->id }}">
+                                {{ $androidApp->creator->name ?? 'N/A' }}</a>
                             @endif
                         </h3>
 
@@ -79,6 +80,24 @@
                             <p class="mdc-typography--body2 text-center android_app_not_approved_message">
                                 Please wait for an administrator to approve this app before other users can view it
                             </p>
+                        @endif
+
+                        @if(!$androidApp->categories->isEmpty())
+                            <h4 class="mdc-typography--headline6">
+                                Categories
+                            </h4>
+
+                            <div class="mdc-chip-set">
+                                @foreach($androidApp->categories as $category)
+                                    <a class="block-link" href="/categories/{{ $category->id }}">
+                                        <div class="mdc-chip">
+                                            <div class="mdc-chip__text">
+                                                {{ $category->name }}
+                                            </div>
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </div>
                         @endif
                     </div>
 

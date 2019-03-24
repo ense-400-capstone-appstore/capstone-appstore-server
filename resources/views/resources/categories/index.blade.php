@@ -36,7 +36,7 @@
                      @foreach ($categories as $category)
                         <a href="/categories/{{ $category->id }}" class="block-link">
                             <li class="mdc-list-item" tabindex="0">
-                                <span class="mdc-list-item__graphic material-icons" aria-hidden="true">folder</span>
+                                <span class="mdc-list-item__graphic material-icons" aria-hidden="true">{{ $category->icon ?? 'folder' }}</span>
 
                                 <span class="mdc-list-item__text">{{ $category->name }}</span>
                             </li>
