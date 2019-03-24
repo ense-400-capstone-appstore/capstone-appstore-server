@@ -121,5 +121,58 @@
             </div>
         </div>
     </div>
+
+    {{-- Features section --}}
+    <div id="home-features" class="home-section">
+        <div class="page-content-item">
+            <div class="left">
+                <img src={{asset('/images/about/feature1.png')}} alt="Feature 1" />
+            </div>
+
+            <div class="right">
+                <div>
+                    <h2>A home for your apps</h2>
+
+                    Manage installed apps and discover new apps through our sleek interface. Vendors can also use the same dashboard to create new apps and groups to share with their users.
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content-item">
+            <div class="left">
+                <div>
+                    <h2>Power for Admins</h2>
+
+                    Administrators gain access to a separate dashboard made specifically for viewing the big picture. The dashboard is optimized for operations ranging from approving new apps to changing system-wide settings.
+                </div>
+            </div>
+
+            <div class="right">
+                <img src={{asset('/images/about/feature2.png')}} alt="Feature 2" />
+            </div>
+        </div>
+
+        <div class="page-content-item">
+            <div class="left">
+                <img src={{asset('/images/about/feature3.png')}} alt="Feature 3" />
+            </div>
+
+            <div class="right">
+                <div>
+                    <h2>Handheld Convenience</h2>
+
+                    Any app you have access to can be downloaded and updated through our very own mobile app. After signing up, you can manage all of your apps directly from your phone.
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content-item">
+            <div>
+                <h2>Open Source!</h2>
+
+                We believe that open-source software makes the world better for everyone. Matryoshka is available to use both on our hardware or, if you choose, on your own hardware on-premises. Simply visit our GitHub and download the latest version of the application, deploy it to your hardware, and your own private appstore is ready to go!
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

@@ -23,6 +23,7 @@ Route::namespace('WebControllers')->group(function () {
     Route::resource('users', 'UserController')->only('show', 'update');
     Route::resource('android_apps', 'AndroidAppController');
     Route::resource('categories', 'CategoryController')->only('index', 'show');
+    Route::resource('groups', 'GroupController');
 
     /**
      * AndroidApps
@@ -40,6 +41,8 @@ Route::namespace('WebControllers')->group(function () {
      */
     Route::get('users/{user}/android_apps', 'UserController@androidApps');
     Route::get('users/{user}/created_android_apps', 'UserController@createdAndroidApps');
+    Route::get('users/{user}/groups', 'UserController@groups');
+    Route::get('users/{user}/created_groups', 'UserController@createdGroups');
 });
 
 

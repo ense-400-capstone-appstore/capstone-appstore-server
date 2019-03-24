@@ -1,6 +1,25 @@
 @import '../variables';
 
 #page-home {
+    img {
+        height: auto;
+        max-width: 100%;
+    }
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+    }
+
     .home-section {
         min-height: 50vh;
         width: 100%;
@@ -72,7 +91,6 @@
         background-color: $secondary;
 
         #home-what-is-this-content {
-            flex-shrink: 0;
             flex: 1;
 
             display: flex;
@@ -80,29 +98,34 @@
             & > * {
                 flex: 1 1 50%;
             }
-
-            .left {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                img {
-                    height: auto;
-                    max-width: 100%;
-                }
-            }
-
-            .right {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                text-align: center;
-            }
         }
 
         .mdc-button {
             margin: 5px;
+        }
+    }
+
+    #home-features {
+        .page-content-item {
+            margin-bottom: 50px;
+
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+
+            display: flex;
+            flex-wrap: wrap;
+
+            & > * {
+                width: 100%;
+                flex: 1 1 50%;
+
+                @media all and (max-width: mdc-layout-grid-breakpoint-max(phone)) {
+                    flex: 1 0 auto;
+                }
+
+                padding: 16px;
+            }
         }
     }
 }
