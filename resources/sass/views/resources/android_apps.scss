@@ -22,6 +22,15 @@
             width: 100%;
         }
     }
+
+    .categories-list {
+        height: 200px;
+        overflow: auto;
+
+        .mdc-form-field {
+            width: 100%;
+        }
+    }
 }
 
 .android_app_card {

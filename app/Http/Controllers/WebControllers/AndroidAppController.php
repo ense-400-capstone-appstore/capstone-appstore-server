@@ -72,6 +72,11 @@ class AndroidAppController extends Controller
             $androidApp->setFile(request()->file);
         }
 
+        // Attach categories
+        foreach ($request->input('categories') ?? [] as $categoryId) {
+            $androidApp->categories()->attach($categoryId);
+        }
+
         return redirect()->action('WebControllers\AndroidAppController@show', [
             'androidApp' => $androidApp
         ]);
@@ -116,7 +121,8 @@ class AndroidAppController extends Controller
             'name' => 'required|string',
             'version' => 'required|string',
             'description' => 'required|string',
-            'price' => 'required|numeric'
+            'price' => 'required|numeric',
+            'categories' => 'array'
         ]);
 
         $androidApp->update($request->only([
@@ -126,6 +132,7 @@ class AndroidAppController extends Controller
             'price'
         ]));
 
+
         if (request()->avatar) {
             $request->validate(['avatar' => 'image']);
             $androidApp->setAvatar(request()->avatar);
@@ -134,6 +141,13 @@ class AndroidAppController extends Controller
         if (request()->file) {
             $request->validate(['file' => 'file']);
             $androidApp->setFile(request()->file);
+        }
+
+        // Detach all categories and only attach selected ones
+        $androidApp->categories()->detach();
+
+        foreach ($request->input('categories') ?? [] as $categoryId) {
+            $androidApp->categories()->attach($categoryId);
         }
 
         return redirect()->action('WebControllers\AndroidAppController@show', [
