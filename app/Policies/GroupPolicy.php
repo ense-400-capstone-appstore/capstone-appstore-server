@@ -12,6 +12,18 @@ class GroupPolicy extends BasePolicy
     use HandlesAuthorization;
 
     /**
+     * Determine which users are allowed full access to groups.
+     *
+     * @param  \App\User  $user
+     * @param  mixed  $ability
+     * @return mixed
+     */
+    public function before($user, $ability)
+    {
+        if ($user->isAdmin()) return true;
+    }
+
+    /**
      * Determine whether the user can view the group.
      *
      * @param  \App\User  $user

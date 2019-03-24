@@ -41,9 +41,22 @@ class DataTypesTableSeeder extends Seeder
             'name' => 'categories',
             'display_name_singular' => 'Category',
             'display_name_plural' => 'Categories',
-            'icon' => 'voyager-folder',
+            'icon' => 'voyager-categories',
             'model_name' => 'App\\Category',
             'policy_name' => 'App\\Policies\\CategoryPolicy',
+            'controller' => '',
+            'generate_permissions' => 1,
+            'description' => '',
+        ])->save();
+
+        $dataType = $this->dataType('slug', 'groups');
+        $dataType->fill([
+            'name' => 'groups',
+            'display_name_singular' => 'Group',
+            'display_name_plural' => 'Groups',
+            'icon' => 'voyager-people',
+            'model_name' => 'App\\Group',
+            'policy_name' => 'App\\Policies\\GroupPolicy',
             'controller' => '',
             'generate_permissions' => 1,
             'description' => '',

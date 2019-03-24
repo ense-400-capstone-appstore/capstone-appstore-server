@@ -1,4 +1,10 @@
-img.user-menu-icon {
+.user-menu-icon {
     border-radius: 50%;
     background-color: white;
+}
+
+.mdc-list-item {
+    .user-menu-icon {
+        margin-right: 8px;
+    }
 }

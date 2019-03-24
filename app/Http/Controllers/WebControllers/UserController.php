@@ -76,35 +76,31 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $fields = $request->only(
-            'full_name',
-            'email',
-            'password',
-            'password_confirmation'
-        );
+        $this->authorize('update', $user);
 
-        $validator = Validator::make($fields, [
-            'full_name' => 'string',
+        $request->validate([
+            'name' => 'string',
             'email' => 'email',
             'password' => 'confirmed',
         ]);
 
-        if ($validator->fails()) {
-            return view('resources/users/show', [
-                'user' => $user,
-                'errors' => $validator->errors()
-            ]);
-        }
-
-        if (isset($fields['full_name'])) {
-            $fields['name'] = $fields['full_name'];
-        }
+        $fields = $request->only(
+            'name',
+            'email',
+            'password',
+            'password_confirmation'
+        );
 
         if (isset($fields['password'])) {
             $fields['password'] = bcrypt($fields['password']);
         }
 
         $user->update($fields);
+
+        if (request()->avatar) {
+            $request->validate(['avatar' => 'image']);
+            $user->setAvatar(request()->avatar);
+        }
 
         return view('resources/users/show', ['user' => $user]);
     }
