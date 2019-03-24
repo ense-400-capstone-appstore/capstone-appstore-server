@@ -20,7 +20,13 @@
     </div>
 
     <div class="mdc-layout-grid page-content-item">
-        <h1 class="page-title mdc-typography--headline4 text-center">Category: {{ $category->name }}</h1>
+        <div class="text-center">
+            <i class="category-icon material-icons rounded-icon">{{ $category->icon ?? 'folder' }}</i>
+        </div>
+
+        <h1 class="page-title mdc-typography--headline4 text-center">
+            Category: {{ $category->name }}
+        </h1>
     </div>
 
     <div class="mdc-layout-grid page-content-item">

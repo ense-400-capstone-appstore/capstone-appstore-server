@@ -46,6 +46,19 @@
                 }
             }
         }
+
+        .mdc-card {
+            .mdc-card__media-content {
+                position: inherit;
+
+                color: $primary-text;
+                background-color: $primary;
+            }
+
+            .card-content {
+                text-align: left;
+            }
+        }
     }
 
     &#page-users-edit {

@@ -1,6 +1,25 @@
 @import '../../variables';
 
 .page-content-categories {
+    &#page-categories-index.page-content {
+        .mdc-list {
+            max-width: 600px;
+            margin: 0 auto;
+
+            .mdc-list-item__graphic {
+                color: $primary;
+            }
+        }
+    }
+
     &#page-categories-show.page-content {
+        .category-icon {
+            padding: 16px;
+
+            font-size: 46px;
+
+            color: $primary-text;
+            background-color: $primary;
+        }
     }
 }

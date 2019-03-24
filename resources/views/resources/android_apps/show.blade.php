@@ -91,6 +91,7 @@
                                 @foreach($androidApp->categories as $category)
                                     <a class="block-link" href="/categories/{{ $category->id }}">
                                         <div class="mdc-chip">
+                                            <i class="material-icons mdc-chip__icon mdc-chip__icon--leading">{{ $category->icon ?? 'folder' }}</i>
                                             <div class="mdc-chip__text">
                                                 {{ $category->name }}
                                             </div>
