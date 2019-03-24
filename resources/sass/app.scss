@@ -63,6 +63,19 @@
     box-sizing: border-box;
 }
 
+a {
+    color: $primary;
+    text-decoration: none;
+
+    &:hover {
+        color: lighten($primary, 5%);
+    }
+
+    &:active {
+        color: lighten($primary, 10%);
+    }
+}
+
 // Center elements in flex containers
 .center-justified {
     justify-content: center;

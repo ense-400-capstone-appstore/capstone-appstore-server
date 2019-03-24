@@ -41,6 +41,20 @@ class CategoriesDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'order' => 2,
         ])->save();
 
+        $dataRow = $this->dataRow($dataType, 'icon');
+        $dataRow->fill([
+            'type' => 'text',
+            'display_name' => 'Icon (one from https://material.io/tools/icons/)',
+            'required' => 1,
+            'browse' => 1,
+            'read' => 1,
+            'edit' => 1,
+            'add' => 1,
+            'delete' => 1,
+            'details' => '',
+            'order' => 2,
+        ])->save();
+
         $dataRow = $this->dataRow($dataType, 'created_at');
         $dataRow->fill([
             'type' => 'timestamp',
