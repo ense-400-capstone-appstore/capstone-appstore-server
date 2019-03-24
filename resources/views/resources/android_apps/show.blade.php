@@ -76,12 +76,6 @@
                             {{ $androidApp->description }}
                         </p>
 
-                        @if(!$androidApp->approved)
-                            <p class="mdc-typography--body2 text-center android_app_not_approved_message">
-                                Please wait for an administrator to approve this app before other users can view it
-                            </p>
-                        @endif
-
                         @if(!$androidApp->categories->isEmpty())
                             <h4 class="mdc-typography--headline6">
                                 Categories
@@ -99,6 +93,12 @@
                                     </a>
                                 @endforeach
                             </div>
+                        @endif
+
+                        @if(!$androidApp->approved)
+                            <p class="mdc-typography--body2 text-center android_app_not_approved_message">
+                                Please wait for an administrator to approve this app before other users can view it
+                            </p>
                         @endif
                     </div>
 

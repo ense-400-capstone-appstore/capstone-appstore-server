@@ -95,6 +95,37 @@
                     </label>
                     <input type="file" name="file">
 
+                    {{-- Categories --}}
+                    @if (App\Category::count())
+                        <label for="categories[]" class="mdc-typography--subtitle1">
+                            Categories
+                        </label>
+
+                        <div class="categories-list">
+                            @foreach (App\Category::all() as $category)
+                                <div class="mdc-form-field">
+                                    <div class="mdc-checkbox">
+                                        <input type="checkbox"
+                                            class="mdc-checkbox__native-control"
+                                            id="category-{{ $category->id }}"
+                                            name="categories[]"
+                                            value="{{ $category->id }}"/>
+                                        <div class="mdc-checkbox__background">
+                                            <svg class="mdc-checkbox__checkmark"
+                                                viewBox="0 0 24 24">
+                                            <path class="mdc-checkbox__checkmark-path"
+                                                    fill="none"
+                                                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                                            </svg>
+                                            <div class="mdc-checkbox__mixedmark"></div>
+                                        </div>
+                                    </div>
+                                    <label for="category-{{ $category->id }}">{{ $category->name }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+
                     {{-- Submit button --}}
                     <button class="mdc-button mdc-button--raised submit" type="submit" disabled>
                         <span class="mdc-button__label">Submit</span>
