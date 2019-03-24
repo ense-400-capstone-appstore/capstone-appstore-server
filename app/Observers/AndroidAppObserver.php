@@ -20,7 +20,7 @@ class AndroidAppObserver
         $creator = null;
 
         // Set the app's creator to the current user or first admin on creation
-        if (Auth::user()) {
+        if (Auth::check()) {
             $creator = Auth::user();
         } else {
             $creator = User::where(

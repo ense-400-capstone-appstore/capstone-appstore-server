@@ -104,7 +104,7 @@
 
                     @if($androidApp->approved)
                         <div class="mdc-card__actions">
-                            @if (Auth::user())
+                            @if (Auth::check())
                                 <form method="POST" action="{{ $androidApp->id }}/toggle_own/{{ Auth::user()->id }}">
                                     @csrf
                                     <button class="mdc-button mdc-button--raised submit" type="submit">

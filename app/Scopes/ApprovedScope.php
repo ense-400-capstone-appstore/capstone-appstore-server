@@ -18,7 +18,7 @@ class ApprovedScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        if (Auth::user()) {
+        if (Auth::check()) {
             if (Auth::user()->isAdmin()) return;
 
             $builder
