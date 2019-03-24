@@ -12,18 +12,18 @@
             <div class="mdc-dialog__content" id="my-dialog-content">
                 <h3>Change Profile Information</h3>
 
-                <form method="POST" action="/users/{{ $user->id }}">
+                <form method="POST" action="/users/{{ $user->id }}" enctype="multipart/form-data">
                     <div class="mdc-layout-grid">
                         <div class="mdc-layout-grid__inner">
-                            @method('PUT')
+                            @method('patch')
                             @csrf
 
                             <input type="hidden" name="g-recaptcha-token" class="g-recaptcha-token">
 
                             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
-                                {{-- Full Name field --}}
+                                {{-- Name field --}}
                                 @textfield([
-                                    "name" => "full_name",
+                                    "name" => "name",
                                     "value" => $user->name
                                 ])
                                     Full Name
@@ -38,6 +38,13 @@
                                 ])
                                     Email
                                 @endtextfield
+                            </div>
+
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                                <label for="avatar" class="mdc-typography--subtitle1">
+                                    Avatar
+                                </label>
+                                <input type="file" name="avatar">
                             </div>
                         </div>
 
@@ -57,7 +64,7 @@
                 <form method="POST" action="/users/{{ $user->id }}">
                     <div class="mdc-layout-grid">
                         <div class="mdc-layout-grid__inner">
-                            @method('PUT')
+                            @method('patch')
                             @csrf
                             <input type="hidden" name="g-recaptcha-token" class="g-recaptcha-token">
 

@@ -15,6 +15,7 @@ class DataRowsTableSeeder extends Seeder
             // Seeders in DataRowsSeeders directory
             AndroidAppsDataRowsTableSeeder::class,
             CategoriesDataRowsTableSeeder::class,
+            GroupsDataRowsTableSeeder::class,
             MenusDataRowsTableSeeder::class,
             RolesDataRowsTableSeeder::class,
             UsersDataRowsTableSeeder::class,

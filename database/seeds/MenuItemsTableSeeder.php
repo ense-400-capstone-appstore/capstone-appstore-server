@@ -67,10 +67,24 @@ class MenuItemsTableSeeder extends Seeder
         ]);
         $menuItem->fill([
             'target' => '_self',
-            'icon_class' => 'voyager-folder',
+            'icon_class' => 'voyager-categories',
             'color' => null,
             'parent_id' => null,
             'order' => 4,
+        ])->save();
+
+        $menuItem = MenuItem::firstOrNew([
+            'menu_id' => $menu->id,
+            'title' => 'Groups',
+            'url' => '',
+            'route' => 'voyager.groups.index',
+        ]);
+        $menuItem->fill([
+            'target' => '_self',
+            'icon_class' => 'voyager-people',
+            'color' => null,
+            'parent_id' => null,
+            'order' => 5,
         ])->save();
 
         $menuItem = MenuItem::firstOrNew([

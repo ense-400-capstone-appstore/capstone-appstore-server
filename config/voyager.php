@@ -159,7 +159,9 @@ return [
 
         'widgets' => [
             'App\\Admin\\Widgets\\UserDimmer',
-            'App\\Admin\\Widgets\\AndroidAppDimmer'
+            'App\\Admin\\Widgets\\AndroidAppDimmer',
+            'App\\Admin\\Widgets\\GroupDimmer',
+            'App\\Admin\\Widgets\\CategoryDimmer',
         ],
 
     ],
