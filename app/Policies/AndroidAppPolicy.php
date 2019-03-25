@@ -44,7 +44,12 @@ class AndroidAppPolicy extends BasePolicy
      */
     public function view(User $user, AndroidApp $androidApp)
     {
-        return !$androidApp->private;
+        // The creator can view their app
+        if ($androidApp->creator_id == $user->id) return true;
+
+        // Users can view private apps if they are accessible to them either
+        // through a group or by not being private
+        return $user->accessibleApps()->get()->pluck('id')->contains($androidApp->id);
     }
 
     /**

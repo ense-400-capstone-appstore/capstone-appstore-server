@@ -23,7 +23,9 @@ class AndroidApp extends Model
         'price',
         'avatar',
         'package_name',
-        'creator_id'
+        'creator_id',
+        'private',
+        'approved',
     ];
 
     /**
@@ -74,7 +76,9 @@ class AndroidApp extends Model
      */
     public function groups()
     {
-        return $this->belongsToMany('App\Group', 'group_android_app');
+        return $this
+            ->belongsToMany('App\Group', 'group_android_app')
+            ->using('App\Pivots\GroupAndroidApp');
     }
 
     /**

@@ -51,8 +51,22 @@
                             @if ($androidApp->creator_id == Auth::user()->id)
                                 You created this app
                             @else
-                                By <a href="/users/{{ $androidApp->creator->id }}">
-                                {{ $androidApp->creator->name ?? 'N/A' }}</a>
+                                <span>By </span>
+
+                                <a
+                                    class="block-link creator-link"
+                                    href="/users/{{ $androidApp->creator->id }}"
+                                >
+                                    <img
+                                        class="mdc-button__icon user-menu-icon"
+                                        src="/storage/{{ $androidApp->creator->avatar }}"
+                                        height="35px"
+                                        width="auto"
+                                        align="top"
+                                    />
+
+                                    {{ $androidApp->creator->name ?? 'N/A' }}
+                                </a>
                             @endif
                         </h3>
 

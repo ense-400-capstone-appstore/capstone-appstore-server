@@ -15,7 +15,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('index', Group::class);
     }
 
     /**
@@ -25,7 +25,9 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Group::class);
+
+        return view('resources/groups/create');
     }
 
     /**
@@ -36,7 +38,7 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', Group::class);
     }
 
     /**
@@ -47,7 +49,11 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        //
+        $this->authorize('view', $group);
+
+        return view('resources/groups/show', [
+            'group' => $group
+        ]);
     }
 
     /**
@@ -58,7 +64,7 @@ class GroupController extends Controller
      */
     public function edit(Group $group)
     {
-        //
+        $this->authorize('update', $group);
     }
 
     /**
@@ -70,7 +76,7 @@ class GroupController extends Controller
      */
     public function update(Request $request, Group $group)
     {
-        //
+        $this->authorize('update', $group);
     }
 
     /**
@@ -81,6 +87,6 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-        //
+        $this->authorize('delete', $group);
     }
 }

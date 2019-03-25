@@ -12,6 +12,11 @@
                 margin-right: 5px;
             }
         }
+
+        .creator-link {
+            display: inline-block;
+            color: $secondary;
+        }
     }
 
     &#page-android-apps-create.page-content {
