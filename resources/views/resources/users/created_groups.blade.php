@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', $user->name . "'s Created Apps")
+@section('title', $user->name . "'s Created Groups")
 
 @section('html')
-<div id="page-android-apps-index" class="page-content page-content-android-apps">
+<div id="page-groups-index" class="page-content page-content-groups">
 
     <div class="mdc-layout-grid page-content-item">
         {{-- Controls --}}
@@ -26,7 +26,7 @@
                     @linkbutton([
                         'id' => 'android-app-create',
                         'classes' => 'mdc-button mdc-button--outlined',
-                        'href' => '/android_apps/create'
+                        'href' => '/groups/create'
                     ])
                         Create New
                     @endlinkbutton
@@ -38,28 +38,28 @@
     <div class="mdc-layout-grid page-content-item">
         <h1 class="page-title mdc-typography--headline4 text-center">
             @if ($user->id == Auth::user()->id)
-                Your Created Apps
+                Your Created Groups
             @else
-                {{ $user->name }}'s Created Apps
+                {{ $user->name }}'s Created Groups
             @endif
         </h1>
     </div>
 
     <div class="mdc-layout-grid page-content-item">
         <div class="mdc-layout-grid__inner">
-            @if ($androidApps->isEmpty())
+            @if ($groups->isEmpty())
                 <h2 class="mdc-typography--headline6 text-center mdc-layout-grid__cell--span-12">
                     @if ($user->id == Auth::user()->id)
-                        You did not create any apps.
+                        You did not create any groups.
                     @else
-                        This user did not create any apps.
+                        This user did not create any groups.
                     @endif
                 </h2>
             @endif
 
-            @foreach ($androidApps as $androidApp)
-                @component('resources.android_apps.partials.card', [
-                    'androidApp' => $androidApp
+            @foreach ($groups as $group)
+                @component('resources.groups.partials.card', [
+                    'group' => $group
                 ])
                 @endcomponent
             @endforeach
@@ -67,6 +67,6 @@
     </div>
 </div>
 
-{{ $androidApps->links() }}
+{{ $groups->links() }}
 
 @endsection

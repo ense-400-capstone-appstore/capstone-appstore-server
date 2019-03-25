@@ -43,7 +43,11 @@ class GroupPolicy extends BasePolicy
      */
     public function view(User $user, Group $group)
     {
-        //
+        // The owner can view their group
+        if ($user->id === $group->owner_id) return true;
+
+        // Users who are members of the group can view the group
+        return $user->groups->pluck('id')->contains($group->id);
     }
 
     /**
@@ -54,7 +58,7 @@ class GroupPolicy extends BasePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->isAdminOrVendor();
     }
 
     /**
@@ -66,7 +70,7 @@ class GroupPolicy extends BasePolicy
      */
     public function update(User $user, Group $group)
     {
-        //
+        return $user->id === $group->owner_id;
     }
 
     /**
@@ -78,7 +82,7 @@ class GroupPolicy extends BasePolicy
      */
     public function delete(User $user, Group $group)
     {
-        //
+        return false;
     }
 
     /**
@@ -90,7 +94,7 @@ class GroupPolicy extends BasePolicy
      */
     public function restore(User $user, Group $group)
     {
-        //
+        return false;
     }
 
     /**
@@ -102,6 +106,6 @@ class GroupPolicy extends BasePolicy
      */
     public function forceDelete(User $user, Group $group)
     {
-        //
+        return false;
     }
 }

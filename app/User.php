@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use TCG\Voyager\Models\User as VoyagerUser;
 use Illuminate\Support\Facades\Storage;
 use Image;
+use App\AndroidApp;
+use Illuminate\Support\Facades\DB;
 
 class User extends VoyagerUser
 {
@@ -59,7 +61,9 @@ class User extends VoyagerUser
      */
     public function groups()
     {
-        return $this->belongsToMany('App\Group', 'group_user');
+        return $this
+            ->belongsToMany('App\Group', 'group_user')
+            ->using('App\Pivots\GroupUser');
     }
 
     /**
@@ -70,6 +74,33 @@ class User extends VoyagerUser
     public function createdGroups()
     {
         return $this->hasMany('App\Group', 'owner_id');
+    }
+
+    /**
+     * Get all AndroidApps that are visible to this user
+     * @return void
+     */
+    public function accessibleApps()
+    {
+        if ($this->isAdmin()) return DB::table('android_apps');
+
+        // Get all android apps
+        // JOIN w/ group_android_app and group_user pivot tables for group
+        // WHERE either user belongs to the group OR app is not private
+        return AndroidApp::leftJoin(
+            'group_android_app',
+            'android_apps.id',
+            '=',
+            'group_android_app.android_app_id'
+        )
+            ->leftJoin(
+                'group_user',
+                'group_android_app.group_id',
+                '=',
+                'group_user.group_id'
+            )
+            ->where('user_id', $this->id)
+            ->orWhere('private', false);
     }
 
     /**

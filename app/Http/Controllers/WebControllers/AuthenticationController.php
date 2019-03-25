@@ -72,8 +72,7 @@ class AuthenticationController extends Controller
             'name',
             'email',
             'password',
-            'password_confirmation',
-            'is_vendor'
+            'password_confirmation'
         );
 
         $credentials['password'] = bcrypt($credentials['password']);

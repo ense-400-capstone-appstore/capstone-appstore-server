@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Image;
 use App\Http\Resources\Category as CategoryResource;
+use Auth;
 
 class AndroidAppController extends Controller
 {
@@ -25,7 +26,9 @@ class AndroidAppController extends Controller
      */
     public function index()
     {
-        return AndroidAppResource::collection(AndroidApp::paginate());
+        return AndroidAppResource::collection(
+            Auth::user()->accessibleApps()->paginate(15)
+        );
     }
 
     /**

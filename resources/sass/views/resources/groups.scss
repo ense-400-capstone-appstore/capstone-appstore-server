@@ -1,0 +1,36 @@
+@import '../../variables';
+
+.page-content-groups {
+    &#page-groups-index.page-content {
+    }
+
+    .group-card {
+        color: $primary-text;
+        background-color: $primary;
+    }
+
+    &#page-groups-show.page-content {
+        .creator-link {
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .mdc-list-item {
+            padding: 0;
+        }
+
+        .user-link {
+            height: 100%;
+            width: 100%;
+
+            padding: 0 16px;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .mdc-typography--headline4 {
+            margin: 0;
+        }
+    }
+}

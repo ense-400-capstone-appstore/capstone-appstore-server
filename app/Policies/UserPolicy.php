@@ -152,4 +152,29 @@ class UserPolicy extends VoyagerUserPolicy
     {
         return true;
     }
+
+    /**
+     * Determine whether the user can get a listing of a user's groups
+     *
+     * @param User $user
+     * @param User $model
+     * @return void
+     */
+    public function groups(User $user, User $model)
+    {
+        return $user->id == $model->id;
+    }
+
+
+    /**
+     * Determine whether the user can get a listing of a user's
+     * created groups
+     *
+     * @param User $user
+     * @return void
+     */
+    public function createdGroups(User $user, User $model)
+    {
+        return true;
+    }
 }

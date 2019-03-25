@@ -19,17 +19,6 @@
             {{-- Divider --}}
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-5-tablet
             mdc-layout-grid__cell--span-1-phone"></div>
-
-            @if(Auth::user() && !Auth::user()->hasRole('user'))
-                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
-                    @button([
-                        'id' => 'android-app-create',
-                        'classes' => 'mdc-button mdc-button--outlined'
-                    ])
-                        Create New
-                    @endbutton
-                </div>
-            @endif
         </div>
     </div>
 

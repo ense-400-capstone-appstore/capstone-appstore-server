@@ -132,6 +132,12 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Get a listing of this user's created AndroidApps
+     *
+     * @param User $user
+     * @return void
+     */
     public function createdAndroidApps(User $user)
     {
         $this->authorize('createdAndroidApps', $user);
@@ -139,6 +145,38 @@ class UserController extends Controller
         return view('resources/users/created_android_apps', [
             'user' => $user,
             'androidApps' => $user->createdAndroidApps()->paginate(15)
+        ]);
+    }
+
+    /**
+     * Get a listing of this user's groups
+     *
+     * @param User $user
+     * @return void
+     */
+    public function groups(User $user)
+    {
+        $this->authorize('groups', $user);
+
+        return view('resources/users/groups', [
+            'user' => $user,
+            'groups' => $user->groups()->paginate(15)
+        ]);
+    }
+
+    /**
+     * Get a listing of this user's created groups
+     *
+     * @param User $user
+     * @return void
+     */
+    public function createdGroups(User $user)
+    {
+        $this->authorize('createdGroups', $user);
+
+        return view('resources/users/created_groups', [
+            'user' => $user,
+            'groups' => $user->createdGroups()->paginate(15)
         ]);
     }
 }

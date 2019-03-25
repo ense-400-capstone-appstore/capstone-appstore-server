@@ -6,6 +6,7 @@ use App\AndroidApp;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Auth;
 
 class AndroidAppController extends Controller
 {
@@ -23,7 +24,7 @@ class AndroidAppController extends Controller
     {
         $this->authorize('index', AndroidApp::class);
 
-        $androidApps = AndroidApp::paginate(15);
+        $androidApps = Auth::user()->accessibleApps()->paginate(15);
 
         return view('resources/android_apps/index', ['androidApps' =>  $androidApps]);
     }
@@ -56,14 +57,15 @@ class AndroidAppController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric',
             'categories' => 'array',
-            'categories.*' => 'numeric'
+            'categories.*' => 'numeric',
         ]);
 
         $androidApp = AndroidApp::create($request->only([
             'name',
             'version',
             'description',
-            'price'
+            'price',
+            'private'
         ]));
 
         if (request()->avatar) {
@@ -136,7 +138,8 @@ class AndroidAppController extends Controller
             'name',
             'version',
             'description',
-            'price'
+            'price',
+            'private'
         ]));
 
 
