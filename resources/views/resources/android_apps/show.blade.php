@@ -38,7 +38,7 @@
         <div class="mdc-layout-grid__inner">
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <div class="mdc-card android_app_card {{ !$androidApp->approved ? 'android_app_not_approved' : '' }}">
-                    <div class="mdc-card__media mdc-card__media--square" style="background: url('{{ '/storage/' . $androidApp->avatar }}'); background-size: cover; background-position: center;">
+                    <div class="mdc-card__media mdc-card__media--square" style="background: #555 url('{{ '/storage/' . $androidApp->avatar }}'); background-size: cover; background-position: center;">
                     </div>
 
 
@@ -119,7 +119,7 @@
                     @if($androidApp->approved)
                         <div class="mdc-card__actions">
                             @if (Auth::check() && !$androidApp->price)
-                                <form method="POST" action="{{ $androidApp->id }}/toggle_own/{{ Auth::user()->id }}">
+                                <form method="POST" action="/android_apps/{{ $androidApp->id }}/toggle_own/{{ Auth::user()->id }}">
                                     @csrf
                                     <button class="mdc-button mdc-button--raised submit" type="submit">
                                         <span class="mdc-button__label">

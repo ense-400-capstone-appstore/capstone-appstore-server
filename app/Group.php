@@ -44,4 +44,15 @@ class Group extends Model
     {
         return $this->belongsToMany('App\AndroidApp', 'group_android_app');
     }
+
+    /**
+     * Return whether a given user belongs to this group
+     *
+     * @param [type] $user
+     * @return boolean
+     */
+    public function isMember($user)
+    {
+        return $this->users->pluck('id')->contains($user->id);
+    }
 }

@@ -6,6 +6,8 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
+use Auth;
+use App\Scopes\ApprovedScope;
 
 class UserController extends Controller
 {
@@ -142,9 +144,16 @@ class UserController extends Controller
     {
         $this->authorize('createdAndroidApps', $user);
 
+        $androidApps = Auth::user()
+            ->accessibleCreatedApps($user);
+
+        if (Auth::user()->id == $user->id) {
+            $androidApps->withoutGlobalScope(ApprovedScope::class);
+        }
+
         return view('resources/users/created_android_apps', [
             'user' => $user,
-            'androidApps' => $user->createdAndroidApps()->paginate(15)
+            'androidApps' => $androidApps->paginate(15)
         ]);
     }
 

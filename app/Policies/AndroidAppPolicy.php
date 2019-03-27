@@ -181,6 +181,16 @@ class AndroidAppPolicy extends BasePolicy
      */
     public function toggleOwn(User $user, AndroidApp $androidApp)
     {
-        return !$androidApp->price;
+        // The app should be accessible to (viewable by) the user
+        if (!$user
+            ->accessibleApps()
+            ->get()
+            ->pluck('id')
+            ->contains($androidApp->id)) return false;
+
+        // The app should be free
+        if ($androidApp->price) return false;
+
+        return true;
     }
 }

@@ -24,9 +24,11 @@ class AndroidAppController extends Controller
     {
         $this->authorize('index', AndroidApp::class);
 
-        $androidApps = Auth::user()->accessibleApps()->paginate(15);
+        $androidApps = Auth::user()->accessibleApps();
 
-        return view('resources/android_apps/index', ['androidApps' =>  $androidApps]);
+        return view('resources/android_apps/index', [
+            'androidApps' => $androidApps->paginate(15)
+        ]);
     }
 
     /**
@@ -55,6 +57,7 @@ class AndroidAppController extends Controller
             'name' => 'required|string',
             'version' => 'required|string',
             'description' => 'required|string',
+            'package_name' => 'string|nullable',
             'price' => 'required|numeric',
             'categories' => 'array',
             'categories.*' => 'numeric',
@@ -64,6 +67,7 @@ class AndroidAppController extends Controller
             'name',
             'version',
             'description',
+            'package_name',
             'price',
             'private'
         ]));
@@ -129,6 +133,7 @@ class AndroidAppController extends Controller
             'name' => 'required|string',
             'version' => 'required|string',
             'description' => 'required|string',
+            'package_name' => 'string|nullable',
             'price' => 'required|numeric',
             'categories' => 'array',
             'categories.*' => 'numeric'
@@ -138,6 +143,7 @@ class AndroidAppController extends Controller
             'name',
             'version',
             'description',
+            'package_name',
             'price',
             'private'
         ]));
@@ -207,12 +213,12 @@ class AndroidAppController extends Controller
     {
         $this->authorize('toggleOwn', $androidApp);
 
-        if ($user->androidApps()->find($androidApp->id) == null) {
-            $androidApp->addToUser($user);
+        if (!$user->androidApps()->find($androidApp->id)) {
+            $user->androidApps()->attach($androidApp);
+            return redirect()->back();
         } else {
-            $androidApp->removeFromUser($user);
+            $user->androidApps()->detach($androidApp);
+            return redirect()->action('WebControllers\AndroidAppController@index');
         }
-
-        return redirect()->back();
     }
 }

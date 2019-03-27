@@ -53,12 +53,14 @@
         }
     }
 
-    .mdc-card__media-content .card-content {
-        background-color: rgba(0, 0, 0, 0.45);
+    .mdc-card__media {
+        .mdc-card__media-content .card-content {
+            background-color: rgba(0, 0, 0, 0.45);
 
-        h2, h3 {
-            margin: 0;
-            color: #FFFFFF;
+            h2, h3 {
+                margin: 0;
+                color: #FFFFFF;
+            }
         }
     }
 }

@@ -64,6 +64,27 @@
                                 </a>
                             @endif
                         </h3>
+
+                        @if($group->isMember(Auth::user()))
+                            <h3 class="mdc-typography--body2">
+                                You are a member of this group
+                            </h3>
+                        @endif
+
+                        <div class="mdc-card__actions">
+                            <form method="POST" action="/groups/{{ $group->id }}/toggle_member/{{ Auth::user()->id }}">
+                                @csrf
+                                <button class="mdc-button mdc-button--raised submit" type="submit">
+                                    <span class="mdc-button__label">
+                                        @if(!Auth::user()->groups()->find($group->id))
+                                            Join group
+                                        @else
+                                            Leave group
+                                        @endif
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,18 +92,20 @@
     </div>
 
     <div class="mdc-layout-grid page-content-item">
-        <h1 class="page-title mdc-typography--headline4 text-center">Android Apps</h1>
+        <h1 class="page-title mdc-typography--headline4 text-center">
+            Android Apps ({{ $group->androidApps->count() }})
+        </h1>
     </div>
 
     <div class="mdc-layout-grid page-content-item">
         <div class="mdc-layout-grid__inner">
-            @if ($group->androidApps->isEmpty())
+            @if ($androidApps->isEmpty())
                 <h2 class="mdc-typography--headline6 text-center mdc-layout-grid__cell--span-12">
                     There are no apps under this group.
                 </h2>
             @endif
 
-            @foreach ($group->androidApps as $androidApp)
+            @foreach ($androidApps as $androidApp)
                 @component('resources.android_apps.partials.card', [
                     'androidApp' => $androidApp
                 ])
@@ -91,21 +114,23 @@
         </div>
     </div>
 
-    @if(Auth::user() && $group->owner_id == Auth::user()->id)
+    @if($group->owner_id == Auth::user()->id)
         <div class="mdc-layout-grid page-content-item">
-            <h1 class="page-title mdc-typography--headline4 text-center">Users</h1>
+            <h1 class="page-title mdc-typography--headline4 text-center">
+                Users ({{ $group->users->count() }})
+            </h1>
         </div>
 
         <div class="mdc-layout-grid page-content-item">
             <div class="mdc-layout-grid__inner">
-                @if ($group->users->isEmpty())
+                @if ($users->isEmpty())
                     <h2 class="mdc-typography--headline6 text-center mdc-layout-grid__cell--span-12">
                         There are no users under this group.
                     </h2>
                 @endif
 
                 <ul class="mdc-list mdc-layout-grid__cell--span-12">
-                    @foreach ($group->users as $user)
+                    @foreach ($users as $user)
                         <li class="mdc-list-item" tabindex="0">
                             <a
                                     class="block-link user-link"

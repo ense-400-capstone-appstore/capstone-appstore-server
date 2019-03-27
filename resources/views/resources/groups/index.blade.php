@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', $user->name . "'s Apps")
+@section('title', 'All Groups')
 
 @section('html')
-<div id="page-android-apps-index" class="page-content page-content-android-apps">
+<div id="page-groups-index" class="page-content page-content-groups">
 
     <div class="mdc-layout-grid page-content-item">
         {{-- Controls --}}
@@ -16,34 +16,30 @@
                     Back
                 @endbutton
             </div>
+
+            {{-- Divider --}}
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-5-tablet
+            mdc-layout-grid__cell--span-1-phone"></div>
         </div>
     </div>
 
     <div class="mdc-layout-grid page-content-item">
         <h1 class="page-title mdc-typography--headline4 text-center">
-            @if ($user->id == Auth::user()->id)
-                Your Apps
-            @else
-                {{ $user->name }}'s Apps
-            @endif
+            All Groups
         </h1>
     </div>
 
     <div class="mdc-layout-grid page-content-item">
         <div class="mdc-layout-grid__inner">
-            @if ($androidApps->isEmpty())
+            @if ($groups->isEmpty())
                 <h2 class="mdc-typography--headline6 text-center mdc-layout-grid__cell--span-12">
-                    @if ($user->id == Auth::user()->id)
-                        You do not own any apps.
-                    @else
-                        This user does not own any apps.
-                    @endif
+                    There are no groups available.
                 </h2>
             @endif
 
-            @foreach ($androidApps as $androidApp)
-                @component('resources.android_apps.partials.card', [
-                    'androidApp' => $androidApp
+            @foreach ($groups as $group)
+                @component('resources.groups.partials.card', [
+                    'group' => $group
                 ])
                 @endcomponent
             @endforeach
@@ -51,6 +47,6 @@
     </div>
 </div>
 
-{{ $androidApps->links() }}
+{{ $groups->links() }}
 
 @endsection

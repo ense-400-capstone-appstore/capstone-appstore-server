@@ -41,6 +41,20 @@ class GroupsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'order' => 2,
         ])->save();
 
+        $dataRow = $this->dataRow($dataType, 'private');
+        $dataRow->fill([
+            'type' => 'checkbox',
+            'display_name' => 'Private (accessible by invite only)',
+            'required' => 0,
+            'browse' => 0,
+            'read' => 1,
+            'edit' => 1,
+            'add' => 1,
+            'delete' => 1,
+            'details' => '',
+            'order' => 3,
+        ])->save();
+
         $dataRow = $this->dataRow($dataType, 'group_belongsto_user_relationship');
         $dataRow->fill([
             'type' => 'relationship',
@@ -61,7 +75,7 @@ class GroupsDataRowsTableSeeder extends BaseDataRowsTableSeeder
                 'pivot_table' => 'users',
                 'pivot' => 0,
             ],
-            'order' => 3,
+            'order' => 4,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'owner_id');
@@ -75,7 +89,7 @@ class GroupsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 1,
             'delete' => 1,
             'details' => '',
-            'order' => 4,
+            'order' => 5,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'group_belongstomany_user_relationship');
@@ -99,7 +113,7 @@ class GroupsDataRowsTableSeeder extends BaseDataRowsTableSeeder
                 'pivot'       => '1',
                 'taggable'    => '0',
             ],
-            'order'        => 5,
+            'order'        => 6,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'group_belongstomany_android_app_relationship');
@@ -123,7 +137,7 @@ class GroupsDataRowsTableSeeder extends BaseDataRowsTableSeeder
                 'pivot'       => '1',
                 'taggable'    => '0',
             ],
-            'order'        => 6,
+            'order'        => 7,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'created_at');
@@ -137,7 +151,7 @@ class GroupsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 0,
             'delete' => 0,
             'details' => '',
-            'order' => 7,
+            'order' => 8,
         ])->save();
 
         $dataRow = $this->dataRow($dataType, 'updated_at');
@@ -151,7 +165,7 @@ class GroupsDataRowsTableSeeder extends BaseDataRowsTableSeeder
             'add' => 0,
             'delete' => 0,
             'details' => '',
-            'order' => 8,
+            'order' => 9,
         ])->save();
     }
 }

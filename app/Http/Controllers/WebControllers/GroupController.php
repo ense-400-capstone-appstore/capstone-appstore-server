@@ -5,9 +5,16 @@ namespace App\Http\Controllers\WebControllers;
 use App\Group;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use App\User;
 
 class GroupController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +23,10 @@ class GroupController extends Controller
     public function index()
     {
         $this->authorize('index', Group::class);
+
+        return view('resources/groups/index', [
+            'groups' => Auth::user()->accessibleGroups()->paginate(15)
+        ]);
     }
 
     /**
@@ -52,7 +63,9 @@ class GroupController extends Controller
         $this->authorize('view', $group);
 
         return view('resources/groups/show', [
-            'group' => $group
+            'group' => $group,
+            'androidApps' => Auth::user()->accessibleGroupApps($group)->get(),
+            'users' =>  $group->users
         ]);
     }
 
@@ -88,5 +101,27 @@ class GroupController extends Controller
     public function destroy(Group $group)
     {
         $this->authorize('delete', $group);
+    }
+
+    /**
+     * If the user is not a member of this group, add them to this group.
+     *
+     * If the user is already a member, remove them from the group.
+     *
+     * @param Group $group
+     * @param User $user
+     * @return void
+     */
+    public function toggleMember(Group $group, User $user)
+    {
+        $this->authorize('toggleMember', $group);
+
+        if ($user->groups()->find($group->id) == null) {
+            $user->groups()->attach($group);
+        } else {
+            $user->groups()->detach($group);
+        }
+
+        return redirect()->back();
     }
 }

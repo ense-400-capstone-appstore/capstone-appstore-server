@@ -31,7 +31,7 @@ class GroupPolicy extends BasePolicy
      */
     public function index(User $user)
     {
-        return false;
+        return true;
     }
 
     /**
@@ -47,7 +47,7 @@ class GroupPolicy extends BasePolicy
         if ($user->id === $group->owner_id) return true;
 
         // Users who are members of the group can view the group
-        return $user->groups->pluck('id')->contains($group->id);
+        return $user->accessibleGroups()->get()->pluck('id')->contains($group->id);
     }
 
     /**
@@ -107,5 +107,22 @@ class GroupPolicy extends BasePolicy
     public function forceDelete(User $user, Group $group)
     {
         return false;
+    }
+
+    /**
+     * Determine whether the user can join/leave the group
+     *
+     * @param  \App\User  $user
+     * @param  \App\Group  $group
+     * @return mixed
+     */
+    public function toggleMember(User $user, Group $group)
+    {
+        // The group should be accessible to (viewable by) the user
+        return $user
+            ->accessibleGroups()
+            ->get()
+            ->pluck('id')
+            ->contains($group->id);
     }
 }
