@@ -29,7 +29,7 @@
 
         <div class="mdc-layout-grid__inner">
             {{-- All Apps --}}
-            <a href="/android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
+            <a href="/android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
                 <div class="mdc-card card-button">
                     <div class="mdc-card__primary-action" tabindex="0">
                         <div class="mdc-card__media">
@@ -50,7 +50,7 @@
             </a>
 
             {{-- Apps by Category --}}
-            <a href="/categories" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
+            <a href="/categories" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
                 <div class="mdc-card card-button">
                     <div class="mdc-card__primary-action" tabindex="0">
                         <div class="mdc-card__media">
@@ -70,6 +70,26 @@
                 </div>
             </a>
 
+            {{-- All Groups --}}
+            <a href="/groups" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
+                <div class="mdc-card card-button">
+                    <div class="mdc-card__primary-action" tabindex="0">
+                        <div class="mdc-card__media">
+                            <div class="mdc-card__media-content">
+                                <div class="card-content">
+                                    <h2 class="mdc-typography--headline6">All Groups</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="mdc-typography--body2">
+                                View all public groups. Groups are collections of apps maintained by a vendor
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
 
         <h1 class="page-title mdc-typography--headline6">Your Account</h1>

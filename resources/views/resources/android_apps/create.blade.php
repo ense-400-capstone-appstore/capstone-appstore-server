@@ -69,6 +69,14 @@
                         </div>
                     </div>
 
+                    {{-- Package Name --}}
+                    @textfield([
+                        "name" => "package_name",
+                        "value" => ""
+                    ])
+                        Android App Package Name
+                    @endtextfield
+
                     {{-- Version --}}
                     @textfield([
                         "name" => "version",
@@ -104,7 +112,7 @@
                                 <div class="mdc-checkbox__mixedmark"></div>
                             </div>
                         </div>
-                        <label for="private">Private? (Not shown in "all apps" listing, only accessible within groups)</label>
+                        <label for="private">Private? (Not shown in "all apps" listing. Only accessible within groups)</label>
                     </div>
 
                     <label for="avatar" class="mdc-typography--subtitle1">

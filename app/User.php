@@ -10,7 +10,7 @@ use TCG\Voyager\Models\User as VoyagerUser;
 use Illuminate\Support\Facades\Storage;
 use Image;
 use App\AndroidApp;
-use Illuminate\Support\Facades\DB;
+use App\Group;
 
 class User extends VoyagerUser
 {
@@ -78,29 +78,106 @@ class User extends VoyagerUser
 
     /**
      * Get all AndroidApps that are visible to this user
+     *
      * @return void
      */
     public function accessibleApps()
     {
-        if ($this->isAdmin()) return DB::table('android_apps');
+        if ($this->isAdmin()) return AndroidApp::select('android_apps.*');
 
         // Get all android apps
         // JOIN w/ group_android_app and group_user pivot tables for group
         // WHERE either user belongs to the group OR app is not private
-        return AndroidApp::leftJoin(
-            'group_android_app',
-            'android_apps.id',
-            '=',
-            'group_android_app.android_app_id'
-        )
+        return AndroidApp::select('android_apps.*')
+            ->leftJoin(
+                'group_android_app',
+                'android_apps.id',
+                '=',
+                'group_android_app.android_app_id'
+            )
             ->leftJoin(
                 'group_user',
                 'group_android_app.group_id',
                 '=',
                 'group_user.group_id'
             )
+            ->leftJoin(
+                'user_android_app',
+                'android_apps.id',
+                '=',
+                'user_android_app.android_app_id'
+            )
+            ->where('group_user.user_id', $this->id)
+            ->orWhere('user_android_app.user_id', $this->id)
+            ->orWhere('private', false)
+            ->distinct();
+    }
+
+    /**
+     * Get all AndroidApps created by a user that are visible to this user
+     *
+     * @param [type] $user
+     * @return void
+     */
+    public function accessibleCreatedApps($user)
+    {
+        if ($user->id == $this->id) return $this->createdAndroidApps();
+
+        return $this->accessibleApps()
+            ->where('creator_id', $user->id)
+            ->distinct();
+    }
+
+    /**
+     * Get all AndroidApps in a given category that are visible to this user
+     *
+     * @param [type] $category
+     * @return void
+     */
+    public function accessibleCategoryApps($category)
+    {
+        return $this->accessibleApps()->leftJoin(
+            'category_android_app',
+            'android_apps.id',
+            '=',
+            'category_android_app.android_app_id'
+        )
+            ->where('category_android_app.category_id', $category->id)
+            ->distinct();
+    }
+
+    public function accessibleGroupApps($group)
+    {
+        return $this->accessibleApps()
+            ->leftJoin(
+                'group_android_app',
+                'android_apps.id',
+                '=',
+                'group_android_app.android_app_id'
+            )
+            ->where('group_android_app.group_id', $group->id)
+            ->distinct();
+    }
+
+    /**
+     * Get all groups that are visible to this user
+     *
+     * @return void
+     */
+    public function accessibleGroups()
+    {
+        if ($this->isAdmin()) return Group::select('groups.*');
+
+        return Group::select('groups.*')
+            ->leftJoin(
+                'group_user',
+                'groups.id',
+                '=',
+                'group_user.group_id'
+            )
             ->where('user_id', $this->id)
-            ->orWhere('private', false);
+            ->orWhere('private', false)
+            ->distinct();
     }
 
     /**

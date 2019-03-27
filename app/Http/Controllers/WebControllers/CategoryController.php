@@ -5,6 +5,7 @@ namespace App\Http\Controllers\WebControllers;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class CategoryController extends Controller
 {
@@ -54,9 +55,11 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        $androidApps = Auth::user()->accessibleCategoryApps($category);
+
         return view('resources/categories/show', [
             'category' =>  $category,
-            'androidApps' => $category->androidApps()->paginate(15)
+            'androidApps' => $androidApps->paginate(15)
         ]);
     }
 

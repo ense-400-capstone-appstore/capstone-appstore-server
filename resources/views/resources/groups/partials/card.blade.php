@@ -13,6 +13,12 @@
                         By {{ $group->owner->name ?? 'N/A' }}
                     @endif
                 </h3>
+
+                @if($group->isMember(Auth::user()))
+                    <h3 class="mdc-typography--body2">
+                        You are a member of this group
+                    </h3>
+                @endif
             </div>
         </div>
     </div>
