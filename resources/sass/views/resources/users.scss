@@ -13,8 +13,8 @@
         .profile-container {
             margin: 0 20px;
 
-            background-color: $primary;
-            color: $primary-text;
+            background-color: $secondary;
+            color: $secondary-text;
         }
 
         .profile-private-container {
@@ -64,6 +64,24 @@
     &#page-users-edit {
         .mdc-layout-grid__inner {
             padding-bottom: 10px;
+        }
+    }
+
+    &#page-users-edit-groups.page-content {
+        margin-bottom: 100px;
+
+        form > * {
+            margin: 10px 0;
+            width: 100%;
+        }
+    }
+
+    .list {
+        max-height: 200px;
+        overflow: auto;
+
+        .mdc-form-field {
+            width: 100%;
         }
     }
 }

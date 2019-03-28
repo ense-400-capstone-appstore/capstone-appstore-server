@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Image;
 use App\Http\Resources\AndroidApp as AndroidAppResource;
+use App\Http\Resources\Group as GroupResource;
 
 class UserController extends Controller
 {
@@ -25,7 +26,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UserResource::collection(User::paginate());
+        return UserResource::collection(User::paginate(15));
     }
 
     /**
@@ -147,11 +148,11 @@ class UserController extends Controller
     {
         $this->authorize('androidApps', $user);
 
-        return AndroidAppResource::collection($user->androidApps()->paginate());
+        return AndroidAppResource::collection($user->androidApps()->paginate(15));
     }
 
     /**
-     * Get a listing of this user's created AndroidAPps
+     * Get a listing of this user's created AndroidApps
      *
      * @param User $user
      * @return Collection
@@ -160,6 +161,34 @@ class UserController extends Controller
     {
         $this->authorize('createdAndroidApps', $user);
 
-        return AndroidAppResource::collection($user->createdAndroidApps()->paginate());
+        return AndroidAppResource::collection($user->createdAndroidApps()->paginate(15));
+    }
+
+    /**
+     * Get a listing of this user's groups
+     *
+     * @param User $user
+     * @return Collection
+     */
+    public function groups(User $user)
+    {
+        $this->authorize('groups', $user);
+
+        $groups = Auth::user()->accessibleGroups($user);
+
+        return GroupResource::collection($groups->paginate(15));
+    }
+
+    /**
+     * Get a listing of this user's created groups
+     *
+     * @param User $user
+     * @return Collection
+     */
+    public function createdGroups(User $user)
+    {
+        $this->authorize('createdGroups', $user);
+
+        return GroupResource::collection($user->createdGroups()->paginate(15));
     }
 }

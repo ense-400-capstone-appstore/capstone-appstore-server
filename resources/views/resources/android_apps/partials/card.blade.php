@@ -9,11 +9,7 @@
                         </h2>
 
                         <h3 class="mdc-typography--subtitle2">
-                            @if ($androidApp->creator_id == Auth::user()->id)
-                                You created this app
-                            @else
-                                By {{ $androidApp->creator->name ?? 'N/A' }}
-                            @endif
+                            By {{ $androidApp->creator->name ?? 'N/A' }}
                         </h3>
                     </div>
                 </div>

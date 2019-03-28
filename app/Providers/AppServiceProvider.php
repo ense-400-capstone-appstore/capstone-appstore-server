@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\Blade;
 
 use App\User;
 use App\AndroidApp;
+use App\Group;
 
 use App\Observers\UserObserver;
 use App\Observers\AndroidAppObserver;
+use App\Observers\GroupObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         // Observers
         User::observe(UserObserver::class);
         AndroidApp::observe(AndroidAppObserver::class);
+        Group::observe(GroupObserver::class);
 
         // Component aliases
         Blade::component('components.button', 'button');

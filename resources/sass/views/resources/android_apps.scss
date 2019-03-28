@@ -19,7 +19,8 @@
         }
     }
 
-    &#page-android-apps-create.page-content {
+    &#page-android-apps-create.page-content,
+    &#page-android-apps-edit.page-content {
         margin-bottom: 100px;
 
         form > * {
@@ -28,8 +29,8 @@
         }
     }
 
-    .categories-list {
-        height: 200px;
+    .list {
+        max-height: 200px;
         overflow: auto;
 
         .mdc-form-field {

@@ -21,30 +21,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(15);
+        $this->authorize('index', Category::class);
 
-        return view('resources/categories/index', ['categories' =>  $categories]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('resources/categories/index', [
+            'categories' => Category::paginate(15)
+        ]);
     }
 
     /**
@@ -55,12 +36,35 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        $this->authorize('view', $category);
+
         $androidApps = Auth::user()->accessibleCategoryApps($category);
 
         return view('resources/categories/show', [
             'category' =>  $category,
             'androidApps' => $androidApps->paginate(15)
         ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $this->authorize('store', Category::class);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->authorize('store', Category::class);
     }
 
     /**
@@ -71,7 +75,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $this->authorize('update', $category);
     }
 
     /**
@@ -83,7 +87,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $this->authorize('update', $category);
     }
 
     /**
@@ -94,6 +98,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $this->authorize('delete', $category);
     }
 }

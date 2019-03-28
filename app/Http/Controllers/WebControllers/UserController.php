@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('index', User::class);
     }
 
     /**
@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('store', User::class);
     }
 
     /**
@@ -44,7 +44,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('store', User::class);
     }
 
     /**
@@ -66,7 +66,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $this->authorize('update', $user);
     }
 
     /**
@@ -115,7 +115,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $this->authorize('delete', $user);
     }
 
     /**
@@ -185,7 +185,59 @@ class UserController extends Controller
 
         return view('resources/users/created_groups', [
             'user' => $user,
-            'groups' => $user->createdGroups()->paginate(15)
+            'groups' => Auth::user()->accessibleCreatedGroups($user)->paginate(15)
+        ]);
+    }
+
+    /**
+     * Show the form for adding/removing a user to/from the current user's groups
+     *
+     * @param User $user
+     * @return void
+     */
+    public function editGroups(User $user)
+    {
+        $this->authorize('editGroups', $user);
+
+        return view('resources/users/edit_groups', [
+            'user' => $user,
+            'groups' => Auth::user()->createdGroups()->get()
+        ]);
+    }
+
+    /**
+     * Add/remove a user to/from the current user's groups
+     *
+     * @param Request $request
+     * @param User $user
+     * @return void
+     */
+    public function updateGroups(Request $request, User $user)
+    {
+        $this->authorize('editGroups', $user);
+
+        $request->validate([
+            'groups' => 'array',
+            'groups.*' => 'numeric',
+        ]);
+
+        $groups = Auth::user()->createdGroups();
+        $requestGroupIds = $request->input('groups') ?? [];
+
+        // Remove user from all of the current user's groups
+        foreach ($groups as $group) {
+            $user->groups()->detach($group->id);
+        }
+
+        // Attach user to all groups in request that belong to the current user
+        foreach ($requestGroupIds as $groupId) {
+            if ($groups->pluck('id')->contains($groupId)) {
+                $user->groups()->attach($groupId);
+            }
+        }
+
+        return redirect()->action('WebControllers\UserController@show', [
+            'user' => $user
         ]);
     }
 }

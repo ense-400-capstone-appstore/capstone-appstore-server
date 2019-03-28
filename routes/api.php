@@ -47,6 +47,14 @@ Route::namespace('ApiControllers')->name('api.')->group(function () {
         Route::get('users/{user}/avatar', 'UserController@avatarDownload');
         Route::get('users/{user}/android_apps', 'UserController@androidApps');
         Route::get('users/{user}/created_android_apps', 'UserController@createdAndroidApps');
+        Route::get('users/{user}/groups', 'UserController@groups');
+        Route::get('users/{user}/created_groups', 'UserController@createdGroups');
+
+        /**
+         * Groups
+         */
+        Route::get('groups/{group}/android_apps', 'GroupController@androidApps');
+        Route::get('groups/{group}/users', 'GroupController@users');
 
         /**
          * Resources

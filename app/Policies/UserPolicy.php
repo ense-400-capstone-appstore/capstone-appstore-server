@@ -177,4 +177,16 @@ class UserPolicy extends VoyagerUserPolicy
     {
         return true;
     }
+
+    /**
+     * Determine whether the user can add/remove users to/from their groups
+     *
+     * @param User $user
+     * @param User $model
+     * @return void
+     */
+    public function editGroups(User $user, User $model)
+    {
+        return $user->isAdminOrVendor();
+    }
 }

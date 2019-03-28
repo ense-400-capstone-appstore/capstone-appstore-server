@@ -146,25 +146,12 @@ class User extends VoyagerUser
             ->distinct();
     }
 
-    public function accessibleGroupApps($group)
-    {
-        return $this->accessibleApps()
-            ->leftJoin(
-                'group_android_app',
-                'android_apps.id',
-                '=',
-                'group_android_app.android_app_id'
-            )
-            ->where('group_android_app.group_id', $group->id)
-            ->distinct();
-    }
-
     /**
      * Get all groups that are visible to this user
      *
      * @return void
      */
-    public function accessibleGroups()
+    public function accessibleGroups($user)
     {
         if ($this->isAdmin()) return Group::select('groups.*');
 
@@ -175,9 +162,44 @@ class User extends VoyagerUser
                 '=',
                 'group_user.group_id'
             )
-            ->where('user_id', $this->id)
+            ->where('user_id', $user->id)
             ->orWhere('private', false)
             ->distinct();
+    }
+
+    /**
+     * Get all groups created by a user that are visible to this user
+     *
+     * @return void
+     */
+    public function accessibleCreatedGroups($user)
+    {
+        if ($user->id == $this->id) return $this->createdGroups();
+
+        return $this->accessibleGroups($user)
+            ->where('groups.owner_id', $user->id)
+            ->distinct();
+    }
+
+    /**
+     * Get all AndroidApps in a group that are visible to this user
+     *
+     * @param [type] $group
+     * @return void
+     */
+    public function accessibleGroupApps($group)
+    {
+        $androidApps = $group->androidApps();
+
+        if (
+            !$this->isAdmin() &&
+            !$this->groups->pluck('id')->contains($group->id) &&
+            $group->owner_id != $this->id
+        ) {
+            $androidApps->where('private', false);
+        }
+
+        return $androidApps;
     }
 
     /**

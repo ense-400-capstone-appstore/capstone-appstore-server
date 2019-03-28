@@ -44,10 +44,10 @@ class GroupPolicy extends BasePolicy
     public function view(User $user, Group $group)
     {
         // The owner can view their group
-        if ($user->id === $group->owner_id) return true;
+        if ($user->id == $group->owner_id) return true;
 
         // Users who are members of the group can view the group
-        return $user->accessibleGroups()->get()->pluck('id')->contains($group->id);
+        return $user->accessibleGroups($user)->get()->pluck('id')->contains($group->id);
     }
 
     /**
@@ -70,7 +70,7 @@ class GroupPolicy extends BasePolicy
      */
     public function update(User $user, Group $group)
     {
-        return $user->id === $group->owner_id;
+        return $user->id == $group->owner_id;
     }
 
     /**
@@ -120,9 +120,20 @@ class GroupPolicy extends BasePolicy
     {
         // The group should be accessible to (viewable by) the user
         return $user
-            ->accessibleGroups()
+            ->accessibleGroups($user)
             ->get()
             ->pluck('id')
             ->contains($group->id);
+    }
+
+    /**
+     * Determine whether the user can view this group's users
+     *
+     * @param Group $group
+     * @return void
+     */
+    public function users(User $user, Group $group)
+    {
+        return $user->id == $group->owner_id;
     }
 }

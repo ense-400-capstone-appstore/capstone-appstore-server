@@ -9,10 +9,30 @@
         background-color: $secondary;
     }
 
+    &#page-groups-create.page-content,
+    &#page-groups-edit.page-content {
+        margin-bottom: 100px;
+
+        form > * {
+            margin: 10px 0;
+            width: 100%;
+        }
+    }
+
+    .list {
+        max-height: 200px;
+        overflow: auto;
+
+        .mdc-form-field {
+            width: 100%;
+        }
+    }
+
     &#page-groups-show.page-content {
         .creator-link {
             display: inline-block;
             font-weight: bold;
+            color: $primary-text;
         }
 
         .mdc-list-item {

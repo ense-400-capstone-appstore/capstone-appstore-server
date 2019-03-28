@@ -25,7 +25,25 @@ class GroupController extends Controller
         $this->authorize('index', Group::class);
 
         return view('resources/groups/index', [
-            'groups' => Auth::user()->accessibleGroups()->paginate(15)
+            'groups' => Auth::user()->accessibleGroups(Auth::user())->paginate(15)
+        ]);
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Group  $group
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Group $group)
+    {
+        $this->authorize('view', $group);
+
+        return view('resources/groups/show', [
+            'group' => $group,
+            'androidApps' => Auth::user()->accessibleGroupApps($group)->get(),
+            'users' =>  $group->users
         ]);
     }
 
@@ -50,22 +68,18 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create', Group::class);
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Group  $group
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Group $group)
-    {
-        $this->authorize('view', $group);
+        $request->validate([
+            'name' => 'required|string',
+        ]);
 
-        return view('resources/groups/show', [
-            'group' => $group,
-            'androidApps' => Auth::user()->accessibleGroupApps($group)->get(),
-            'users' =>  $group->users
+        $group = Group::create($request->only([
+            'name',
+            'private'
+        ]));
+
+        return redirect()->action('WebControllers\GroupController@show', [
+            'group' => $group
         ]);
     }
 
@@ -78,6 +92,10 @@ class GroupController extends Controller
     public function edit(Group $group)
     {
         $this->authorize('update', $group);
+
+        return view('resources/groups/edit', [
+            'group' => $group
+        ]);
     }
 
     /**
@@ -90,6 +108,21 @@ class GroupController extends Controller
     public function update(Request $request, Group $group)
     {
         $this->authorize('update', $group);
+
+        $request->validate([
+            'name' => 'required|string',
+            'private' => 'numeric|nullable'
+        ]);
+
+        $group->private = $request->input('private') ? true : false;
+
+        $group->update($request->only([
+            'name'
+        ]));
+
+        return redirect()->action('WebControllers\GroupController@show', [
+            'group' => $group
+        ]);
     }
 
     /**
@@ -118,10 +151,10 @@ class GroupController extends Controller
 
         if ($user->groups()->find($group->id) == null) {
             $user->groups()->attach($group);
+            return redirect()->back();
         } else {
             $user->groups()->detach($group);
+            return redirect()->action('WebControllers\GroupController@index');
         }
-
-        return redirect()->back();
     }
 }

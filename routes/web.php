@@ -43,6 +43,8 @@ Route::namespace('WebControllers')->group(function () {
     Route::get('users/{user}/created_android_apps', 'UserController@createdAndroidApps');
     Route::get('users/{user}/groups', 'UserController@groups');
     Route::get('users/{user}/created_groups', 'UserController@createdGroups');
+    Route::get('users/{user}/edit_groups', 'UserController@editGroups');
+    Route::post('users/{user}/edit_groups', 'UserController@updateGroups');
 
     /**
      * Groups
