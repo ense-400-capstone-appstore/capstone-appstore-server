@@ -3,7 +3,6 @@
 @section('title', 'Editing App: ' . $androidApp->name)
 
 @section('html')
-    {{-- Login, Register tabs --}}
     <div id="page-android-apps-create" class="page-content page-content-android-apps">
         <div class="mdc-layout-grid page-content-item">
             {{-- Controls --}}
@@ -44,7 +43,7 @@
         </div>
 
         <div class="mdc-layout-grid__inner page-content-item">
-            <div id="tab-login" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 tab">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <form method="POST" action="/android_apps/{{ $androidApp->id }}" enctype="multipart/form-data">
                     @method("patch")
                     @csrf
@@ -131,34 +130,96 @@
                     <input type="file" name="file">
 
                     {{-- Categories --}}
-                    @if (App\Category::count())
-                        <label for="categories[]" class="mdc-typography--subtitle1">
+                    @if (!$categories->isEmpty())
+                        <h3 class="mdc-typography--subtitle1">
                             Categories
-                        </label>
+                        </h3>
 
-                        <div class="categories-list">
-                            @foreach (App\Category::all() as $category)
-                                <div class="mdc-form-field">
-                                    <div class="mdc-checkbox">
-                                        <input type="checkbox"
-                                            class="mdc-checkbox__native-control"
-                                            id="category-{{ $category->id }}"
-                                            name="categories[]"
-                                            value="{{ $category->id }}"
-                                            {{ $category->androidApps->pluck('id')->contains($androidApp->id) ? 'checked' : '' }}/>
-                                        <div class="mdc-checkbox__background">
-                                            <svg class="mdc-checkbox__checkmark"
-                                                viewBox="0 0 24 24">
-                                            <path class="mdc-checkbox__checkmark-path"
-                                                    fill="none"
-                                                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-                                            </svg>
-                                            <div class="mdc-checkbox__mixedmark"></div>
-                                        </div>
-                                    </div>
-                                    <label for="category-{{ $category->id }}">{{ $category->name }}</label>
-                                </div>
-                            @endforeach
+                        <div class="list">
+                            <ul class="mdc-list" role="group" aria-label="List with checkbox items">
+                                @foreach($categories as $category)
+                                    <li
+                                        class="mdc-list-item"
+                                        role="checkbox"
+                                        aria-checked="{{ $category->androidApps->pluck('id')->contains($androidApp->id) ? 'true' : 'false' }}">
+                                        <span class="mdc-list-item__graphic">
+                                            <div class="mdc-form-field">
+                                                <div class="mdc-checkbox">
+                                                    <input type="checkbox"
+                                                        class="mdc-checkbox__native-control"
+                                                        id="category-{{ $category->id }}"
+                                                        name="categories[]"
+                                                        value="{{ $category->id }}"
+                                                        {{ $category->androidApps->pluck('id')->contains($androidApp->id) ? 'checked' : '' }}  />
+                                                    <div class="mdc-checkbox__background">
+                                                        <svg class="mdc-checkbox__checkmark"
+                                                            viewBox="0 0 24 24">
+                                                            <path class="mdc-checkbox__checkmark-path"
+                                                                fill="none"
+                                                                d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                                                        </svg>
+                                                        <div class="mdc-checkbox__mixedmark"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+
+                                        <span class="mdc-list-item__graphic">
+                                            <span class="mdc-list-item__graphic material-icons" aria-hidden="true">
+                                                {{ $category->icon ?? 'folder' }}
+                                            </span>
+                                        </span>
+
+                                        <label class="mdc-list-item__text" for="category-{{ $category->id }}">
+                                            {{ $category->name }}
+                                        </label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    {{-- Groups --}}
+                    @if (!$groups->isEmpty())
+                        <h3 class="mdc-typography--subtitle1">
+                            Groups
+                        </h3>
+
+                        <div class="list">
+                            <ul class="mdc-list" role="group" aria-label="List with checkbox items">
+                                @foreach($groups as $group)
+                                    <li
+                                        class="mdc-list-item"
+                                        role="checkbox"
+                                        aria-checked="{{ $group->androidApps->pluck('id')->contains($androidApp->id) ? 'true' : 'false' }}">
+                                        <span class="mdc-list-item__graphic">
+                                            <div class="mdc-form-field">
+                                                <div class="mdc-checkbox">
+                                                    <input type="checkbox"
+                                                        class="mdc-checkbox__native-control"
+                                                        id="group-{{ $group->id }}"
+                                                        name="groups[]"
+                                                        value="{{ $group->id }}"
+                                                        {{ $group->androidApps->pluck('id')->contains($androidApp->id) ? 'checked' : '' }}  />
+                                                    <div class="mdc-checkbox__background">
+                                                        <svg class="mdc-checkbox__checkmark"
+                                                            viewBox="0 0 24 24">
+                                                            <path class="mdc-checkbox__checkmark-path"
+                                                                fill="none"
+                                                                d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                                                        </svg>
+                                                        <div class="mdc-checkbox__mixedmark"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+
+                                        <label class="mdc-list-item__text" for="group-{{ $group->id }}">
+                                            {{ $group->name }}
+                                        </label>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                     @endif
 

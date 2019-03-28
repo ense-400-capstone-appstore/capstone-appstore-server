@@ -87,6 +87,17 @@
                 </div>
             </div>
         </div>
+
+        @if(Auth::user()->isAdminOrVendor())
+            <div class="mdc-card__actions">
+                @linkbutton([
+                    'classes' => 'mdc-button mdc-button--raised',
+                    'href' => '/users/' . $user->id . '/edit_groups'
+                ])
+                    Add to/Remove from groups
+                @endlinkbutton
+            </div>
+        @endif
     </div>
 
     @if(Auth::user() && Auth::user()->id == $user->id)
@@ -129,6 +140,26 @@
                             <div class="card-content">
                                 <p class="mdc-typography--body2">
                                     View apps {{ $user->name }} created
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/users/{{ $user->id }}/created_groups" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
+                    <div class="mdc-card card-button">
+                        <div class="mdc-card__primary-action" tabindex="0">
+                            <div class="mdc-card__media">
+                                <div class="mdc-card__media-content">
+                                    <div class="card-content">
+                                        <h2 class="mdc-typography--headline6">Created Groups</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <p class="mdc-typography--body2">
+                                    View groups {{ $user->name }} created
                                 </p>
                             </div>
                         </div>

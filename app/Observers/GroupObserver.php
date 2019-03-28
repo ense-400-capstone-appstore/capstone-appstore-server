@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Group;
+use Auth;
 
 class GroupObserver
 {
@@ -14,7 +15,20 @@ class GroupObserver
      */
     public function created(Group $group)
     {
-        //
+        $owner = null;
+
+        // Set the app's creator to the current user or first admin on creation
+        if (Auth::check()) {
+            $owner = Auth::user();
+        } else {
+            $owner = User::where(
+                'role_id',
+                Role::where('name', 'admin')->first()->id
+            )->first();
+        }
+
+        $group->owner()->associate($owner);
+        $group->save();
     }
 
     /**

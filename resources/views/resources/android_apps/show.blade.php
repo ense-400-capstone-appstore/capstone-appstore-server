@@ -37,6 +37,18 @@
     <div class="mdc-layout-grid page-content-item">
         <div class="mdc-layout-grid__inner">
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                @if ($errors->any())
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 errors">
+                        <span>Please correct the errors below and try again:</span>
+
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li class="error">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="mdc-card android_app_card {{ !$androidApp->approved ? 'android_app_not_approved' : '' }}">
                     <div class="mdc-card__media mdc-card__media--square" style="background: #555 url('{{ '/storage/' . $androidApp->avatar }}'); background-size: cover; background-position: center;">
                     </div>
@@ -48,26 +60,22 @@
                         </h2>
 
                         <h3 class="mdc-typography--headline5">
-                            @if ($androidApp->creator_id == Auth::user()->id)
-                                You created this app
-                            @else
-                                <span>By </span>
+                            <span>By </span>
 
-                                <a
-                                    class="block-link creator-link"
-                                    href="/users/{{ $androidApp->creator->id }}"
-                                >
-                                    <img
-                                        class="mdc-button__icon user-menu-icon"
-                                        src="/storage/{{ $androidApp->creator->avatar }}"
-                                        height="35px"
-                                        width="auto"
-                                        align="top"
-                                    />
+                            <a
+                                class="block-link creator-link"
+                                href="/users/{{ $androidApp->creator->id }}"
+                            >
+                                <img
+                                    class="mdc-button__icon user-menu-icon"
+                                    src="/storage/{{ $androidApp->creator->avatar }}"
+                                    height="35px"
+                                    width="auto"
+                                    align="top"
+                                />
 
-                                    {{ $androidApp->creator->name ?? 'N/A' }}
-                                </a>
-                            @endif
+                                {{ $androidApp->creator->name ?? 'N/A' }}
+                            </a>
                         </h3>
 
                         <h4 class="mdc-typography--headline6">
@@ -118,7 +126,7 @@
 
                     @if($androidApp->approved)
                         <div class="mdc-card__actions">
-                            @if (Auth::check() && !$androidApp->price)
+                            @if (!$androidApp->price)
                                 <form method="POST" action="/android_apps/{{ $androidApp->id }}/toggle_own/{{ Auth::user()->id }}">
                                     @csrf
                                     <button class="mdc-button mdc-button--raised submit" type="submit">

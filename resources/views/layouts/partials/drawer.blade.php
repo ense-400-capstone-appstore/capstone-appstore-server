@@ -97,6 +97,34 @@
                 </a>
 
                 <hr class="mdc-list-divider">
+
+                <h6 class="mdc-list-group__subheader">Groups</h6>
+
+                <a
+                    class="mdc-list-item"
+                    href="/users/{{ Auth::user()->id }}/groups"
+                >
+                    <i
+                        class="mdc-list-item__graphic material-icons"
+                        aria-hidden="true"
+                    >people</i>
+
+                    <span class="mdc-list-item__text">Your Groups</span>
+                </a>
+
+                <a
+                    class="mdc-list-item"
+                    href="/groups"
+                >
+                    <i
+                        class="mdc-list-item__graphic material-icons"
+                        aria-hidden="true"
+                    >more_horiz</i>
+
+                    <span class="mdc-list-item__text">More Groups</span>
+                </a>
+
+                <hr class="mdc-list-divider">
             @endif
 
             <h6 class="mdc-list-group__subheader">Actions</h6>

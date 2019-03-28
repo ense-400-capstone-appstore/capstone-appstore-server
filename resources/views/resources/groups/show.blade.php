@@ -44,25 +44,21 @@
                         </h2>
 
                         <h3 class="mdc-typography--headline5">
-                            @if ($group->owner_id == Auth::user()->id)
-                                You created this group
-                            @else
-                                <span>By </span>
-                                <a
-                                    class="block-link creator-link"
-                                    href="/users/{{ $group->owner->id }}"
-                                >
-                                    <img
-                                        class="user-menu-icon"
-                                        src="/storage/{{ $group->owner->avatar }}"
-                                        height="35px"
-                                        width="auto"
-                                        align="top"
-                                    />
+                            <span>By </span>
+                            <a
+                                class="block-link creator-link"
+                                href="/users/{{ $group->owner->id ?? 'N/A' }}"
+                            >
+                                <img
+                                    class="user-menu-icon"
+                                    src="/storage/{{ $group->owner->avatar ?? 'users/default.png' }}"
+                                    height="35px"
+                                    width="auto"
+                                    align="top"
+                                />
 
-                                    {{ $group->owner->name ?? 'N/A' }}
-                                </a>
-                            @endif
+                                {{ $group->owner->name ?? 'N/A' }}
+                            </a>
                         </h3>
 
                         @if($group->isMember(Auth::user()))

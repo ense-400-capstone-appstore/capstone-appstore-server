@@ -168,29 +168,8 @@
             </p>
 
             <div class="mdc-layout-grid__inner">
-                {{-- Add an App --}}
-                <a href="/android_apps/create" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
-                    <div class="mdc-card card-button">
-                        <div class="mdc-card__primary-action" tabindex="0">
-                            <div class="mdc-card__media">
-                                <div class="mdc-card__media-content">
-                                    <div class="card-content">
-                                        <h2 class="mdc-typography--headline6">Add an App</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card-content">
-                                <p class="mdc-typography--body2">
-                                    Host a new app for users to purchase
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
                 {{-- Your Apps --}}
-                <a href="/users/{{ Auth::user()->id }}/created_android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
+                <a href="/users/{{ Auth::user()->id }}/created_android_apps" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
                     <div class="mdc-card card-button">
                         <div class="mdc-card__primary-action" tabindex="0">
                             <div class="mdc-card__media">
@@ -211,7 +190,7 @@
                 </a>
 
                 {{-- Your Apps --}}
-                <a href="/users/{{ Auth::user()->id }}/created_groups" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
+                <a href="/users/{{ Auth::user()->id }}/created_groups" class="block-link mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
                     <div class="mdc-card card-button">
                         <div class="mdc-card__primary-action" tabindex="0">
                             <div class="mdc-card__media">

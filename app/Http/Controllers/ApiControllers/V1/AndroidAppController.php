@@ -26,6 +26,8 @@ class AndroidAppController extends Controller
      */
     public function index()
     {
+        $this->authorize('index', AndroidApp::class);
+
         return AndroidAppResource::collection(
             Auth::user()->accessibleApps()->paginate(15)
         );
@@ -39,6 +41,8 @@ class AndroidAppController extends Controller
      */
     public function show(AndroidApp $androidApp)
     {
+        $this->authorize('view', $androidApp);
+
         return new AndroidAppResource($androidApp);
     }
 
@@ -50,6 +54,8 @@ class AndroidAppController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('store', AndroidApp::class);
+
         $request->validate([
             'name' => 'required|string',
             'version' => 'required|string',
@@ -76,6 +82,8 @@ class AndroidAppController extends Controller
      */
     public function update(Request $request, AndroidApp $androidApp)
     {
+        $this->authorize('update', $androidApp);
+
         $request->validate([
             'name' => 'string',
             'version' => 'string',
@@ -101,6 +109,8 @@ class AndroidAppController extends Controller
      */
     public function destroy(AndroidApp $androidApp)
     {
+        $this->authorize('destroy', $androidApp);
+
         $androidApp->delete();
         return response(null, 204);
     }
@@ -113,6 +123,7 @@ class AndroidAppController extends Controller
     public function avatarUpload(Request $request, AndroidApp $androidApp)
     {
         $this->authorize('setAvatar', $androidApp);
+
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,bmp,png|max:5120'
         ]);
@@ -129,6 +140,7 @@ class AndroidAppController extends Controller
     public function avatarDownload(AndroidApp $androidApp)
     {
         $this->authorize('getAvatar', $androidApp);
+
         return Image::make($androidApp->getAvatar())->response();
     }
 
@@ -140,6 +152,7 @@ class AndroidAppController extends Controller
     public function fileUpload(Request $request, AndroidApp $androidApp)
     {
         $this->authorize('setFile', $androidApp);
+
         $request->validate([
             'file' => 'required|max:102400'
         ]);
@@ -156,6 +169,7 @@ class AndroidAppController extends Controller
     public function fileDownload(AndroidApp $androidApp)
     {
         $this->authorize('getFile', $androidApp);
+
         return $androidApp->getFile();
     }
 
@@ -179,6 +193,8 @@ class AndroidAppController extends Controller
      */
     public function categories(AndroidApp $androidApp)
     {
+        $this->authorize('view', $androidApp);
+
         return CategoryResource::collection(
             $androidApp->categories()->paginate(15)
         );

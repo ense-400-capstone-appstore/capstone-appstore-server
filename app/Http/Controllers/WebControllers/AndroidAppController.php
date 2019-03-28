@@ -6,7 +6,9 @@ use App\AndroidApp;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Category;
 use Auth;
+use Illuminate\Validation\ValidationException;
 
 class AndroidAppController extends Controller
 {
@@ -32,6 +34,19 @@ class AndroidAppController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\AndroidApp  $androidApp
+     * @return \Illuminate\Http\Response
+     */
+    public function show(AndroidApp $androidApp)
+    {
+        $this->authorize('view', $androidApp);
+
+        return view('resources/android_apps/show', ['androidApp' => $androidApp]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -40,7 +55,10 @@ class AndroidAppController extends Controller
     {
         $this->authorize('create', AndroidApp::class);
 
-        return view('resources/android_apps/create');
+        return view('resources/android_apps/create', [
+            'categories' => Category::all(),
+            'groups' => Auth::user()->createdGroups
+        ]);
     }
 
     /**
@@ -61,6 +79,8 @@ class AndroidAppController extends Controller
             'price' => 'required|numeric',
             'categories' => 'array',
             'categories.*' => 'numeric',
+            'groups' => 'array',
+            'groups.*' => 'numeric',
         ]);
 
         $androidApp = AndroidApp::create($request->only([
@@ -87,22 +107,14 @@ class AndroidAppController extends Controller
             $androidApp->categories()->attach($categoryId);
         }
 
+        // Attach groups
+        foreach ($request->input('groups') ?? [] as $groupId) {
+            $androidApp->groups()->attach($groupId);
+        }
+
         return redirect()->action('WebControllers\AndroidAppController@show', [
             'androidApp' => $androidApp
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\AndroidApp  $androidApp
-     * @return \Illuminate\Http\Response
-     */
-    public function show(AndroidApp $androidApp)
-    {
-        $this->authorize('view', $androidApp);
-
-        return view('resources/android_apps/show', ['androidApp' => $androidApp]);
     }
 
     /**
@@ -115,7 +127,11 @@ class AndroidAppController extends Controller
     {
         $this->authorize('edit', $androidApp);
 
-        return view('resources/android_apps/edit', ['androidApp' => $androidApp]);
+        return view('resources/android_apps/edit', [
+            'androidApp' => $androidApp,
+            'categories' => Category::all(),
+            'groups' => Auth::user()->createdGroups
+        ]);
     }
 
     /**
@@ -135,9 +151,14 @@ class AndroidAppController extends Controller
             'description' => 'required|string',
             'package_name' => 'string|nullable',
             'price' => 'required|numeric',
+            'private' => 'numeric|nullable',
             'categories' => 'array',
-            'categories.*' => 'numeric'
+            'categories.*' => 'numeric',
+            'groups' => 'array',
+            'groups.*' => 'numeric',
         ]);
+
+        $androidApp->private = $request->input('private') ? true : false;
 
         $androidApp->update($request->only([
             'name',
@@ -164,6 +185,13 @@ class AndroidAppController extends Controller
 
         foreach ($request->input('categories') ?? [] as $categoryId) {
             $androidApp->categories()->attach($categoryId);
+        }
+
+        // Detach all groups and only attach selected ones
+        $androidApp->groups()->detach();
+
+        foreach ($request->input('groups') ?? [] as $groupId) {
+            $androidApp->groups()->attach($groupId);
         }
 
         return redirect()->action('WebControllers\AndroidAppController@show', [
@@ -195,7 +223,9 @@ class AndroidAppController extends Controller
 
         if ($file) return $file;
 
-        return back();
+        throw ValidationException::withMessages([
+            'file' => 'This app does not have a file attached!'
+        ]);
     }
 
     /**

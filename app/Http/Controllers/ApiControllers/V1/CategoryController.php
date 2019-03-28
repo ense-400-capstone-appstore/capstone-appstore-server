@@ -10,6 +10,12 @@ use App\Http\Resources\AndroidApp as AndroidAppResource;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+        $this->authorizeResource(Category::class, 'category');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,18 +23,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return CategoryResource::collection(Category::paginate());
-    }
+        $this->authorize('index', Category::class);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return CategoryResource::collection(Category::paginate(15));
     }
 
     /**
@@ -39,7 +36,20 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        $this->authorize('view', $category);
+
         return new CategoryResource($category);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->authorize('store', Category::class);
     }
 
     /**
@@ -51,7 +61,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $this->authorize('update', $category);
     }
 
     /**
@@ -62,7 +72,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $this->authorize('delete', $category);
     }
 
     /**
@@ -73,8 +83,10 @@ class CategoryController extends Controller
      */
     public function androidApps(Category $category)
     {
-        return AndroidAppResource::collection(
-            $category->androidApps()->paginate(15)
-        );
+        $this->authorize('view', $category);
+
+        $androidApps = Auth::user()->accessibleCategoryApps($category);
+
+        return AndroidAppResource::collection($androidApps->paginate(15));
     }
 }
