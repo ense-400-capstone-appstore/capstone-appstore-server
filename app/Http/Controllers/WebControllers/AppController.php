@@ -4,8 +4,7 @@ namespace App\Http\Controllers\WebControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth;
-use App\Category;
+use Illuminate\Support\Facades\Auth;
 
 class AppController extends Controller
 {

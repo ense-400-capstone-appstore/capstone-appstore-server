@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Group;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class GroupObserver
 {

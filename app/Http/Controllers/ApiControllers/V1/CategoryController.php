@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Category as CategoryResource;
 use App\Http\Resources\AndroidApp as AndroidAppResource;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {

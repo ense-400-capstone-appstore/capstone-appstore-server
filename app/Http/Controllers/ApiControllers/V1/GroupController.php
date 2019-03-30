@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Group as GroupResource;
 use App\Http\Resources\AndroidApp as AndroidAppResource;
 use App\Http\Resources\User as UserResource;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller
 {
