@@ -5,7 +5,7 @@ namespace App\Http\Controllers\WebControllers;
 use App\Group;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 class GroupController extends Controller

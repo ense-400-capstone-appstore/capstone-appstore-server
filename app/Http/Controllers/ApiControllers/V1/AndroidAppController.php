@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Image;
 use App\Http\Resources\Category as CategoryResource;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class AndroidAppController extends Controller
 {
