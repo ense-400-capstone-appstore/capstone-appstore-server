@@ -221,7 +221,7 @@ class UserController extends Controller
             'groups.*' => 'numeric',
         ]);
 
-        $groups = Auth::user()->createdGroups();
+        $groups = Auth::user()->createdGroups;
         $requestGroupIds = $request->input('groups') ?? [];
 
         // Remove user from all of the current user's groups
