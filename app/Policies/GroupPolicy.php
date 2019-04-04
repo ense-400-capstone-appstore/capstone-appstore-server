@@ -118,6 +118,9 @@ class GroupPolicy extends BasePolicy
      */
     public function toggleMember(User $user, Group $group)
     {
+        // The group should be accessible to the owner
+        if ($user->id == $group->owner_id) return true;
+
         // The group should be accessible to (viewable by) the user
         return $user
             ->accessibleGroups($user)
