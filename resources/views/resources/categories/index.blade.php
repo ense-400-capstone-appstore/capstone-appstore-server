@@ -44,10 +44,12 @@
                     @endforeach
                 </ul>
             </div>
+
+            <div class="mdc-layout-grid__cell--span-12 model-links">
+                {{ $categories->links() }}
+            </div>
         </div>
     </div>
 </div>
-
-{{ $categories->links() }}
 
 @endsection

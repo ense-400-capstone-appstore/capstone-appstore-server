@@ -121,3 +121,16 @@ a.block-link {
     text-decoration: none;
     color: inherit;
 }
+
+.model-links {
+    ul {
+        display: flex;
+        list-style: none;
+        justify-content: center;
+        font-weight: bolder;
+
+        > li {
+            margin: 0 10px;
+        }
+    }
+}

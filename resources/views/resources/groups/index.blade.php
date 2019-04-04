@@ -43,10 +43,12 @@
                 ])
                 @endcomponent
             @endforeach
+
+            <div class="mdc-layout-grid__cell--span-12 model-links">
+                {{ $groups->links() }}
+            </div>
         </div>
     </div>
 </div>
-
-{{ $groups->links() }}
 
 @endsection
